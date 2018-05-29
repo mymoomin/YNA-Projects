@@ -1,4 +1,5 @@
 ﻿{oneline:
+{!!library}
 {!!extend end pre="\n" post="" yna=true public=false}
 {!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at https://imgur.com/a/B0E2T
 
