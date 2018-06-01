@@ -80,8 +80,8 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                 Will
 
                 {!38 characters!}
-            ;};
-
+            ;}
+        ;
             {when:{ta2};eq;adults;
                 {choose:
                     {!Kiwi Blitz}
@@ -102,8 +102,8 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                     Anemone;The Woman in White
 
                     {!28 characters!}
-                ;};
-
+                ;}
+            ;
                 {when:{ta2};eq;babbus;
                     {choose:
                         {!Kiwi Blitz}
@@ -116,8 +116,8 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                         Alex;Claire
 
                         {!9 characters!}
-                    ;};
-
+                    ;}
+                ;
                     {choose:
                         {!Kiwi Blitz}
                         Steffi;Benzene;Heinrich;Chandra;
@@ -167,8 +167,8 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                 Steffi;Benzene;Chandra;
                 Kiwibot;
                 
-            ;};
-
+            ;}
+        ;
             {when:{ta2};eq;adults;
                 {choose:
                     {!Kiwi Blitz}
@@ -179,16 +179,16 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                     Reed;Cho;Chief Bahia;Flores;Barnes;
                     Francis;
                     Barkley;Aris
-                ;};
-
+                ;}
+            ;
                 {when:{ta2};eq;babbus;
                     {choose:
                         {!Kiwi Blitz}
                         Chandra;
                         Kiwibot;
                         
-                    ;};
-
+                    ;}
+                ;
                     {choose:
                         {!Kiwi Blitz}
                         Steffi;Benzene;Heinrich;Chandra;
@@ -229,8 +229,8 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                 (honorary) Rock Blitz;
                 Nicodemus;The Woman in White;
                 Will
-            ;};
-
+            ;}
+        ;
             {when:{ta2};eq;adults;
                 {choose:
                     The Purple One;
@@ -239,15 +239,15 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                     Momdine;
                     Nicodemus;Mark;
                     Anemone;The Woman in White
-                ;};
-
+                ;}
+            ;
                 {when:{ta2};eq;babbus;
                     {choose:
                         The Golden One;
                         Nicodemus;
                         Alex;Claire
-                    ;};
-
+                    ;}
+                ;
                     {choose:
                         {!Mahous}
                         Undine;
@@ -299,8 +299,8 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
         \{character:any,babbus\} returned {character:any,babbus}\n
         \{character:any,adults\} returned {character:any,adults}\n
         \{character:any,kids\} returned {character:any,kids}\n
-        {!!extend end pre="\n" post="" yna=true public=false};
-
+        {!!extend end pre="\n" post="" yna=true public=false}
+    ;
         {character:{arg1},{arg2}}
     ;}
 ;}
