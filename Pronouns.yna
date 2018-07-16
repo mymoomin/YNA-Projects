@@ -1,0 +1,103 @@
+{oneline:
+    {!!library}
+    {!!call within a tag to get several functions that return a member's pronouns.
+use `+t pronouns` for help.!}
+    {set:newrep;true;}
+
+    {func:f_pronouns;
+        {when:{ta1};is;error;
+            {member:mem;{caller};}
+        ;
+            {member:mem;{ta1};}
+        ;}
+        {set:roles;{rep:,;;{mem.roles};};}
+        {!remove commas}
+        {when:419947091020742666;in;{roles};{!they/them}
+            they
+        ;
+            {when:419946772274872321;in;{roles};{!she/her}
+                she
+            ;
+                {when:419946959642689569;in;{roles};{!he/him}
+                    he
+                ;
+                    they{!no pronouns roles, defaults to they/them}
+                ;}
+            ;}
+        ;}
+    ;}
+    {func:f_subjectPronoun;{f_pronouns:{ta1}};}{!just an alias of {f_pronouns}}
+    {func:f_objectPronoun;
+        {when:{f_pronouns:{ta1}};eq;they;{!they/them}
+            them
+        ;
+            {when:{f_pronouns:{ta1}};eq;she;{!she/her}
+                her
+            ;
+                {when:{f_pronouns:{ta1}};eq;he;{!he/him}
+                    him
+                ;
+                    them{!none/none}
+                ;}
+            ;}
+        ;}
+    ;}
+    {func:f_possessiveDeterminer;
+        {when:{f_pronouns:{ta1}};eq;they;{!they/them}
+            their
+        ;
+            {when:{f_pronouns:{ta1}};eq;she;{!she/her}
+                her
+            ;
+                {when:{f_pronouns:{ta1}};eq;he;{!he/him}
+                    his
+                ;
+                    their{!none/none}
+                ;}
+            ;}
+        ;}
+    ;}
+    {func:f_posessivePronoun;
+        {when:{f_pronouns:{ta1}};eq;they;{!they/them}
+            theirs
+        ;
+            {when:{f_pronouns:{ta1}};eq;she;{!she/her}
+                hers
+            ;
+                {when:{f_pronouns:{ta1}};eq;he;{!he/him}
+                    his
+                ;
+                    theirs{!none/none}
+                ;}
+            ;}
+        ;}
+    ;}
+    {func:f_copula;
+        {when:{f_pronouns:{ta1}};eq;they;{!they/them}
+            are
+        ;
+            is
+        ;}
+    ;}
+    {func:f_areIs;{f_copula:{ta1}};}{!just an alias of {f_copula}}
+    {func:f_verbEnding;
+        {when:{f_pronouns:{ta1}};eq;they;{!they/them}
+            
+        ;
+            s
+        ;}
+    {when:{base};eq;true;
+        {when:{member:input;{arg1};};is;error;
+            Put `\{call:pronouns\;\}` at the beginning of a tag to get functions that return a target's pronouns based on their name\n
+            You can use the target's username (e.g. mymoomin), nickname (e.g. mymoomin again), or username + discrim (e.g. mymoomin#0952)\n
+            `\{f_subjectPronoun\}` or `\{f_pronouns\}` returns `they/she/he`\n
+            `\{f_objectPronoun\}` returns `them/her/him`\n
+            `\{f_possessiveDeterminer\}` returns `their/her/his`\n
+            `\{f_posessivePronoun\}` returns `theirs/hers/his`\n
+            `\{f_copula\}` or `\{f_areIs\}` returns `are/is/is`\n
+            `\{f_verbEnding\}` returns `[empty string]/s/s`
+        ;
+            {f_pronouns:{arg1}}
+        ;}
+    ;}
+;}
