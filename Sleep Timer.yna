@@ -12,6 +12,7 @@
     {!FORMAT: yyyydddhhmm}
     
     {func:f_check;
+        {!Returns true if the timer is over, false otherwise.}
         {!SET END TIME}
         {set:end_time;{end_stored};}
         {set:end_year;{slice:0,4;{end_time};};}
@@ -60,6 +61,7 @@
     ;}
 
     {func:f_timer;
+        {!Pings me if the timer is over and I haven't been pinged already, does nothing otherwise.}
         {when:{f_check};eq;true;
             {when:{activated};==;true;
                 {!do nothing}
@@ -71,6 +73,8 @@
     ;}
     
     {func:f_rando;
+        {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
+        If there is one element it sets {pick} to that and refreshes the list.}
         {when:{len:{list};};gt;1;
             {set:pick;{slice:{num:{math:sub;{len:{list};};1;};};{list};};}
             {set:list;{rep:{pick};;{list};};}
@@ -81,6 +85,8 @@
         {save:list;{list};}
     ;}
     {func:f_sleep;
+        {!If a sleep meme is associated with the current value of {pick}, posts that image and sets {pick} to done.
+        Otherwise, does nothing.}
         {when:{pick};eq;1;+t sleep (by CubeWatermelon) [1] https://i.imgur.com/AsgFFD9.jpg {set:pick;done;};}
         {when:{pick};eq;2;+t cutesleep (by Krekalie) [2] https://i.imgur.com/cGoqfWB.jpg {set:pick;done;};}
         {when:{pick};eq;3;+t sleeeep (by Elle) [3] https://i.imgur.com/WeiEo7F.jpg {set:pick;done;};}
@@ -171,12 +177,15 @@
 
     {func:f_main;
         {when:{arg1};is;error;
+            {!Sets {pick} to an element of the choice list at random.}
             {f_rando}
         ;
             {when:{arg1};==;reset;
+            {!Resets the 24-hour timer.}
                 {save:end_stored;{time:24;%Y%j%H%M;};}`Reset Countdown to {slice:0,19;{time:25;};}`\n
                 {save:activated;;}
             ;}
+            {!Self-explanatory}
             {set:pick;{arg1};}
         ;}
         {f_sleep}
@@ -191,8 +200,10 @@
     ;}
     
     {when:{base};eq;true;
+        {!Runs the program.}
         {f_main}
     ;
+        {!Backend is a version of this tag with anything requiring persistent state removed.}
         {call:backend;}
     ;}
 ;}
