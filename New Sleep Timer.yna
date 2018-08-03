@@ -15,7 +15,7 @@
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>;}{save:entry1;{time:25;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>?;}{save:entry1;{time:25;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
 
@@ -48,6 +48,7 @@
     ;}
 
     {func:f_pack;
+        {!Packs the IDs and times together into one variable each to save space.}
         {loop:{len};
             {save:entry{iter};{end_stored{iter}}{person{iter}};}
         ;}
@@ -59,9 +60,9 @@
         ;
             \n
             {save:entry{math:+;{len};1;};{time:{offset};%Y%j%H%M;}{caller.id};}
-            \nAdded a reminder for {caller.display_name} and set it to `{slice:0,19;{time:{offset};};}`UTC.\n
-            To remove your reminder, use `+t rsleep remove`.\n
-            To reset it, use `+t rsleep reset`.
+            \nAdded a reminder for {caller.display_name} and set it to `{slice:0,19;{time:{offset};};}`UTC.
+            \nTo remove your reminder, use `+t rsleep remove`.
+            \nTo reset it, use `+t rsleep reset`.
         ;}
     ;}
 
@@ -75,8 +76,9 @@
             {loop:{math:+;{deleted};1;},{len};
                 {set:newindex;{math:-;{iter};1;};}
                 {set:person{newindex};{person{iter}};}
-                {set:end_stored{newindex};{person{iter}};}
+                {set:end_stored{newindex};{end_stored{iter}};}
             ;}
+            {!Using set or save with only one semi-colon at the end de-assigns the variable.}
             {save:entry{len};}
             {set:end_stored{len};}
             {set:person{len};}
@@ -90,7 +92,7 @@
         {when:{caller.id};in;{people};
             {loop:{len};
                 {when:{caller.id};eq;{person{iter}};
-                    {save:end_stored{iter};{time:{offset};%Y%j%H%M;};}\n`Reset Countdown to {slice:0,19;{time:{offset};};}UTC`
+                    {set:end_stored{iter};{time:{offset};%Y%j%H%M;};}\n`Reset Countdown to {slice:0,19;{time:{offset};};}UTC`
                 ;}
             ;}
         ;
@@ -101,7 +103,7 @@
     {func:f_timer;
         {loop:{len};
             {when:{f_check:{end_stored{iter}}};==;true;
-                {nameof:{person{iter}};mention;} 
+                \n{nameof:{person{iter}};mention;} 
                 {set:end_stored{iter};{time:10000;%Y%j%H%M;};}
                 {set:flag;true;}
             ;}
@@ -171,7 +173,7 @@
             {set:list;{rep:{pick};;{list};};}
         ;
             {set:pick;{list};}{!Only one element in {list}}
-            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>;}
+            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>?;}
         ;}
         {save:list;{list};}
     ;}
@@ -264,6 +266,7 @@
         {when:{pick};eq;/;+t swimsleep (by Zyrii) [/] https://i.imgur.com/RN609UH.png {set:pick;done;};}
         {when:{pick};eq;<;+t lunasleep (by RustyTinCan) [<] https://i.imgur.com/MxXzui5.png {set:pick;done;};}
         {when:{pick};eq;>;+t lunasleep2 (by NativeJovian) [>] https://i.imgur.com/JPOvGaJ.png {set:pick;done;};}
+        {when:{pick};eq;?;+t sleepass (by CeeSea) [?] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
     ;}
 
     {func:f_main;
@@ -298,11 +301,11 @@
                     {when:{arg1};==;remove;
                         {when:{arg2};is;error;
                             {f_remove:{caller.id}}
-                            {caller.display_name}, your reminder has been removed.
+                            \n{caller.display_name}, your reminder has been removed.
                         ;
                             {when:{caller.id};==;346555330358149120;
                                 {f_remove:{arg2}}
-                                {nameof:{arg2};display_name;}'s reminder has been removed.
+                                \n{nameof:{arg2};display_name;}'s reminder has been removed.
                             ;
                                 \nI will not allow you to remove someone else's timer.\n
                                 If you wanted to remove your own, just use `+t rsleep remove`!
