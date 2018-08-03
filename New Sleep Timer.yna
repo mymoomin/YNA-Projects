@@ -1,0 +1,326 @@
+{oneline:
+    {!!library}
+    {!!extend end pre="\n" post="" yna=true public=false}
+    {!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at <https://imgur.com/a/B0E2T>!!}
+    {!!descshort A random image telling you to go to sleep!}
+    {!This tag returns a random image telling you to go to sleep.
+
+    It used to just use a big choose statement, but a lot of the time images were posted multiple times in a row, or not
+    at all.
+
+    So I moved to this model, where each image is associated with an element on a list, and each time the tag is called
+    an element is picked at random, the associated image is posted, and the element is removed from the list.
+
+    I also added a 24 hour timer to remind me when to get coins, because 42's timer isn't super reliable, and hey, why
+    not.
+    
+    Virtually all of the code in {f_check} is Krekalie's}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>;}{save:entry1;{time:25;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {set:newrep;true;}
+    {set:offset;24;}
+
+    {func:f_listlength;
+        {!Returns length of a ""list"" of elements (by ""list"" I mean a sequence of elements {entry1}, {entry2}, etc.)
+        Assumes list starts at 1 because it plays nicer with loops.}
+        {set:i;1;}
+        {f_listlength_iter}
+    ;}
+    {func:f_listlength_iter;
+        {when:{entry{i}};is;error;
+            {!No entry {i}, so list is {i}-1 long}
+            {math:-;{i};1;}
+        ;
+            {set:i;{math:+;{i};1;};}
+            {f_listlength_iter}
+        ;}
+    ;}
+
+    {func:f_unpack;
+        {!Creates two "lists", {person{i}} (a list of the IDs of everyone who has set a reminder) and
+        {end_stored{i}} (a list of when each person's reminder ends), and also {people}, an actual list
+        of the id of everyone who has set a reminder.}
+        {set:people;;}
+        {loop:{len};
+            {set:end_stored{iter};{slice:,11;{entry{iter}};};}
+            {set:person{iter};{slice:11,;{entry{iter}};};}
+            {set:people;{people},{person{iter}};}
+        ;}
+    ;}
+
+    {func:f_pack;
+        {loop:{len};
+            {save:entry{iter};{end_stored{iter}}{person{iter}};}
+        ;}
+    ;}
+
+    {func:f_add;
+        {when:{caller.id};in;{people};
+            \nYou already have a reminder set up!
+        ;
+            \n
+            {save:entry{math:+;{len};1;};{time:{offset};%Y%j%H%M;}{caller.id};}
+            \nAdded a reminder for {caller.display_name} and set it to `{slice:0,19;{time:{offset};};}`UTC.\n
+            To remove your reminder, use `+t rsleep remove`.\n
+            To reset it, use `+t rsleep reset`.
+        ;}
+    ;}
+
+    {func:f_remove;
+        {when:{ta1};in;{people};
+            {loop:{len};
+                {when:{ta1};==;{person{iter}};
+                    {set:deleted;{iter};}
+                ;}
+            ;}
+            {loop:{math:+;{deleted};1;},{len};
+                {set:newindex;{math:-;{iter};1;};}
+                {set:person{newindex};{person{iter}};}
+                {set:end_stored{newindex};{person{iter}};}
+            ;}
+            {save:entry{len};}
+            {set:end_stored{len};}
+            {set:person{len};}
+            {set:len;{math:-;{len};1;};}
+        ;
+            \n<:42_ohisee:422698658274869248> You don't seem to have a timer to remove in the first place...
+        ;}
+    ;}
+    {func:f_reset;
+        {!Resets the caller's 24-hour timer.}
+        {when:{caller.id};in;{people};
+            {loop:{len};
+                {when:{caller.id};eq;{person{iter}};
+                    {save:end_stored{iter};{time:{offset};%Y%j%H%M;};}\n`Reset Countdown to {slice:0,19;{time:{offset};};}UTC`
+                ;}
+            ;}
+        ;
+            \nYou don't have a timer set up! Use `+t rsleep add` to make one.
+        ;}
+    ;}
+
+    {func:f_timer;
+        {loop:{len};
+            {when:{f_check:{end_stored{iter}}};==;true;
+                {nameof:{person{iter}};mention;} 
+                {set:end_stored{iter};{time:10000;%Y%j%H%M;};}
+                {set:flag;true;}
+            ;}
+        ;}
+        {when:{flag};==;true;Coin time!;}
+    ;}
+
+    {!FORMAT: {!time:0;%Y%j%H%M;}}
+    {!EXAMPL: 20181790537}
+    {!DIGITS: 01234567890}
+    {!FORMAT: yyyydddhhmm}
+    
+    {func:f_check;
+        {!Returns true if the timer is over, false otherwise.}
+        {!SET END TIME}
+        {set:end_time;{ta1};}
+        {set:end_year;{slice:0,4;{end_time};};}
+        {set:end_day;{slice:4,7;{end_time};};}
+        {set:end_hour;{slice:7,9;{end_time};};}
+        {set:end_min;{slice:9,11;{end_time};};}
+        
+        {!SET CURRENT TIME}
+        {set:cnt_time;{time:0;%Y%j%H%M;};}
+        {set:cnt_year;{slice:0,4;{cnt_time};};}
+        {set:cnt_day;{slice:4,7;{cnt_time};};}
+        {set:cnt_hour;{slice:7,9;{cnt_time};};}
+        {set:cnt_min;{slice:9,11;{cnt_time};};}
+        {set:mh_carry;0;}{set:hd_carry;0;}{set:dy_carry;0;}
+        
+        {!maths}
+        {set:calc_min;
+            {math:sub;{end_min};{cnt_min};}
+        ;}
+        {when:{calc_min};le;0;
+            {set:calc_min;{math:add;{calc_min};60;};}
+            {set:mh_carry;1;}
+        ;}
+        {set:calc_hour;{math:sub;{end_hour};{cnt_hour};};}
+        {when:{calc_hour};le;0;
+            {set:calc_hour;{math:add;{calc_hour};24;};}
+            {set:hd_carry;1;}
+        ;}
+        {set:calc_day;{math:sub;{end_day};{cnt_day};};}
+        {when:{calc_day};lt;0;
+            {set:calc_day;{math:add;{calc_day};365;};}
+            {set:dy_carry;1;}
+        ;}
+        {set:calc_year;{math:sub;{end_year};{cnt_year};};}
+        
+        {!carries}
+        {set:calc_hour;{math:sub;{calc_hour};{mh_carry};};}
+        {set:calc_day;{math:sub;{calc_day};{hd_carry};};}
+        {set:calc_year;{math:sub;{calc_year};{dy_carry};};}
+        
+        {set:end_flag;false;}
+        {when:{calc_year};lt;0;{set:end_flag;true;};}
+        {when:{calc_day};lt;0;{set:end_flag;true;};}
+        {when:{calc_hour};lt;0;{set:end_flag;true;};}
+        {end_flag}
+    ;}
+    
+    {func:f_rando;
+        {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
+        If there is one element it sets {pick} to that and refreshes the list.}
+        {when:{len:{list};};gt;1;
+            {set:pick;{slice:{num:{math:sub;{len:{list};};1;};};{list};};}
+            {set:list;{rep:{pick};;{list};};}
+        ;
+            {set:pick;{list};}{!Only one element in {list}}
+            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>;}
+        ;}
+        {save:list;{list};}
+    ;}
+    {func:f_sleep;
+        {!If a sleep meme is associated with the current value of {pick}, posts that image and sets {pick} to done.
+        Otherwise, does nothing.}
+        {when:{pick};eq;1;+t sleep (by CubeWatermelon) [1] https://i.imgur.com/AsgFFD9.jpg {set:pick;done;};}
+        {when:{pick};eq;2;+t cutesleep (by Krekalie) [2] https://i.imgur.com/cGoqfWB.jpg {set:pick;done;};}
+        {when:{pick};eq;3;+t sleeeep (by Elle) [3] https://i.imgur.com/WeiEo7F.jpg {set:pick;done;};}
+        {when:{pick};eq;4;+t sleep! (by Elle) [4] https://i.imgur.com/UJO5iPQ.jpg {set:pick;done;};}
+        {when:{pick};eq;5;+t sleeep! (by Elle) [5] https://i.imgur.com/ElbdmwZ.jpg {set:pick;done;};}
+        {when:{pick};eq;6;+t slep (by Elle) [6] https://i.imgur.com/OgyzM61.jpg {set:pick;done;};}
+        {when:{pick};eq;7;+t pleasesleep (by Elle) [7] https://i.imgur.com/tQqOBWe.jpg {set:pick;done;};}
+        {when:{pick};eq;8;+t sweep (by Elle) [8] https://i.imgur.com/ctVbeJU.jpg {set:pick;done;};}
+        {when:{pick};eq;9;+t pawnched [9] https://i.imgur.com/09SfkvM.jpg {set:pick;done;};}
+        {when:{pick};eq;0;+t pleasesleep! (by Nick) [0] https://i.imgur.com/6nLAOpi.png {set:pick;done;};}
+        {when:{pick};eq;a;+t rooftracksleep [a] https://i.imgur.com/ZLBxEcu.jpg {set:pick;done;};}
+        {when:{pick};eq;b;+t shittysleep (by comixthomas) [b] https://i.imgur.com/OtsL2qM.jpg {set:pick;done;};}
+        {when:{pick};eq;c;+t gosleep (by mymoomin) [c] https://i.imgur.com/38l6ofQ.png {set:pick;done;};}
+        {when:{pick};eq;d;+t sleep. (by CubeWatermelon) [d] https://i.imgur.com/aBbXm4z.jpg {set:pick;done;};}
+        {when:{pick};eq;e;+t sleepdumpster (by SodiumEyes) [e] https://i.imgur.com/8smZYxP.png {set:pick;done;};}
+        {when:{pick};eq;f;+t ctrl+alt+sleep [f] https://i.imgur.com/7maGoHy.png {set:pick;done;};}
+        {when:{pick};eq;g;+t smolsleep (by Nisclo) [g] https://i.imgur.com/vORQiP8.png {set:pick;done;};}
+        {when:{pick};eq;h;+t shitsleep (by Nisclo) [h] https://i.imgur.com/EEAKJuc.png {set:pick;done;};}
+        {when:{pick};eq;i;+t pixelsleep (by Gemstils) [i] https://i.imgur.com/ZK4fC3q.png {set:pick;done;};}
+        {when:{pick};eq;j;+t islep (by Dio) [j] https://i.imgur.com/oKHSeD7.png {set:pick;done;};}
+        {when:{pick};eq;k;+t goodnight (by sandoiichi) [k] https://cdn.discordapp.com/attachments/419786572049809409/426632653459161088/hp_paunchwalk.gif {set:pick;done;};}
+        {when:{pick};eq;l;+t spanishsleep (by chaosDesigner) [l] https://i.imgur.com/3LajkpE.jpg {set:pick;done;};}
+        {when:{pick};eq;m;+t gsleep (by Sandoiichi) [m] https://i.imgur.com/6Cssi0y.jpg {set:pick;done;};}
+        {when:{pick};eq;n;+t zoesleep (by Elle) [n] https://i.imgur.com/FfsgcDj.jpg {set:pick;done;};}
+        {when:{pick};eq;o;+t dumpstercube (by TFK) [o] https://i.imgur.com/ABmsT2c.png {set:pick;done;};}
+        {when:{pick};eq;p;+t sailorsleep (by phoenix_feet) [p] https://cdn.discordapp.com/attachments/400952239918678029/427426475940249609/Sailor_Sleep.gif {set:pick;done;};}
+        {when:{pick};eq;q;+t horriblesleep [q] https://i.imgur.com/9hUm7Aq.png {set:pick;done;};}
+        {when:{pick};eq;r;+t illumisleep [r] https://i.imgur.com/c8j5OQI.png {set:pick;done;};}
+        {when:{pick};eq;s;+t nyasleep [s] https://i.imgur.com/ytXYAdF.png {set:pick;done;};}
+        {when:{pick};eq;t;+t dumpstersleep (by Krekalie) [t] https://i.imgur.com/VMxTQn5.png {set:pick;done;};}
+        {when:{pick};eq;u;+t mst3ksleep [u] https://i.imgur.com/eUJB7ZQ.jpg {set:pick;done;};}
+        {when:{pick};eq;v;+t wiwsleep (by Elle) [v] https://i.imgur.com/CwQo0fS.jpg {set:pick;done;};}
+        {when:{pick};eq;w;+t wiwsleepcode (by Elle) [w] https://i.imgur.com/t8yKaCh.jpg {set:pick;done;};}
+        {when:{pick};eq;x;+t tinysleep (by PrincessLapis) [x] https://i.imgur.com/XqkTQ6s.jpg {set:pick;done;};}
+        {when:{pick};eq;y;+t comfysleep [y] https://i.imgur.com/XuoeFUc.jpg {set:pick;done;};}
+        {when:{pick};eq;z;+t faintsleep (by Krekalie) [z] https://i.imgur.com/sVSQovl.jpg {set:pick;done;};}
+        {when:{pick};eq;A;+t sleepdoctrine (by Cnaiur) [A] https://i.imgur.com/ZVQs3xV.png {set:pick;done;};}
+        {when:{pick};eq;B;+t youarealreadyasleep (by Sarah Fletcher) [B] https://i.imgur.com/iVPmTqf.png {set:pick;done;};}
+        {when:{pick};eq;C;+t sleepcloseup (by comixthomas) [C] https://cdn.discordapp.com/attachments/419786572049809409/433057243634860043/kokofacesleep.gif {set:pick;done;};}
+        {when:{pick};eq;D;+t sleepworm (by Krekalie) [D] https://i.imgur.com/hk46kGi.png {set:pick;done;};}
+        {when:{pick};eq;E;+t trainingsleep (by Krekalie) [E] https://i.imgur.com/Jr1J9Ao.png {set:pick;done;};}
+        {when:{pick};eq;F;+t sleeeeep (by Elle) [F] https://i.imgur.com/YrKGwxK.jpg {set:pick;done;};}
+        {when:{pick};eq;G;+t sleep.. (by Elle) [G] https://i.imgur.com/N5K9jEJ.jpg {set:pick;done;};}
+        {when:{pick};eq;H;+t morganasleep (by P4riah) [H] https://i.imgur.com/qxWYFzM.png {set:pick;done;};}
+        {when:{pick};eq;I;+t scattersleep (by Sarah Fletcher) [I] https://i.imgur.com/1Xp7RR4.jpg {set:pick;done;};}
+        {when:{pick};eq;J;+t notesleep (by Krekalie) [J] https://i.imgur.com/9Ggzdpy.png {set:pick;done;};}
+        {when:{pick};eq;K;+t supportivesleep (by Krekalie) [K] https://i.imgur.com/SjlfIg2.png {set:pick;done;};}
+        {when:{pick};eq;L;+t motivationalsleep (by Krekalie) [L] https://i.imgur.com/AwEkIOz.png {set:pick;done;};}
+        {when:{pick};eq;M;+t terriblesleep (by Krekalie) [M] https://i.imgur.com/8PNkmHi.png {set:pick;done;};}
+        {when:{pick};eq;N;+t wobblesleep (by mymoomin) [N] https://cdn.discordapp.com/attachments/360591441900339200/445054595077636107/inflated.gif {set:pick;done;};}
+        {when:{pick};eq;O;+t grimsleep (by Elle) [O] https://i.imgur.com/5AMP5go.jpg {set:pick;done;};}
+        {when:{pick};eq;P;+t emojisleep (by PrincessLapis) [P] <:sleep:432528816674570252> {set:pick;done;};}
+        {when:{pick};eq;Q;+t sleepzoom (by Gralzeim) [Q] https://i.imgur.com/zk84n6k.png {set:pick;done;};}
+        {when:{pick};eq;R;+t letssleep (by Redead) [R] https://i.imgur.com/FxPgBwk.png {set:pick;done;};}
+        {when:{pick};eq;S;+t gotosleep (by Redead) [S] https://i.imgur.com/Gsvf2AQ.png {set:pick;done;};}
+        {when:{pick};eq;T;+t corruptsleep (by mymoomin) [T] https://i.imgur.com/ediwQwn.png {set:pick;done;};}
+        {when:{pick};eq;U;+t glitchsleep (by mymoomin) [U] https://i.imgur.com/psX68J6.jpg {set:pick;done;};}
+        {when:{pick};eq;V;+t rwbysleep (by P4riah) [V] https://i.imgur.com/O2kvZyT.png {set:pick;done;};}
+        {when:{pick};eq;W;+t yangsleep (by P4riah) [W] https://i.imgur.com/rBhZGMr.png {set:pick;done;};}
+        {when:{pick};eq;X;+t weisssleep (by P4riah) [X] https://i.imgur.com/YnBVtFG.png {set:pick;done;};}
+        {when:{pick};eq;Y;+t pennysleep (by P4riah) [Y] https://i.imgur.com/S9o9l7v.png {set:pick;done;};}
+        {when:{pick};eq;Z;+t memesleep (by crumchy) [Z] https://i.imgur.com/e6hQhgG.png {set:pick;done;};}
+        {when:{pick};eq;!;+t murdersleep (by PrincessLapis) [!] https://i.imgur.com/N9VdcLS.png {set:pick;done;};}
+        {when:{pick};eq;£;+t trianglesleep (by TimmoWarner) [£] https://i.imgur.com/7ROleRR.png {set:pick;done;};}
+        {when:{pick};eq;$;+t frenchsleep (by Elle) [$] https://i.imgur.com/xKTa0SG.jpg {set:pick;done;};}
+        {when:{pick};eq;%;+t conceptsleep (by mymoomin) [%] https://i.imgur.com/ao8WpPu.png {set:pick;done;};}
+        {when:{pick};eq;^;+t owosleep (by mymoomin) [^] https://i.imgur.com/3pdLWRC.png {set:pick;done;};}
+        {when:{pick};eq;&;+t kicks-sleep (by Raz) [&] https://i.imgur.com/jicYGxj.jpg {set:pick;done;};}
+        {when:{pick};eq;*;+t kicksass (by Parataxis) [*] https://i.imgur.com/3wgEeQr.jpg {set:pick;done;};}
+        {when:{pick};eq;(;+t hpisgoopssleep (by Krekalie) [(] https://i.imgur.com/dAs9QT8.png {set:pick;done;};}
+        {when:{pick};eq;);+t sleephone (by Elle) [)]https://i.imgur.com/SvUW5LX.png {set:pick;done;};}
+        {when:{pick};eq;-;+t phonesleep (by Cnaiur) [-] https://i.imgur.com/UVu1bxT.png {set:pick;done;};}
+        {when:{pick};eq;_;+t firesleep (by Marcher Jovian) [_] https://i.imgur.com/pZ1UViA.jpg {set:pick;done;};}
+        {when:{pick};eq;+;+t cubesleep2 (by Redead) [+] https://i.imgur.com/oASKiQo.png {set:pick;done;};}
+        {when:{pick};eq;=;+t illegihatsleep (by Ａ　Ｔｉｒｅｄ　Ｆｏｒｍ　ｏｆ　Ｓａｔａｎ　科ど行者ッ) [=] https://i.imgur.com/6jrBiD0.png {set:pick;done;};}
+        {when:{pick};eq;[;+t budsleep (by Elle) [[] https://i.imgur.com/yLg9Asg.jpg {set:pick;done;};}
+        {when:{pick};eq;];+t suzysleep (by Zyrii) []] https://i.imgur.com/3PPUvrD.jpg {set:pick;done;};}
+        {when:{pick};eq;@;+t suitsiesleep (by Zyrii) [@] https://i.imgur.com/LvSzAOo.png {set:pick;done;};}
+        {when:{pick};eq;#;+t brainsleep (by heyitscorinth) [#] https://i.imgur.com/ndjNCgz.png {set:pick;done;};}
+        {when:{pick};eq;:;+t deepfrysleep (by mymoomin) [:] https://i.imgur.com/7fYHXYP.jpg {set:pick;done;};}
+        {when:{pick};eq;,;+t 64sleep (by Elle) [,] https://i.imgur.com/T5VOdzz.png {set:pick;done;};}
+        {when:{pick};eq;.;+t lowqualitysleep (by Elle) [.] https://i.imgur.com/2aj1KE0.png {set:pick;done;};}
+        {when:{pick};eq;~;+t pixelgensleep (by Elle) [~] https://i.imgur.com/zDIYCeq.png {set:pick;done;};}
+        {when:{pick};eq;/;+t swimsleep (by Zyrii) [/] https://i.imgur.com/RN609UH.png {set:pick;done;};}
+        {when:{pick};eq;<;+t lunasleep (by RustyTinCan) [<] https://i.imgur.com/MxXzui5.png {set:pick;done;};}
+        {when:{pick};eq;>;+t lunasleep2 (by NativeJovian) [>] https://i.imgur.com/JPOvGaJ.png {set:pick;done;};}
+    ;}
+
+    {func:f_main;
+        {when:{arg1};is;error;
+            {!Sets {pick} to an element of the choice list at random.}
+            {f_rando}
+        ;
+            {set:pick;{arg1};}
+        ;}
+        {f_sleep}
+        {when:{pick};eq;done;
+            {!All fine}
+        ;
+            {!{arg1} wasn't a valid option, defaulting to random}
+            {f_rando}
+            {f_sleep}
+        ;}
+        {!Now for all the timer stuff.}
+        {set:len;{f_listlength};}
+        {f_unpack}
+        {when:{arg1};==;reset;
+            {f_reset}
+        ;
+            {when:{arg1};==;add;
+                {f_add}
+            ;
+                {when:{arg1};==;list;
+                    {loop:{len};
+                        \n{nameof:{person{iter}};display_name;}: {end_stored{iter}}
+                    ;}
+                ;
+                    {when:{arg1};==;remove;
+                        {when:{arg2};is;error;
+                            {f_remove:{caller.id}}
+                            {caller.display_name}, your reminder has been removed.
+                        ;
+                            {when:{caller.id};==;346555330358149120;
+                                {f_remove:{arg2}}
+                                {nameof:{arg2};display_name;}'s reminder has been removed.
+                            ;
+                                \nI will not allow you to remove someone else's timer.\n
+                                If you wanted to remove your own, just use `+t rsleep remove`!
+                            ;}
+                        ;}
+                    ;}
+                ;}
+            ;}
+        ;}
+        {f_timer}
+        {f_pack}
+    ;}
+    
+    {when:{base};eq;true;
+        {!Runs the program.}
+        {f_main}
+    ;
+        {!Backend is a version of this tag with anything requiring persistent state removed.}
+        {call:backend;}
+    ;}
+;}
