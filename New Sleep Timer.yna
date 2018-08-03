@@ -15,7 +15,7 @@
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>?;}{save:entry1;{time:25;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>?;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
 
@@ -95,6 +95,7 @@
                     {set:end_stored{iter};{time:{offset};%Y%j%H%M;};}\n`Reset Countdown to {slice:0,19;{time:{offset};};}UTC`
                 ;}
             ;}
+            \nRemoved {nameof:{arg2};display_name;}'s reminder.
         ;
             \nYou don't have a timer set up! Use `+t rsleep add` to make one.
         ;}
@@ -301,11 +302,9 @@
                     {when:{arg1};==;remove;
                         {when:{arg2};is;error;
                             {f_remove:{caller.id}}
-                            \n{caller.display_name}, your reminder has been removed.
                         ;
                             {when:{caller.id};==;346555330358149120;
                                 {f_remove:{arg2}}
-                                \n{nameof:{arg2};display_name;}'s reminder has been removed.
                             ;
                                 \nI will not allow you to remove someone else's timer.\n
                                 If you wanted to remove your own, just use `+t rsleep remove`!
