@@ -278,7 +278,7 @@
         {when:{pick};eq;@;+t suitsiesleep (by Zyrii) [@] https://i.imgur.com/LvSzAOo.png {set:pick;done;};}
         {when:{pick};eq;#;+t brainsleep (by heyitscorinth) [#] https://i.imgur.com/ndjNCgz.png {set:pick;done;};}
         {when:{pick};eq;:;+t deepfrysleep (by mymoomin) [:] https://i.imgur.com/7fYHXYP.jpg {set:pick;done;};}
-        {when:{pick};eq;,;+t 64sleep (by Elle) [,] https://i.imgur.com/T5VOdzz.png {set:pick;done;};}
+        {when:{pick};eq;|;+t 64sleep (by Elle) [|] https://i.imgur.com/T5VOdzz.png {set:pick;done;};}
         {when:{pick};eq;.;+t lowqualitysleep (by Elle) [.] https://i.imgur.com/2aj1KE0.png {set:pick;done;};}
         {when:{pick};eq;~;+t pixelgensleep (by Elle) [~] https://i.imgur.com/zDIYCeq.png {set:pick;done;};}
         {when:{pick};eq;/;+t swimsleep (by Zyrii) [/] https://i.imgur.com/RN609UH.png {set:pick;done;};}
