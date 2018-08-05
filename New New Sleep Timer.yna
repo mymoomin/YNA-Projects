@@ -15,174 +15,11 @@
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>?;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|./~<>?;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
+    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|./~<>?;}
 
-    {func:f_listlength;
-        {!Returns length of a ""list"" of elements (by ""list"" I mean a sequence of elements {entry1}, {entry2}, etc.)
-        Assumes list starts at 1 because it plays nicer with loops.}
-        {set:i;1;}
-        {set:temp;{ta1};}
-        {f_listlength_iter}
-    ;}
-    {func:f_listlength_iter;
-        {when:{{temp}{i}};is;error;
-            {!No entry {i}, so list is {i}-1 long}
-            {math:-;{i};1;}
-        ;
-            {set:i;{math:+;{i};1;};}
-            {f_listlength_iter}
-        ;}
-    ;}
-
-    {func:f_unpack;
-        {!Creates two "lists", {person{i}} (a list of the IDs of everyone who has set a reminder) and
-        {end_stored{i}} (a list of when each person's reminder ends), and also {people}, an actual list
-        of the id of everyone who has set a reminder.}
-        {set:unpacktemp;;}
-        {set:people;;}
-        {loop:{len};
-            {set:unpacktemp;{unpacktemp}{entry{iter}};}
-            
-        ;}
-        {loop:0,{len:{unpacktemp};},27;
-            {set:end_stored{iter};{slice:{iter},{math:+;{iter};11;};{unpacktemp};};}
-            {set:person{iter};{slice:{math:+;{iter};11;},{math:+;{iter};27;};{unpacktemp};};}
-        ;}
-        {set:unpacktemp;}
-    ;}
-
-    {func:f_pack;
-        {!Packs the IDs and times together to save space.}
-        {set:packtemp;;}
-        {loop:{len};
-            {set:packtemp;{packtemp}{end_stored{iter}}{person{iter}};}
-        ;}
-        {loop:{math:ceil;{math:/;{len:{packtemp};};255;};};
-            {save:entry{iter};{slice:,255;{packtemp};};}
-            {set:packtemp;{slice:255,;{packtemp};};}
-        ;}
-    ;}
-    {func:f_pack_iter;
-        {when:{len:{packtemp};};>;0;
-            {save:entry}
-        ;}
-    ;}
-
-
-    {func:f_add;
-        {when:{ta1};in;{people};
-            \nYou already have a reminder set up!
-        ;
-            \n
-            {save:entry{math:+;{len};1;};{time:{offset};%Y%j%H%M;}{ta1};}
-            \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
-            \nTo remove your reminder, use `+t rsleep remove`.
-            \nTo reset it, use `+t rsleep reset`.
-        ;}
-    ;}
-
-    {func:f_remove;
-        {when:{ta1};in;{people};
-            {loop:{len};
-                {when:{ta1};==;{person{iter}};
-                    {set:deleted;{iter};}
-                ;}
-            ;}
-            {loop:{math:+;{deleted};1;},{len};
-                {set:newindex;{math:-;{iter};1;};}
-                {set:person{newindex};{person{iter}};}
-                {set:end_stored{newindex};{end_stored{iter}};}
-            ;}
-            {!Using set or save with only one semi-colon at the end de-assigns the variable.}
-            {save:entry{len};}
-            {set:end_stored{len};}
-            {set:person{len};}
-            {set:len;{math:-;{len};1;};}
-        ;
-            \n<:42_ohisee:422698658274869248> You don't seem to have a timer to remove in the first place...
-        ;}
-    ;}
-    {func:f_reset;
-        {!Resets the caller's 24-hour timer.}
-        {when:{caller.id};in;{people};
-            {loop:{len};
-                {when:{caller.id};eq;{person{iter}};
-                    {set:end_stored{iter};{time:{offset};%Y%j%H%M;};}\n`Reset Countdown to {slice:0,19;{time:{offset};};}UTC`
-                ;}
-            ;}
-            \nRemoved {nameof:{arg2};display_name;}'s reminder.
-        ;
-            \nYou don't have a timer set up! Use `+t rsleep add` to make one.
-        ;}
-    ;}
-
-    {func:f_timer;
-        {loop:{len};
-            {when:{f_check:{end_stored{iter}}};==;true;
-                \n{nameof:{person{iter}};mention;} 
-                {set:end_stored{iter};{time:10000;%Y%j%H%M;};}
-                {set:flag;true;}
-            ;}
-        ;}
-        {when:{flag};==;true;Coin time!;}
-    ;}
-
-    {!FORMAT: {!time:0;%Y%j%H%M;}}
-    {!EXAMPL: 20181790537}
-    {!DIGITS: 01234567890}
-    {!FORMAT: yyyydddhhmm}
-    
-    {func:f_check;
-        {!Returns true if the timer is over, false otherwise.}
-        {!SET END TIME}
-        {set:end_time;{ta1};}
-        {set:end_year;{slice:0,4;{end_time};};}
-        {set:end_day;{slice:4,7;{end_time};};}
-        {set:end_hour;{slice:7,9;{end_time};};}
-        {set:end_min;{slice:9,11;{end_time};};}
-        
-        {!SET CURRENT TIME}
-        {set:cnt_time;{time:0;%Y%j%H%M;};}
-        {set:cnt_year;{slice:0,4;{cnt_time};};}
-        {set:cnt_day;{slice:4,7;{cnt_time};};}
-        {set:cnt_hour;{slice:7,9;{cnt_time};};}
-        {set:cnt_min;{slice:9,11;{cnt_time};};}
-        {set:mh_carry;0;}{set:hd_carry;0;}{set:dy_carry;0;}
-        
-        {!maths}
-        {set:calc_min;
-            {math:sub;{end_min};{cnt_min};}
-        ;}
-        {when:{calc_min};le;0;
-            {set:calc_min;{math:add;{calc_min};60;};}
-            {set:mh_carry;1;}
-        ;}
-        {set:calc_hour;{math:sub;{end_hour};{cnt_hour};};}
-        {when:{calc_hour};le;0;
-            {set:calc_hour;{math:add;{calc_hour};24;};}
-            {set:hd_carry;1;}
-        ;}
-        {set:calc_day;{math:sub;{end_day};{cnt_day};};}
-        {when:{calc_day};lt;0;
-            {set:calc_day;{math:add;{calc_day};365;};}
-            {set:dy_carry;1;}
-        ;}
-        {set:calc_year;{math:sub;{end_year};{cnt_year};};}
-        
-        {!carries}
-        {set:calc_hour;{math:sub;{calc_hour};{mh_carry};};}
-        {set:calc_day;{math:sub;{calc_day};{hd_carry};};}
-        {set:calc_year;{math:sub;{calc_year};{dy_carry};};}
-        
-        {set:end_flag;false;}
-        {when:{calc_year};lt;0;{set:end_flag;true;};}
-        {when:{calc_day};lt;0;{set:end_flag;true;};}
-        {when:{calc_hour};lt;0;{set:end_flag;true;};}
-        {end_flag}
-    ;}
-    
     {func:f_rando;
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
         If there is one element it sets {pick} to that and refreshes the list.}
@@ -191,7 +28,7 @@
             {set:list;{rep:{pick};;{list};};}
         ;
             {set:pick;{list};}{!Only one element in {list}}
-            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./~<>?;}
+            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|./~<>?;}
         ;}
         {save:list;{list};}
     ;}
@@ -287,12 +124,177 @@
         {when:{pick};eq;?;+t sleepass (by CeeSea) [?] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
     ;}
 
+    {func:f_listlength;
+        {!Returns length of a ""list"" of elements (by ""list"" I mean a sequence of elements {entry1}, {entry2}, etc.)
+        Assumes list starts at 1 because it plays nicer with loops.}
+        {set:i;1;}
+        {set:temp;{ta1};}
+        {f_listlength_iter}
+    ;}
+    {func:f_listlength_iter;
+        {when:{{temp}{i}};is;error;
+            {!No entry {i}, so list is {i}-1 long}
+            {math:-;{i};1;}
+        ;
+            {set:i;{math:+;{i};1;};}
+            {f_listlength_iter}
+        ;}
+    ;}
+
+    {func:f_unpack;
+        {!Creates two "lists", {person{i}} (a list of the IDs of everyone who has set a reminder) and
+        {end_stored{i}} (a list of when each person's reminder ends), and also {people}, an actual list
+        of the id of everyone who has set a reminder.}
+        {set:unpacktemp;;}
+        {set:people;;}
+        {loop:{len};
+            {set:unpacktemp;{unpacktemp}{entry{iter}};}
+            
+        ;}
+        {loop:0,{len:{unpacktemp};},27;
+            {set:end_stored{iter};{slice:{iter},{math:+;{iter};11;};{unpacktemp};};}
+            {set:person{iter};{slice:{math:+;{iter};11;},{math:+;{iter};27;};{unpacktemp};};}
+        ;}
+        {set:unpacktemp;}
+    ;}
+
+    {func:f_pack;
+        {!Packs the IDs and times together to save space.}
+        {set:packtemp;;}
+        {loop:{len};
+            {set:packtemp;{packtemp}{end_stored{iter}}{person{iter}};}
+        ;}
+        {loop:{math:ceil;{math:/;{len:{packtemp};};255;};};
+            {save:entry{iter};{slice:,255;{packtemp};};}
+            {set:packtemp;{slice:255,;{packtemp};};}
+        ;}
+    ;}
+    {func:f_pack_iter;
+        {when:{len:{packtemp};};>;0;
+            {save:entry}
+        ;}
+    ;}
+
+
+    {func:f_add;
+        {when:{ta1};in;{people};
+            \nYou already have a reminder set up!
+        ;
+            \n
+            {save:entry{math:+;{len};1;};{time:{offset};%Y%j%H%M;}{ta1};}
+            \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
+            \nTo remove your reminder, use `+t rsleep remove`.
+            \nTo reset it, use `+t rsleep reset`.
+        ;}
+    ;}
+
+    {func:f_remove;
+        {when:{ta1};in;{people};
+            {loop:{len};
+                {when:{ta1};==;{person{iter}};
+                    {set:deleted;{iter};}
+                ;}
+            ;}
+            {loop:{math:+;{deleted};1;},{len};
+                {set:newindex;{math:-;{iter};1;};}
+                {set:person{newindex};{person{iter}};}
+                {set:end_stored{newindex};{end_stored{iter}};}
+            ;}
+            {!Using set or save with only one semi-colon at the end de-assigns the variable.}
+            {save:entry{len};}
+            {set:end_stored{len};}
+            {set:person{len};}
+            {set:len;{math:-;{len};1;};}
+            \nRemoved {nameof:{ta1};display_name;}'s timer.
+        ;
+            \n<:42_ohisee:422698658274869248> You don't seem to have a timer to remove in the first place...
+        ;}
+    ;}
+    {func:f_reset;
+        {!Resets the caller's 24-hour timer.}
+        {when:{caller.id};in;{people};
+            {loop:{len};
+                {when:{caller.id};eq;{person{iter}};
+                    {set:end_stored{iter};{time:{offset};%Y%j%H%M;};}
+                ;}
+            ;}
+            \nReset {caller.display_name}'s timer to `{slice:0,19;{time:{offset};};}`UTC
+        ;
+            \nYou don't have a timer set up! Use `+t rsleep add` to make one.
+        ;}
+    ;}
+
+    {func:f_timer;
+        {loop:{len};
+            {when:{f_check:{end_stored{iter}}};==;true;
+                \n{nameof:{person{iter}};mention;} 
+                {set:end_stored{iter};{time:10000;%Y%j%H%M;};}
+                {set:flag;true;}
+            ;}
+        ;}
+        {when:{flag};==;true;Coin time!;}
+    ;}
+
+    {!FORMAT: {!time:0;%Y%j%H%M;}}
+    {!EXAMPL: 20181790537}
+    {!DIGITS: 01234567890}
+    {!FORMAT: yyyydddhhmm}
+    
+    {func:f_check;
+        {!Returns true if the timer is over, false otherwise.}
+        {!SET END TIME}
+        {set:end_time;{ta1};}
+        {set:end_year;{slice:0,4;{end_time};};}
+        {set:end_day;{slice:4,7;{end_time};};}
+        {set:end_hour;{slice:7,9;{end_time};};}
+        {set:end_min;{slice:9,11;{end_time};};}
+        
+        {!SET CURRENT TIME}
+        {set:cnt_time;{time:0;%Y%j%H%M;};}
+        {set:cnt_year;{slice:0,4;{cnt_time};};}
+        {set:cnt_day;{slice:4,7;{cnt_time};};}
+        {set:cnt_hour;{slice:7,9;{cnt_time};};}
+        {set:cnt_min;{slice:9,11;{cnt_time};};}
+        {set:mh_carry;0;}{set:hd_carry;0;}{set:dy_carry;0;}
+        
+        {!maths}
+        {set:calc_min;
+            {math:sub;{end_min};{cnt_min};}
+        ;}
+        {when:{calc_min};le;0;
+            {set:calc_min;{math:add;{calc_min};60;};}
+            {set:mh_carry;1;}
+        ;}
+        {set:calc_hour;{math:sub;{end_hour};{cnt_hour};};}
+        {when:{calc_hour};le;0;
+            {set:calc_hour;{math:add;{calc_hour};24;};}
+            {set:hd_carry;1;}
+        ;}
+        {set:calc_day;{math:sub;{end_day};{cnt_day};};}
+        {when:{calc_day};lt;0;
+            {set:calc_day;{math:add;{calc_day};365;};}
+            {set:dy_carry;1;}
+        ;}
+        {set:calc_year;{math:sub;{end_year};{cnt_year};};}
+        
+        {!carries}
+        {set:calc_hour;{math:sub;{calc_hour};{mh_carry};};}
+        {set:calc_day;{math:sub;{calc_day};{hd_carry};};}
+        {set:calc_year;{math:sub;{calc_year};{dy_carry};};}
+        
+        {set:end_flag;false;}
+        {when:{calc_year};lt;0;{set:end_flag;true;};}
+        {when:{calc_day};lt;0;{set:end_flag;true;};}
+        {when:{calc_hour};lt;0;{set:end_flag;true;};}
+        {end_flag}
+    ;}
+
     {func:f_main;
-        {when:{arg1};is;error;
+        {when:{arg1};in;{wholelist};
+            {set:pick;{arg1};}
+        ;
             {!Sets {pick} to an element of the choice list at random.}
             {f_rando}
-        ;
-            {set:pick;{arg1};}
         ;}
         {f_sleep}
         {when:{pick};eq;done;
@@ -333,7 +335,7 @@
                             {when:{caller.id};==;346555330358149120;
                                 {f_remove:{arg2}}
                             ;
-                                \nI will not allow you to remove someone else's timer.\n 
+                                \nI will not allow you to remove someone else's timer.
                                 \nIf you wanted to remove your own, just use `+t rsleep remove`!
                             ;}
                         ;}
