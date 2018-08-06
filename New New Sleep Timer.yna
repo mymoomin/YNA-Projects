@@ -149,11 +149,13 @@
         {set:people;;}
         {loop:{len};
             {set:unpacktemp;{unpacktemp}{entry{iter}};}
-            
+            {save:entry{iter};}
         ;}
-        {loop:0,{len:{unpacktemp};},27;
-            {set:end_stored{iter};{slice:{iter},{math:+;{iter};11;};{unpacktemp};};}
-            {set:person{iter};{slice:{math:+;{iter};11;},{math:+;{iter};27;};{unpacktemp};};}
+        {loop:{math://;{len:{unpacktemp};};29;};
+            {set:end_stored{iter};{slice:,11;{unpacktemp};};}
+            {set:person{iter};{slice:11,29;{unpacktemp};};}
+            {set:unpacktemp;{slice:29,;{unpacktemp};};}
+            {set:people;{people},{person{iter}};}
         ;}
         {set:unpacktemp;}
     ;}
@@ -169,22 +171,24 @@
             {set:packtemp;{slice:255,;{packtemp};};}
         ;}
     ;}
-    {func:f_pack_iter;
-        {when:{len:{packtemp};};>;0;
-            {save:entry}
-        ;}
-    ;}
 
 
     {func:f_add;
-        {when:{ta1};in;{people};
-            \nYou already have a reminder set up!
+        {when:{len:{ta1};};==;18;
+            {when:{ta1};in;{people};
+                \nYou already have a reminder set up!
+            ;
+                \n
+                {set:len;{math:+;{len};1;};}
+                {set:person{len};{ta1};}
+                {set:end_stored{len};{time:{offset};%Y%j%H%M;};}
+                \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
+                \nTo remove your reminder, use `+t rsleep remove`.
+                \nTo reset it, use `+t rsleep reset`.
+            ;}
         ;
-            \n
-            {save:entry{math:+;{len};1;};{time:{offset};%Y%j%H%M;}{ta1};}
-            \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
-            \nTo remove your reminder, use `+t rsleep remove`.
-            \nTo reset it, use `+t rsleep reset`.
+            \nSorry, this tag can only be used by people with 18-digit IDs at the moment.
+            \nThis will hopefully be fixed soon.
         ;}
     ;}
 
@@ -201,7 +205,6 @@
                 {set:end_stored{newindex};{end_stored{iter}};}
             ;}
             {!Using set or save with only one semi-colon at the end de-assigns the variable.}
-            {save:entry{len};}
             {set:end_stored{len};}
             {set:person{len};}
             {set:len;{math:-;{len};1;};}
