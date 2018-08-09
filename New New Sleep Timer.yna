@@ -1,7 +1,11 @@
 {oneline:
     {!!library}
     {!!extend end pre="\n" post="" yna=true public=false}
-    {!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at <https://imgur.com/a/B0E2T>!!}
+    {!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at <https://imgur.com/a/B0E2T>!!
+
+It also has a 24-hour timer now! You can add one for yourself with `+t rsleep add`. It'll remind you when 24 hours has passed, then reset automatically.
+If you collected your coins a while after you set the reminder you can reset it manually with `+t rsleep reset`
+To remove your timer use `+t rsleep remove`}
     {!!descshort A random image telling you to go to sleep!}
     {!This tag returns a random image telling you to go to sleep.
 
@@ -231,7 +235,7 @@
         {loop:{len};
             {when:{f_check:{end_stored{iter}}};==;true;
                 \n{nameof:{person{iter}};mention;} 
-                {set:end_stored{iter};{time:10000;%Y%j%H%M;};}
+                {set:end_stored{iter};{time:{offset};%Y%j%H%M;};}
                 {set:flag;true;}
             ;}
         ;}
