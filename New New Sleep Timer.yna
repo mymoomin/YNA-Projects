@@ -28,7 +28,7 @@ To remove your timer use `+t rsleep remove`}
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
         If there is one element it sets {pick} to that and refreshes the list.}
         {when:{len:{list};};gt;1;
-            {set:pick;{slice:{num:{math:sub;{len:{list};};1;};};{list};};}
+            {set:pick;{slice:{num:{math:-;{len:{list};};1;};};{list};};}
             {set:list;{rep:{pick};;{list};};}
         ;
             {set:pick;{list};}{!Only one element in {list}}
@@ -90,7 +90,7 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;M;+t terriblesleep (by Krekalie) [M] https://i.imgur.com/8PNkmHi.png {set:pick;done;};}
         {when:{pick};eq;N;+t wobblesleep (by mymoomin) [N] https://cdn.discordapp.com/attachments/360591441900339200/445054595077636107/inflated.gif {set:pick;done;};}
         {when:{pick};eq;O;+t grimsleep (by Elle) [O] https://i.imgur.com/5AMP5go.jpg {set:pick;done;};}
-        {when:{pick};eq;P;+t emojisleep (by PrincessLapis) [P] <:sleep:432528816674570252> {set:pick;done;};}
+        {when:{pick};eq;P;+t sleepemoji (by PrincessLapis) [P] <:sleep:476316863865815041> {set:pick;done;};}
         {when:{pick};eq;Q;+t sleepzoom (by Gralzeim) [Q] https://i.imgur.com/zk84n6k.png {set:pick;done;};}
         {when:{pick};eq;R;+t letssleep (by Redead) [R] https://i.imgur.com/FxPgBwk.png {set:pick;done;};}
         {when:{pick};eq;S;+t gotosleep (by Redead) [S] https://i.imgur.com/Gsvf2AQ.png {set:pick;done;};}
@@ -187,8 +187,8 @@ To remove your timer use `+t rsleep remove`}
                 {set:person{len};{ta1};}
                 {set:end_stored{len};{time:{offset};%Y%j%H%M;};}
                 \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
-                \nTo remove your reminder, use `+t rsleep remove`.
-                \nTo reset it, use `+t rsleep reset`.
+                \nTo remove your reminder, use `+t {tag} remove`.
+                \nTo reset it, use `+t {tag} reset`.
             ;}
         ;
             \nSorry, this tag can only be used by people with 18-digit IDs at the moment.
@@ -227,7 +227,7 @@ To remove your timer use `+t rsleep remove`}
             ;}
             \nReset {caller.display_name}'s timer to `{slice:0,19;{time:{offset};};}`UTC
         ;
-            \nYou don't have a timer set up! Use `+t rsleep add` to make one.
+            \nYou don't have a timer set up! Use `+t {tag} add` to make one.
         ;}
     ;}
 
@@ -326,7 +326,7 @@ To remove your timer use `+t rsleep remove`}
                         {f_add:{arg2}}
                     ;
                         \nI will not allow you to add a timer for someone else.
-                        \nIf you wanted to add your own, just use `+t rsleep add`!
+                        \nIf you wanted to add your own, just use `+t {tag} add`!
                     ;}
                 ;}
             ;
@@ -343,8 +343,19 @@ To remove your timer use `+t rsleep remove`}
                                 {f_remove:{arg2}}
                             ;
                                 \nI will not allow you to remove someone else's timer.
-                                \nIf you wanted to remove your own, just use `+t rsleep remove`!
+                                \nIf you wanted to remove your own, just use `+t {tag} remove`!
                             ;}
+                        ;}
+                    ;
+                        {when:{arg1};==;help;
+                            \n
+                            \n__Help for `+t {tag}'s` timer function__
+                            \n
+                            \nThis tag has timers now!
+                            \nYou can add one for yourself with `+t {tag} add`. It'll remind you when 24 hours has passed, then reset automatically
+                            \nIf you collected your coins a while after you set the reminder you can reset it manually with `+t {tag} reset`
+                            \nTo remove your timer use `+t {tag} remove`
+                            \n
                         ;}
                     ;}
                 ;}
