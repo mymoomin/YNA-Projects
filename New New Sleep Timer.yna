@@ -19,10 +19,10 @@ To remove your timer use `+t rsleep remove`}
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.`~<>?;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
-    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.`~<>?;}
+    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦;}
 
     {func:f_rando;
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
@@ -122,10 +122,11 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;|;+t 64sleep (by Elle) [|] https://i.imgur.com/T5VOdzz.png {set:pick;done;};}
         {when:{pick};eq;.;+t lowqualitysleep (by Elle) [.] https://i.imgur.com/2aj1KE0.png {set:pick;done;};}
         {when:{pick};eq;~;+t pixelgensleep (by Elle) [~] https://i.imgur.com/zDIYCeq.png {set:pick;done;};}
-        {when:{pick};eq;`;+t swimsleep (by Zyrii) [`] https://i.imgur.com/RN609UH.png {set:pick;done;};}
+        {when:{pick};eq;¬;+t swimsleep (by Zyrii) [¬] https://i.imgur.com/RN609UH.png {set:pick;done;};}
         {when:{pick};eq;<;+t lunasleep (by RustyTinCan) [<] https://i.imgur.com/MxXzui5.png {set:pick;done;};}
         {when:{pick};eq;>;+t lunasleep2 (by NativeJovian) [>] https://i.imgur.com/JPOvGaJ.png {set:pick;done;};}
         {when:{pick};eq;?;+t sleepass (by CeeSea) [?] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
+        {when:{pick};eq;¦;+t darkestsleep [¦] https://soundcloud.com/jethrain/amessagefromthenarrator/s-aAXWw {set:pick;done;};}
     ;}
 
     {func:f_listlength;
