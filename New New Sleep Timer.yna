@@ -32,7 +32,7 @@ To remove your timer use `+t rsleep remove`}
             {set:list;{rep:{pick};;{list};};}
         ;
             {set:pick;{list};}{!Only one element in {list}}
-            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|./~<>?;}
+            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíó;}
         ;}
         {save:list;{list};}
     ;}
@@ -340,7 +340,7 @@ To remove your timer use `+t rsleep remove`}
                     ;}
                 ;}
             ;
-                {when:{arg1};==;list;
+                {when:{arg1};==;timerlist;
                     {loop:{len};
                         \n{nameof:{person{iter}};display_name;}: {end_stored{iter}}
                     ;}
@@ -366,6 +366,19 @@ To remove your timer use `+t rsleep remove`}
                             \nIf you collected your coins a while after you set the reminder you can reset it manually with `+t {tag} reset`
                             \nTo remove your timer use `+t {tag} remove`
                             \n
+                        ;
+                            {when:{arg1};==;list;
+                                {when:{arg2};is;error;
+                                    \nThe list is currently `{list}`.
+                                ;
+                                    {when:{caller.id};==;346555330358149120;
+                                        {save:list;{arg2};}
+                                        \nSet list to `{arg2}`.
+                                    ;
+                                        I'm sorry {caller.display_name}, I'm afraid I can't do that.
+                                    ;}
+                                ;}
+                            ;}
                         ;}
                     ;}
                 ;}
