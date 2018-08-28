@@ -19,10 +19,10 @@ To remove your timer use `+t rsleep remove`}
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíó;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
-    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦;}
+    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíó;}
 
     {func:f_rando;
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
@@ -127,8 +127,12 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;>;+t lunasleep2 (by NativeJovian) [>] https://i.imgur.com/JPOvGaJ.png {set:pick;done;};}
         {when:{pick};eq;?;+t sleepass (by CeeSea) [?] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
         {when:{pick};eq;¦;+t darkestsleep [¦] https://soundcloud.com/jethrain/amessagefromthenarrator/s-aAXWw {set:pick;done;};}
+        {when:{pick};eq;á;+t alreadyasleep [á] https://i.imgur.com/Q7dQMqt.jpg {set:pick;done;};}
+        {when:{pick};eq;é;+t bookwormsleep [é]https://i.imgur.com/5dNEFAd.png {set:pick;done;};}
+        {when:{pick};eq;í;+t sunsleep [í] https://i.imgur.com/3qMsMGY.png {set:pick;done;};}
+        {when:{pick};eq;ó;+t starsleep [ó] https://i.imgur.com/1ijKTJ6.png {set:pick;done;};}
     ;}
-
+    
     {func:f_listlength;
         {!Returns length of a ""list"" of elements (by ""list"" I mean a sequence of elements {entry1}, {entry2}, etc.)
         Assumes list starts at 1 because it plays nicer with loops.}
@@ -223,10 +227,10 @@ To remove your timer use `+t rsleep remove`}
         {when:{caller.id};in;{people};
             {loop:{len};
                 {when:{caller.id};eq;{person{iter}};
-                    {set:end_stored{iter};{time:{offset};%Y%j%H%M;};}
+                    {set:end_stored{iter};{time:{ta1};%Y%j%H%M;};}
                 ;}
             ;}
-            \nReset {caller.display_name}'s timer to `{slice:0,19;{time:{offset};};}`UTC
+            \nReset {caller.display_name}'s timer to `{slice:0,19;{time:{ta1};};}`UTC
         ;
             \nYou don't have a timer set up! Use `+t {tag} add` to make one.
         ;}
@@ -318,7 +322,11 @@ To remove your timer use `+t rsleep remove`}
         {f_unpack}
         {set:len;{f_listlength:end_stored};}
         {when:{arg1};==;reset;
-            {f_reset}
+            {when:{arg2};is;number;
+                {f_reset:{arg2}}
+            ;
+                {f_reset:{offset}}
+            ;}
         ;
             {when:{arg1};==;add;
                 {when:{arg2};is;error;
