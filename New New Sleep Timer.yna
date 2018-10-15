@@ -15,7 +15,7 @@ To remove your timer use `+t rsleep remove`}
     So I moved to this model, where each image is associated with an element on a list, and each time the tag is called
     an element is picked at random, the associated image is posted, and the element is removed from the list.
 
-    I also added a 24 hour timer to remind me when to get coins, because 42's timer isn't super reliable, and hey, why
+    I also added a 24 hour timer to remind you when to get coins, because 42's timer isn't super reliable, and hey, why
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
@@ -270,37 +270,36 @@ To remove your timer use `+t rsleep remove`}
         {set:cnt_day;{slice:4,7;{cnt_time};};}
         {set:cnt_hour;{slice:7,9;{cnt_time};};}
         {set:cnt_min;{slice:9,11;{cnt_time};};}
-        {set:mh_carry;0;}{set:hd_carry;0;}{set:dy_carry;0;}
         
-        {!maths}
-        {set:calc_min;
-            {math:sub;{end_min};{cnt_min};}
-        ;}
-        {when:{calc_min};le;0;
+        {!maths + carries}
+        {set:calc_min;{math:sub;{end_min};{cnt_min};};}
+        
+        {when:{calc_min};lt;0;
             {set:calc_min;{math:add;{calc_min};60;};}
-            {set:mh_carry;1;}
+            {set:end_hour;{math:sub;{end_hour};1;};}
         ;}
+        
         {set:calc_hour;{math:sub;{end_hour};{cnt_hour};};}
-        {when:{calc_hour};le;0;
+        {when:{calc_hour};lt;0;
             {set:calc_hour;{math:add;{calc_hour};24;};}
-            {set:hd_carry;1;}
+            {set:end_day;{math:sub;{end_day};1;};}
         ;}
+        
         {set:calc_day;{math:sub;{end_day};{cnt_day};};}
+        
         {when:{calc_day};lt;0;
             {set:calc_day;{math:add;{calc_day};365;};}
-            {set:dy_carry;1;}
+            {set:end_year;{math:sub;{end_year};1;};}
         ;}
+        
         {set:calc_year;{math:sub;{end_year};{cnt_year};};}
         
-        {!carries}
-        {set:calc_hour;{math:sub;{calc_hour};{mh_carry};};}
-        {set:calc_day;{math:sub;{calc_day};{hd_carry};};}
-        {set:calc_year;{math:sub;{calc_year};{dy_carry};};}
         
         {set:end_flag;false;}
         {when:{calc_year};lt;0;{set:end_flag;true;};}
         {when:{calc_day};lt;0;{set:end_flag;true;};}
         {when:{calc_hour};lt;0;{set:end_flag;true;};}
+        
         {end_flag}
     ;}
 
