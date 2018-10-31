@@ -19,11 +19,11 @@ To remove your timer use `+t rsleep remove`}
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóú;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìò;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
     {set:autooffset;25;}
-    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóú;}
+    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìò;}
 
     {func:f_rando;
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
@@ -33,7 +33,7 @@ To remove your timer use `+t rsleep remove`}
             {set:list;{rep:{pick};;{list};};}
         ;
             {set:pick;{list};}{!Only one element in {list}}
-            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóú;}
+            {set:list;{wholelist};}
         ;}
         {save:list;{list};}
     ;}
@@ -59,8 +59,8 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;g;+t smolsleep (by Nisclo) [g] https://i.imgur.com/vORQiP8.png {set:pick;done;};}
         {when:{pick};eq;h;+t shitsleep (by Nisclo) [h] https://i.imgur.com/EEAKJuc.png {set:pick;done;};}
         {when:{pick};eq;i;+t pixelsleep (by Gemstils) [i] https://i.imgur.com/ZK4fC3q.png {set:pick;done;};}
-        {when:{pick};eq;j;+t islep (by Dio) [j] https://i.imgur.com/oKHSeD7.png {set:pick;done;};}
-        {when:{pick};eq;k;+t goodnight (by sandoiichi) [k] https://cdn.discordapp.com/attachments/419786572049809409/426632653459161088/hp_paunchwalk.gif {set:pick;done;};}
+        {when:{pick};eq;j;+t islep (by Jeb) [j] https://i.imgur.com/oKHSeD7.png {set:pick;done;};}
+        {when:{pick};eq;k;+t goodnight (by Sandoiichi) [k] https://cdn.discordapp.com/attachments/419786572049809409/426632653459161088/hp_paunchwalk.gif {set:pick;done;};}
         {when:{pick};eq;l;+t spanishsleep (by chaosDesigner) [l] https://i.imgur.com/3LajkpE.jpg {set:pick;done;};}
         {when:{pick};eq;m;+t gsleep (by Sandoiichi) [m] https://i.imgur.com/6Cssi0y.jpg {set:pick;done;};}
         {when:{pick};eq;n;+t zoesleep (by Elle) [n] https://i.imgur.com/FfsgcDj.jpg {set:pick;done;};}
@@ -132,7 +132,14 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;é;+t bookwormsleep (by Sarah) [é]https://i.imgur.com/5dNEFAd.png {set:pick;done;};}
         {when:{pick};eq;í;+t sunsleep (by mymoomin) [í] https://i.imgur.com/3qMsMGY.png {set:pick;done;};}
         {when:{pick};eq;ó;+t starsleep (by mymoomin) [ó] https://i.imgur.com/1ijKTJ6.png {set:pick;done;};}
-        {when:{pick};eq;ú;+t politicalsleep (by Elle, mymoomin and Dio) [ó] https://i.imgur.com/DOpnIcE.png {set:pick;done;};}
+        {when:{pick};eq;ú;+t politicalsleep (by Elle, mymoomin and Jeb) [ú] https://i.imgur.com/DOpnIcE.png {set:pick;done;};}
+        {when:{pick};eq;ä;+t nooksleep (by Zyrii) [ä] https://i.imgur.com/G8YIz5J.png {set:pick;done;};}
+        {when:{pick};eq;ö;+t sleepowo (by Jeb) [ö] https://i.imgur.com/qsPOj8r.png {set:pick;done;};}
+        {when:{pick};eq;ü;+t sleeppost (by RustyTinCan) [ü] https://i.imgur.com/r3n5g3j.png {set:pick;done;};}
+        {when:{pick};eq;à;+t bonesleep (by Sandoiichi) [à] https://i.imgur.com/dPrZ4xn.jpg {set:pick;done;};}
+        {when:{pick};eq;è;+t shroomsleep (by RustyTinCan) [è] https://i.imgur.com/NCOppa3.jpg {set:pick;done;};}
+        {when:{pick};eq;ì;+t goopytessasleep (by Krekalie) [ì] https://i.imgur.com/fx5Dqm6.png {set:pick;done;};}
+        {when:{pick};eq;ò;+t sleepanswer (by RustyTinCan) [ò] https://i.imgur.com/IIv0RTw.png {set:pick;done;};}
     ;}
     
     {func:f_listlength;
