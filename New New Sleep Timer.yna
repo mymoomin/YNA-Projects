@@ -171,7 +171,12 @@ To remove your timer use `+t rsleep remove`}
         ;}
         {loop:{math://;{len:{unpacktemp};};29;};
             {set:end_stored{iter};{slice:,11;{unpacktemp};};}
-            {set:person{iter};{slice:11,29;{unpacktemp};};}
+            {when:{slice:11;{unpacktemp};};!=;0;
+                {set:person{iter};{slice:11,29;{unpacktemp};};}
+            ;
+                {!Removes padding from 17-digit IDs.}
+                {set:person{iter};{slice:12,29;{unpacktemp};};}
+            ;}
             {set:unpacktemp;{slice:29,;{unpacktemp};};}
             {set:people;{people},{person{iter}};}
         ;}
@@ -179,10 +184,11 @@ To remove your timer use `+t rsleep remove`}
     ;}
 
     {func:f_pack;
-        {!Packs the IDs and times together to save space.}
+        {!Packs the IDs and times together to save space, and adds padding for 17-digit IDs so they're
+        all the same length.}
         {set:packtemp;;}
         {loop:{len};
-            {set:packtemp;{packtemp}{end_stored{iter}}{person{iter}};}
+            {set:packtemp;{packtemp}{end_stored{iter}}{when:{len:{person{iter}};};==;17;0;}{person{iter}};}
         ;}
         {loop:{math:ceil;{math:/;{len:{packtemp};};255;};};
             {save:entry{iter};{slice:,255;{packtemp};};}
@@ -192,21 +198,16 @@ To remove your timer use `+t rsleep remove`}
 
 
     {func:f_add;
-        {when:{len:{ta1};};==;18;
-            {when:{ta1};in;{people};
-                \nYou already have a reminder set up!
-            ;
-                \n
-                {set:len;{math:+;{len};1;};}
-                {set:person{len};{ta1};}
-                {set:end_stored{len};{time:{offset};%Y%j%H%M;};}
-                \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
-                \nTo remove your reminder, use `+t {tag} remove`.
-                \nTo reset it, use `+t {tag} reset`.
-            ;}
+        {when:{ta1};in;{people};
+            \nYou already have a reminder set up!
         ;
-            \nSorry, this tag can only be used by people with 18-digit IDs at the moment.
-            \nThis will hopefully be fixed soon.
+            \n
+            {set:len;{math:+;{len};1;};}
+            {set:person{len};{ta1};}
+            {set:end_stored{len};{time:{offset};%Y%j%H%M;};}
+            \nAdded a reminder for {nameof:{ta1};display_name;} and set it to `{slice:0,19;{time:{offset};};}`UTC.
+            \nTo remove your reminder, use `+t {tag} remove`.
+            \nTo reset it, use `+t {tag} reset`.
         ;}
     ;}
 
