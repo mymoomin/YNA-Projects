@@ -19,11 +19,11 @@ To remove your timer use `+t rsleep remove`}
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìò;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìòùÁÉÍÓÚÄ;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
     {set:autooffset;25;}
-    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìò;}
+    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìòùÁÉÍÓÚÄ;}
 
     {func:f_rando;
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
@@ -140,6 +140,13 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;è;+t shroomsleep (by RustyTinCan) [è] https://i.imgur.com/NCOppa3.jpg {set:pick;done;};}
         {when:{pick};eq;ì;+t goopytessasleep (by Krekalie) [ì] https://i.imgur.com/fx5Dqm6.png {set:pick;done;};}
         {when:{pick};eq;ò;+t sleepanswer (by RustyTinCan) [ò] https://i.imgur.com/IIv0RTw.png {set:pick;done;};}
+        {when:{pick};eq;ù;+t sleepcycle (by LazyMinerva) [ù] https://i.imgur.com/gZ8IS7g.png {set:pick;done;};}
+        {when:{pick};eq;Á;+t trysleep (by mymoomin) [Á] https://i.imgur.com/oCEMFOq.jpg {set:pick;done;};}
+        {when:{pick};eq;É;+t smalleyessleep (by Krekalie) [É] https://i.imgur.com/v5poXf8.png {set:pick;done;};}
+        {when:{pick};eq;Í;+t gabbysleep (by danelsan) [Í] https://i.imgur.com/xK9Ycxn.jpg {set:pick;done;};}
+        {when:{pick};eq;Ó;+t ghostgirlsleep (by SodiumEyes) [Ó] https://i.imgur.com/MhB1CYJ.gif {set:pick;done;};}
+        {when:{pick};eq;Ú;+t hpbutsnowface (by Krekalie) [Ú] https://i.imgur.com/Li91lZi.png {set:pick;done;};}
+        {when:{pick};eq;Ä;+t pixelslep (by Nohorse) [Ä] https://i.imgur.com/gQretdK.gif {set:pick;done;};}
     ;}
     
     {func:f_listlength;
