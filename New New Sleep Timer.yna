@@ -146,7 +146,7 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;Í;+t gabbysleep (by danelsan) [Í] https://i.imgur.com/xK9Ycxn.jpg {set:pick;done;};}
         {when:{pick};eq;Ó;+t ghostgirlsleep (by SodiumEyes) [Ó] https://i.imgur.com/MhB1CYJ.gif {set:pick;done;};}
         {when:{pick};eq;Ú;+t hpbutsnowface (by Krekalie) [Ú] https://i.imgur.com/Li91lZi.png {set:pick;done;};}
-        {when:{pick};eq;Ä;+t pixelslep (by Nohorse) [Ä] https://i.imgur.com/gQretdK.gif {set:pick;done;};}
+        {when:{pick};eq;Ä;+t pixelslep (by Nohorse) [Ä] https://cdn.discordapp.com/attachments/419801561636667403/520142853561909248/slepgif1.gif {set:pick;done;};}
     ;}
     
     {func:f_listlength;
@@ -236,7 +236,7 @@ To remove your timer use `+t rsleep remove`}
             {set:len;{math:-;{len};1;};}
             \nRemoved {nameof:{ta1};display_name;}'s timer.
         ;
-            \n<:42_ohisee:422698658274869248> You don't seem to have a timer to remove in the first place...
+            \n<:42_ohisee:531605042936021012> You don't seem to have a timer to remove in the first place...
         ;}
     ;}
     {func:f_reset;
