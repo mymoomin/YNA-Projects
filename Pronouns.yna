@@ -86,16 +86,18 @@ use `+t pronouns` for help.!}
         ;
             s
         ;}
+    ;}
     {when:{base};eq;true;
         {when:{member:input;{arg1};};is;error;
             Put `\{call:pronouns\;\}` at the beginning of a tag to get functions that return a target's pronouns based on their name\n
             You can use the target's username (e.g. mymoomin), nickname (e.g. mymoomin again), or username + discrim (e.g. mymoomin#0952)\n
-            `\{f_subjectPronoun\}` or `\{f_pronouns\}` returns `they/she/he`\n
-            `\{f_objectPronoun\}` returns `them/her/him`\n
-            `\{f_possessiveDeterminer\}` returns `their/her/his`\n
-            `\{f_posessivePronoun\}` returns `theirs/hers/his`\n
-            `\{f_copula\}` or `\{f_areIs\}` returns `are/is/is`\n
-            `\{f_verbEnding\}` returns `[empty string]/s/s`
+            If you put e.g. `\{f_subjectPronoun\}` rather than `\{f_subjectPronoun:\{target\}\}` it will give the pronouns of the caller\n
+            `\{f_subjectPronoun:\{target\}\}` or `\{f_pronouns:\{target\}\}` returns `they/she/he`\n
+            `\{f_objectPronoun:\{target\}\}` returns `them/her/him`\n
+            `\{f_possessiveDeterminer:\{target\}\}` returns `their/her/his`\n
+            `\{f_posessivePronoun:\{target\}\}` returns `theirs/hers/his`\n
+            `\{f_copula:\{target\}\}` or `\{f_areIs:\{target\}\}` returns `are/is/is`\n
+            `\{f_verbEnding:\{target\}\}` returns `[empty string]/s/s`
         ;
             {f_pronouns:{arg1}}
         ;}
