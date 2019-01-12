@@ -236,7 +236,7 @@ To remove your timer use `+t rsleep remove`}
             {set:len;{math:-;{len};1;};}
             \nRemoved {nameof:{ta1};display_name;}'s timer.
         ;
-            \n<:42_ohisee:531605042936021012> You don't seem to have a timer to remove in the first place...
+            \n<:42_ohisee:533713736620572684> You don't seem to have a timer to remove in the first place...
         ;}
     ;}
     {func:f_reset;
