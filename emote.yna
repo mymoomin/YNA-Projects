@@ -1,0 +1,192 @@
+{oneline:
+    {!!library}
+    {call:emote_goop_backend;}
+    {func:f_emote;
+        {set:newrep;true;}
+        {set:flag;true;}
+
+        {set:args_underscored;{lower:{rep::;;{rep:/<a?:|:\d*>/;;{rep: ;_;{args};};};};};}
+
+        {!Sleepless Domain Fans}
+        {when:{args_underscored};==;bud_think;https://cdn.discordapp.com/emojis/507433455089614879.png {set:flag;false;};}
+        {when:{args_underscored};==;bud_shipper;https://cdn.discordapp.com/emojis/507433455961899009.png {set:flag;false;};}
+        {when:{args_underscored};==;cassidy_chump;https://cdn.discordapp.com/emojis/507433456431530015.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_ehehehe;https://cdn.discordapp.com/emojis/507433456658284544.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_wha;https://cdn.discordapp.com/emojis/507433458117771287.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_despair;https://cdn.discordapp.com/emojis/507433459145244672.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_wat;https://cdn.discordapp.com/emojis/507433460856782868.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_supportive;https://cdn.discordapp.com/emojis/507433460881686529.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_youcoolok;https://cdn.discordapp.com/emojis/507433461066498058.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_uhhhhhh;https://cdn.discordapp.com/emojis/507433461443985418.png {set:flag;false;};}
+        {when:{args_underscored};==;tessa_blerg;https://cdn.discordapp.com/emojis/507433461590523915.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_theworst;https://cdn.discordapp.com/emojis/507433461729067009.png {set:flag;false;};}
+        {when:{args_underscored};==;sally_firedup;https://cdn.discordapp.com/emojis/507433461762490379.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_aaaaaa;https://cdn.discordapp.com/emojis/507433462366470155.png {set:flag;false;};}
+        {when:{args_underscored};==;sylvia_business;https://cdn.discordapp.com/emojis/507433462441967617.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_ohno;https://cdn.discordapp.com/emojis/507433462710403072.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_nonsense;https://cdn.discordapp.com/emojis/507433463272701962.png {set:flag;false;};}
+        {when:{args_underscored};==;rue;https://cdn.discordapp.com/emojis/507433464535187456.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_blerg;https://cdn.discordapp.com/emojis/507433465357139968.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_training;https://cdn.discordapp.com/emojis/507433465566986241.png {set:flag;false;};}
+        {when:{args_underscored};==;sleepheart;https://cdn.discordapp.com/emojis/507433776507387925.gif {set:flag;false;};}
+        {when:{args_underscored};==;steffi_flapflap;https://cdn.discordapp.com/emojis/507433776641474570.gif {set:flag;false;};}
+        {when:{args_underscored};==;roni_idontcare;https://cdn.discordapp.com/emojis/507433776956047380.gif {set:flag;false;};}
+        {when:{args_underscored};==;gasp;https://cdn.discordapp.com/emojis/507433777463820289.gif {set:flag;false;};}
+        {when:{args_underscored};==;apple_doom;https://cdn.discordapp.com/emojis/507433778914787329.gif {set:flag;false;};}
+        {when:{args_underscored};==;steffi_slideeye;https://cdn.discordapp.com/emojis/507433780739440661.gif {set:flag;false;};}
+        {when:{args_underscored};==;hp_wave;https://cdn.discordapp.com/emojis/507434711854088212.gif {set:flag;false;};}
+        {when:{args_underscored};==;steffi_hype;https://cdn.discordapp.com/emojis/507435873680490507.gif {set:flag;false;};}
+        {when:{args_underscored};==;hp_hype;https://cdn.discordapp.com/emojis/507436446110580746.gif {set:flag;false;};}
+        {when:{args_underscored};==;cube_dance;https://cdn.discordapp.com/emojis/508509677819265026.gif {set:flag;false;};}
+        {when:{args_underscored};==;screams;https://cdn.discordapp.com/emojis/511431155094913035.gif {set:flag;false;};}
+        {when:{args_underscored};==;claire_smile;https://cdn.discordapp.com/emojis/528790309698797568.png {set:flag;false;};}
+        {when:{args_underscored};==;kicks_peek;https://cdn.discordapp.com/emojis/528790488321622037.png {set:flag;false;};}
+        {when:{args_underscored};==;gwen_nod;https://cdn.discordapp.com/emojis/528790490859044874.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_wow;https://cdn.discordapp.com/emojis/529308672883687434.png {set:flag;false;};}
+        {when:{args_underscored};==;claire_woooooooooooooooooooooow;https://cdn.discordapp.com/emojis/534134964862713867.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_superdorbs;https://cdn.discordapp.com/emojis/537820169360375818.png {set:flag;false;};}
+        {when:{args_underscored};==;weiss_wakkawakka;https://cdn.discordapp.com/emojis/538163042257469440.gif {set:flag;false;};}
+        {when:{args_underscored};==;apple_yeaahh;https://cdn.discordapp.com/emojis/542474684256485416.png {set:flag;false;};}
+        {when:{args_underscored};==;gear_laugh;https://cdn.discordapp.com/emojis/542911036316057600.png {set:flag;false;};}
+        {when:{args_underscored};==;lime_hmmm;https://cdn.discordapp.com/emojis/543565852574744576.png {set:flag;false;};}
+        {when:{args_underscored};==;lemon_sour;https://cdn.discordapp.com/emojis/543566046116970507.png {set:flag;false;};}
+        {when:{args_underscored};==;42_nothingtosee;https://cdn.discordapp.com/emojis/548089612040536078.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_fall;https://cdn.discordapp.com/emojis/552708214194700299.gif {set:flag;false;};}
+        {when:{args_underscored};==;tessa_fine;https://cdn.discordapp.com/emojis/553193875351666739.gif {set:flag;false;};}
+        {when:{args_underscored};==;steffi_uberdorbs;https://cdn.discordapp.com/emojis/553773631230967818.gif {set:flag;false;};}
+        {when:{args_underscored};==;steffi_hyperdorbs;https://cdn.discordapp.com/emojis/553773712265183262.gif {set:flag;false;};}
+        {when:{args_underscored};==;melty_gasp;https://cdn.discordapp.com/emojis/556165410588983297.png {set:flag;false;};}
+        {when:{args_underscored};==;cube_cry;https://cdn.discordapp.com/emojis/559529604117823488.png {set:flag;false;};}
+        {when:{args_underscored};==;tigris_nya;https://cdn.discordapp.com/emojis/560138167420846102.png {set:flag;false;};}
+        {when:{args_underscored};==;tessa_mad;https://cdn.discordapp.com/emojis/562660387716202498.png {set:flag;false;};}
+        {when:{args_underscored};==;goops_mccube;https://cdn.discordapp.com/emojis/562860337876041733.png {set:flag;false;};}
+        {when:{args_underscored};==;goops;https://cdn.discordapp.com/emojis/562860338828148747.png {set:flag;false;};}
+        {when:{args_underscored};==;vedika_bashful;https://cdn.discordapp.com/emojis/562860977402544138.png {set:flag;false;};}
+        {when:{args_underscored};==;wandine;https://cdn.discordapp.com/emojis/562864451326574593.png {set:flag;false;};}
+        {when:{args_underscored};==;nokoro;https://cdn.discordapp.com/emojis/562864451682828299.png {set:flag;false;};}
+        {when:{args_underscored};==;vedika_wink;https://cdn.discordapp.com/emojis/562868352276496386.png {set:flag;false;};}
+        {when:{args_underscored};==;froyo;https://cdn.discordapp.com/emojis/562874645674721321.png {set:flag;false;};}
+        {when:{args_underscored};==;gay;https://cdn.discordapp.com/emojis/571176808762834956.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_smile;https://cdn.discordapp.com/emojis/571195960143773696.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_ohno;https://cdn.discordapp.com/emojis/571195961641009162.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_pafpof;https://cdn.discordapp.com/emojis/571195961787809802.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_spooks;https://cdn.discordapp.com/emojis/571196038895894529.gif {set:flag;false;};}
+        {when:{args_underscored};==;zoe_bummed;https://cdn.discordapp.com/emojis/571196476575711242.png {set:flag;false;};}
+        {when:{args_underscored};==;jones_mad;https://cdn.discordapp.com/emojis/577852739183312936.png {set:flag;false;};}
+        {when:{args_underscored};==;jones_realmad;https://cdn.discordapp.com/emojis/577855986891489280.gif {set:flag;false;};}
+        {when:{args_underscored};==;ben_tired;https://cdn.discordapp.com/emojis/580183220210106378.png {set:flag;false;};}
+        {when:{args_underscored};==;tessa_nom;https://cdn.discordapp.com/emojis/580939367758168074.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_aaaaa;https://cdn.discordapp.com/emojis/585616549239324687.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_mad;https://cdn.discordapp.com/emojis/585616549423874050.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_armsraised;https://cdn.discordapp.com/emojis/585616549466079244.png {set:flag;false;};}
+        {when:{args_underscored};==;drums_getaloadathis;https://cdn.discordapp.com/emojis/585616549654560788.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_thefuzz;https://cdn.discordapp.com/emojis/585616549923127461.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_seriously;https://cdn.discordapp.com/emojis/585616549927321748.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_peek;https://cdn.discordapp.com/emojis/585616550728433675.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_supportive;https://cdn.discordapp.com/emojis/585616550728433753.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_smile;https://cdn.discordapp.com/emojis/585616550808256522.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_peek;https://cdn.discordapp.com/emojis/585616550833160213.png {set:flag;false;};}
+        {when:{args_underscored};==;honnyo_scream;https://cdn.discordapp.com/emojis/585616550833291270.png {set:flag;false;};}
+        {when:{args_underscored};==;tessa_blush;https://cdn.discordapp.com/emojis/585616550946668553.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_anyway;https://cdn.discordapp.com/emojis/585616550954795014.png {set:flag;false;};}
+        {when:{args_underscored};==;hiss;https://cdn.discordapp.com/emojis/585616551001063450.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_bloop;https://cdn.discordapp.com/emojis/585616551512637441.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_wink;https://cdn.discordapp.com/emojis/585616551777009664.png {set:flag;false;};}
+        {when:{args_underscored};==;cube_peek;https://cdn.discordapp.com/emojis/585616551873478669.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_sideeye;https://cdn.discordapp.com/emojis/585616551986724864.png {set:flag;false;};}
+        {when:{args_underscored};==;sally_cashmoney;https://cdn.discordapp.com/emojis/585616552108490782.png {set:flag;false;};}
+        {when:{args_underscored};==;bass_cool;https://cdn.discordapp.com/emojis/585616552271806467.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_satisfied;https://cdn.discordapp.com/emojis/585616552716664852.png {set:flag;false;};}
+        {when:{args_underscored};==;weiss_victim;https://cdn.discordapp.com/emojis/585618611121422346.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_dab;https://cdn.discordapp.com/emojis/585620535510040576.png {set:flag;false;};}
+        {when:{args_underscored};==;cassidy_pap;https://cdn.discordapp.com/emojis/585622455284924420.png {set:flag;false;};}
+        {when:{args_underscored};==;winston_pap;https://cdn.discordapp.com/emojis/585628447020285992.png {set:flag;false;};}
+        {when:{args_underscored};==;claire_peek;https://cdn.discordapp.com/emojis/585638104606703618.png {set:flag;false;};}
+        {when:{args_underscored};==;tessa_normel;https://cdn.discordapp.com/emojis/585738721626947605.png {set:flag;false;};}
+        {when:{args_underscored};==;dafuq;https://cdn.discordapp.com/emojis/585739672664276992.png {set:flag;false;};}
+        {when:{args_underscored};==;ben_sigh;https://cdn.discordapp.com/emojis/585765714288443412.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_ghost;https://cdn.discordapp.com/emojis/586846346665787392.png {set:flag;false;};}
+
+        {!Sleepless Domain Emote Graveyard}
+        {when:{args_underscored};==;vedika_yes;https://cdn.discordapp.com/emojis/465568358671319045.png {set:flag;false;};}
+        {when:{args_underscored};==;tigris_rage;https://cdn.discordapp.com/emojis/465568474488635393.png {set:flag;false;};}
+        {when:{args_underscored};==;tigris_eeek;https://cdn.discordapp.com/emojis/465568826885406740.png {set:flag;false;};}
+        {when:{args_underscored};==;roni_ugh;https://cdn.discordapp.com/emojis/465568956028157964.png {set:flag;false;};}
+        {when:{args_underscored};==;kicks_mow;https://cdn.discordapp.com/emojis/465569118381408256.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_ohmanohboy;https://cdn.discordapp.com/emojis/465569344236158996.png {set:flag;false;};}
+        {when:{args_underscored};==;freya_concern;https://cdn.discordapp.com/emojis/465574711552770048.png {set:flag;false;};}
+        {when:{args_underscored};==;fran_curious;https://cdn.discordapp.com/emojis/465574890662002709.png {set:flag;false;};}
+        {when:{args_underscored};==;francis_panic;https://cdn.discordapp.com/emojis/465574930281529374.png {set:flag;false;};}
+        {when:{args_underscored};==;cube_waa;https://cdn.discordapp.com/emojis/465574961348608012.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_cry;https://cdn.discordapp.com/emojis/465575061609381908.png {set:flag;false;};}
+        {when:{args_underscored};==;chandra_gasp;https://cdn.discordapp.com/emojis/465575382251208714.png {set:flag;false;};}
+        {when:{args_underscored};==;cassidy_fierce;https://cdn.discordapp.com/emojis/465575491407970324.png {set:flag;false;};}
+        {when:{args_underscored};==;ben_spittake;https://cdn.discordapp.com/emojis/465575579609989148.png {set:flag;false;};}
+        {when:{args_underscored};==;barkley_ihaveacrushonmymechorsom;https://cdn.discordapp.com/emojis/465575605904343051.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_nonsense;https://cdn.discordapp.com/emojis/476239585647656990.png {set:flag;false;};}
+        {when:{args_underscored};==;sleep;https://cdn.discordapp.com/emojis/476316863865815041.png {set:flag;false;};}
+        {when:{args_underscored};==;cube_snort;https://cdn.discordapp.com/emojis/476699076264591360.png {set:flag;false;};}
+        {when:{args_underscored};==;hp_guh;https://cdn.discordapp.com/emojis/477388048796221460.png {set:flag;false;};}
+        {when:{args_underscored};==;starlight_death;https://cdn.discordapp.com/emojis/481960970374348820.png {set:flag;false;};}
+        {when:{args_underscored};==;spook;https://cdn.discordapp.com/emojis/487090397097492480.png {set:flag;false;};}
+        {when:{args_underscored};==;zoe_zoom;https://cdn.discordapp.com/emojis/490292950929113098.gif {set:flag;false;};}
+        {when:{args_underscored};==;tigris_rage_old;https://cdn.discordapp.com/emojis/490293065651716146.gif {set:flag;false;};}
+        {when:{args_underscored};==;goops_think;https://cdn.discordapp.com/emojis/502089891035873300.gif {set:flag;false;};}
+        {when:{args_underscored};==;chandra_sad;https://cdn.discordapp.com/emojis/502089891421880320.gif {set:flag;false;};}
+        {when:{args_underscored};==;roni_idontcare;https://cdn.discordapp.com/emojis/502089893565169665.gif {set:flag;false;};}
+        {when:{args_underscored};==;bud_shocked;https://cdn.discordapp.com/emojis/502089895238434836.gif {set:flag;false;};}
+        {when:{args_underscored};==;undine_kawaii;https://cdn.discordapp.com/emojis/502089895242891326.gif {set:flag;false;};}
+        {when:{args_underscored};==;hp_whaaa;https://cdn.discordapp.com/emojis/502606433536442368.png {set:flag;false;};}
+        {when:{args_underscored};==;undine_worst;https://cdn.discordapp.com/emojis/525469778908020736.gif {set:flag;false;};}
+        {when:{args_underscored};==;zoe_boo;https://cdn.discordapp.com/emojis/525470585720143873.gif {set:flag;false;};}
+        {when:{args_underscored};==;hp_sad;https://cdn.discordapp.com/emojis/528851919503097856.gif {set:flag;false;};}
+        {when:{args_underscored};==;undine_shock;https://cdn.discordapp.com/emojis/531531572864745492.gif {set:flag;false;};}
+        {when:{args_underscored};==;babkoro;https://cdn.discordapp.com/emojis/532967750805618719.gif {set:flag;false;};}
+        {when:{args_underscored};==;chandra_happy;https://cdn.discordapp.com/emojis/532967751543947286.gif {set:flag;false;};}
+        {when:{args_underscored};==;chandra_mad;https://cdn.discordapp.com/emojis/532967754135896064.gif {set:flag;false;};}
+        {when:{args_underscored};==;undine_gwah;https://cdn.discordapp.com/emojis/538194978694758406.gif {set:flag;false;};}
+        {when:{args_underscored};==;smilesticker;https://cdn.discordapp.com/emojis/538194981744017419.gif {set:flag;false;};}
+        {when:{args_underscored};==;spear_gay;https://cdn.discordapp.com/emojis/538194981773377536.gif {set:flag;false;};}
+        {when:{args_underscored};==;apple_peek;https://cdn.discordapp.com/emojis/538194983639973898.gif {set:flag;false;};}
+        {when:{args_underscored};==;zoe_peek_old;https://cdn.discordapp.com/emojis/538194983719534602.gif {set:flag;false;};}
+        {when:{args_underscored};==;harley_sideeye;https://cdn.discordapp.com/emojis/542921328307601426.gif {set:flag;false;};}
+        {when:{args_underscored};==;waterpunch_gay;https://cdn.discordapp.com/emojis/542921332124418060.gif {set:flag;false;};}
+        {when:{args_underscored};==;starlight_ohshit;https://cdn.discordapp.com/emojis/542921332522876928.gif {set:flag;false;};}
+        {when:{args_underscored};==;lime_shout;https://cdn.discordapp.com/emojis/543619590983385118.gif {set:flag;false;};}
+        {when:{args_underscored};==;apple_yeaahh_old;https://cdn.discordapp.com/emojis/543620884079050777.gif {set:flag;false;};}
+        {when:{args_underscored};==;nico_pocket;https://cdn.discordapp.com/emojis/543621272488116227.gif {set:flag;false;};}
+        {when:{args_underscored};==;tigris_hiss;https://cdn.discordapp.com/emojis/543621470950260750.gif {set:flag;false;};}
+        {when:{args_underscored};==;42_ohistand;https://cdn.discordapp.com/emojis/543621550876786692.gif {set:flag;false;};}
+        {when:{args_underscored};==;steffi_wow_crimmus;https://cdn.discordapp.com/emojis/543623028605583373.gif {set:flag;false;};}
+        {when:{args_underscored};==;tessa_lea_der;https://cdn.discordapp.com/emojis/543623029192785921.gif {set:flag;false;};}
+        {when:{args_underscored};==;zoe_peek_crimmus;https://cdn.discordapp.com/emojis/543623029486387211.gif {set:flag;false;};}
+        {when:{args_underscored};==;harley_sorry;https://cdn.discordapp.com/emojis/543623029528461312.gif {set:flag;false;};}
+        {when:{args_underscored};==;gwen_nod_crimmus;https://cdn.discordapp.com/emojis/543623029578530819.gif {set:flag;false;};}
+        {when:{args_underscored};==;mitsuki_smile;https://cdn.discordapp.com/emojis/543623200190234625.png {set:flag;false;};}
+        {when:{args_underscored};==;sans_undertale;https://cdn.discordapp.com/emojis/548152226779103272.png {set:flag;false;};}
+        {when:{args_underscored};==;tigris_nonsense;https://cdn.discordapp.com/emojis/553370688514293760.png {set:flag;false;};}
+        {when:{args_underscored};==;frosty_gasp;https://cdn.discordapp.com/emojis/556200473376587798.png {set:flag;false;};}
+        {when:{args_underscored};==;flamesy_gasp;https://cdn.discordapp.com/emojis/556200473791692800.png {set:flag;false;};}
+        {when:{args_underscored};==;starlight_wink;https://cdn.discordapp.com/emojis/556320573836230678.png {set:flag;false;};}
+        {when:{args_underscored};==;elle_ellemoji;https://cdn.discordapp.com/emojis/558509764926111778.png {set:flag;false;};}
+        {when:{args_underscored};==;elle_cultboi;https://cdn.discordapp.com/emojis/559512183676076062.png {set:flag;false;};}
+        {when:{args_underscored};==;tessa_fine;https://cdn.discordapp.com/emojis/559654474722050048.png {set:flag;false;};}
+        {when:{args_underscored};==;lemon_yell;https://cdn.discordapp.com/emojis/562892834223423498.png {set:flag;false;};}
+        {when:{args_underscored};==;steffi_gotcha;https://cdn.discordapp.com/emojis/578556570942832640.png {set:flag;false;};}
+        {when:{args_underscored};==;anemone_hello;https://cdn.discordapp.com/emojis/580944973411909652.png {set:flag;false;};}
+
+        {!Spooky Scary Emoji + Peeking Domain + Emoji Bin}
+        {f_goop}
+
+        {when:{flag};==;true;Sorry, either you misspelled the emote or it isn't in the tag.;}
+    ;}
+    {when:{arglen};==;0;
+        To use this tag, do +t emote `emote name`, where `emote name` is the name of an emote from this server or one of the official emoji servers.\n
+        Case doesn't matter, and you can replace underscores with spaces.\n
+        Do +t emote `emote name` goop to get the Hallowe'en version of an emote, where one exists.\n
+        For example, +t emote steffi wow gets {set:args;steffi_wow;}{f_emote} .\n
+        And +t emote steffi wow goop gets {set:args;steffi_wow goop;}{f_emote} .
+    ;
+        {f_emote}
+    ;}
+;}
