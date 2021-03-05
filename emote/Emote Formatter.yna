@@ -4,7 +4,7 @@
     {loop:{len:{rep:/[^<]/;;{server.emojis};};};
         {set:index;{math:-;{iter};1;};}
         {set:list;{list}{server.emojis[{index}].name} ;}
-        \{when:\{args_underscored\}\;==\;{lower:{server.emojis[{index}].name};}\;{server.emojis[{index}].url} \{set:flag\;false\;\}\;\}\n
+        \{when:\{args_underscored\}\;==\;{lower:{server.emojis[{index}].name};}\;{server.emojis[{index}].url}\{set:args_underscored\;success\;\}\;\}\n
     ;}
     {!\n\n{list}}
 ;}
