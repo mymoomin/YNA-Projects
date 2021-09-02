@@ -1,0 +1,105 @@
+{oneline:
+    {set:newrep;true;}
+    {set:go_flag;true;}
+    {set:output;;}
+    {set:cell0;0;}
+    {set:pointer;0;}
+    {set:index;0;}
+    {set:loop_level;0;}
+
+    {func:f_inc;
+        {set:{ta1};{math:+;{{ta1}};1;};}
+    ;}
+    {func:f_dec;
+        {set:{ta1};{math:-;{{ta1}};1;};}
+    ;}
+
+    {func:f_num_to_ascii;
+        {slice:{cell{pointer}};................................ !"#$%&'()*+,-./0123456789:.<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz.|.~;}
+    ;}
+
+    {func:f_ascii_to_num;
+        {when:{ta1};==;;0;}{when:{ta1};==;;4;}{when:{ta1};==;;8;}{when:{ta1};==;;12;}{when:{ta1};==;;16;}{when:{ta1};==;;20;}{when:{ta1};==;;24;}{when:{ta1};==;;28;}{when:{ta1};==; ;32;}{when:{ta1};==;$;36;}{when:{ta1};==;(;40;}{when:{ta1};==;,;44;}{when:{ta1};==;0;48;}{when:{ta1};==;4;52;}{when:{ta1};==;8;56;}{when:{ta1};==;<;60;}{when:{ta1};==;@;64;}{when:{ta1};==;D;68;}{when:{ta1};==;H;72;}{when:{ta1};==;L;76;}{when:{ta1};==;P;80;}{when:{ta1};==;T;84;}{when:{ta1};==;X;88;}{when:{ta1};==;\\;92;}{when:{ta1};==;`;96;}{when:{ta1};==;d;100;}{when:{ta1};==;h;104;}{when:{ta1};==;l;108;}{when:{ta1};==;p;112;}{when:{ta1};==;t;116;}{when:{ta1};==;x;120;}{when:{ta1};==;|;124;}
+        {when:{ta1};==;;1;}{when:{ta1};==;;5;}{when:{ta1};==;	;9;}{when:{ta1};==;;13;}{when:{ta1};==;;17;}{when:{ta1};==;;21;}{when:{ta1};==;;25;}{when:{ta1};==;;29;}{when:{ta1};==;!;33;}{when:{ta1};==;%;37;}{when:{ta1};==;);41;}{when:{ta1};==;-;45;}{when:{ta1};==;1;49;}{when:{ta1};==;5;53;}{when:{ta1};==;9;57;}{when:{ta1};==;=;61;}{when:{ta1};==;A;65;}{when:{ta1};==;E;69;}{when:{ta1};==;I;73;}{when:{ta1};==;M;77;}{when:{ta1};==;Q;81;}{when:{ta1};==;U;85;}{when:{ta1};==;Y;89;}{when:{ta1};==;];93;}{when:{ta1};==;a;97;}{when:{ta1};==;e;101;}{when:{ta1};==;i;105;}{when:{ta1};==;m;109;}{when:{ta1};==;q;113;}{when:{ta1};==;u;117;}{when:{ta1};==;y;121;}{when:{ta1};==; ;125;}
+        {when:{ta1};==;;2;}{when:{ta1};==;;6;}{when:{ta1};==;\\n;10;}{when:{ta1};==;;14;}{when:{ta1};==;;18;}{when:{ta1};==;;22;}{when:{ta1};==;;26;}{when:{ta1};==;;30;}{when:{ta1};==;";34;}{when:{ta1};==;&;38;}{when:{ta1};==;*;42;}{when:{ta1};==;.;46;}{when:{ta1};==;2;50;}{when:{ta1};==;6;54;}{when:{ta1};==;:;58;}{when:{ta1};==;>;62;}{when:{ta1};==;B;66;}{when:{ta1};==;F;70;}{when:{ta1};==;J;74;}{when:{ta1};==;N;78;}{when:{ta1};==;R;82;}{when:{ta1};==;V;86;}{when:{ta1};==;Z;90;}{when:{ta1};==;^;94;}{when:{ta1};==;b;98;}{when:{ta1};==;f;102;}{when:{ta1};==;j;106;}{when:{ta1};==;n;110;}{when:{ta1};==;r;114;}{when:{ta1};==;v;118;}{when:{ta1};==;z;122;}{when:{ta1};==;~;126;}
+        {when:{ta1};==;;3;}{when:{ta1};==;;7;}{when:{ta1};==;;11;}{when:{ta1};==;;15;}{when:{ta1};==;;19;}{when:{ta1};==;;23;}{when:{ta1};==;;27;}{when:{ta1};==;;31;}{when:{ta1};==;#;35;}{when:{ta1};==;';39;}{when:{ta1};==;+;43;}{when:{ta1};==;/;47;}{when:{ta1};==;3;51;}{when:{ta1};==;7;55;}{when:{ta1};==; ;59;}{when:{ta1};==;?;63;}{when:{ta1};==;C;67;}{when:{ta1};==;G;71;}{when:{ta1};==;K;75;}{when:{ta1};==;O;79;}{when:{ta1};==;S;83;}{when:{ta1};==;W;87;}{when:{ta1};==;[;91;}{when:{ta1};==;_;95;}{when:{ta1};==;c;99;}{when:{ta1};==;g;103;}{when:{ta1};==;k;107;}{when:{ta1};==;o;111;}{when:{ta1};==;s;115;}{when:{ta1};==;w;119;}{when:{ta1};==; ;123;}{when:{ta1};==; ;127;}
+    ;}
+
+    {func:f_main;
+        {loop:700;
+            {when:{go_flag};==;true;
+                {f_execute}
+            ;}
+        ;}
+    ;}
+
+    {func:f_execute;
+        {when:{index};<;{len:{script};};
+            {when:{script{index}};==;+;
+                {when:{cell{pointer}};is;error;
+                    {set:cell{pointer};0;}
+                ;}
+                {f_inc:cell{pointer}}
+                {f_inc:index}
+            ;
+                {when:{script{index}};==;-;
+                    {when:{cell{pointer}};is;error;
+                        {set:cell{pointer};0;}
+                    ;}
+                    {f_dec:cell{pointer}}
+                    {f_inc:index}
+                ;
+                    {when:{script{index}};==;>;
+                        {f_inc:pointer}
+                        {f_inc:index}
+                    ;
+                        {when:{script{index}};==;<;
+                            {f_dec:pointer}
+                            {f_inc:index}
+                        ;
+                            {when:{script{index}};==;[;
+                                {f_inc:loop_level}
+                                {f_inc:index}
+                                {set:loopstart{loop_level};{index};}
+                            ;
+                                {when:{script{index}};==;];
+                                    {when:{cell{pointer}};!=;0;
+                                        {set:index;{loopstart{loop_level}};}
+                                    ;
+                                        {f_dec:loop_level}
+                                        {f_inc:index}
+                                    ;}
+                                ;
+                                    {when:{script{index}};==;.;
+                                        {set:output;{output}{f_num_to_ascii:{cell{pointer}}};}
+                                        {f_inc:index}
+                                    ;
+                                        {when:{script{index}};==;,;
+                                            {set:cell{pointer};{f_ascii_to_num:{slice:0;{input};}};}
+                                            {set:input;{slice:1,;{input};};}
+                                            {f_inc:index}
+                                        ;}
+                                    ;}
+                                ;}
+                            ;}
+                        ;}
+                    ;}
+                ;}
+            ;}
+        ;
+            {set:go_flag;false;}
+        ;}
+    ;}
+
+    {when:{arglen};>;2;
+        This tag takes up to 2 arguments: the brainfuck script to interpret, and optionally an input string
+    ;
+        {set:script;{rep:/[^<>+\-,.\[\]]/;;{arg1};};}
+        {loop:0,{math:-;{len:{script};};1;};
+            {set:script{iter};{slice:{iter};{script};};}
+        ;}
+        {set:input;{arg2};}
+        {f_main}
+        {output}
+    ;}
+;}

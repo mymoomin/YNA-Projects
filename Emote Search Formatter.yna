@@ -1,0 +1,10 @@
+{oneline:
+    {set:newrep;true;}
+    {set:list;;}
+    {loop:{len:{rep:/[^<]/;;{server.emojis};};};
+        {set:index;{math:-;{iter};1;};}
+        {set:list;{list}{server.emojis[{index}].name} ;}
+        \{when:\{args_underscored\}\;in\;{lower:{server.emojis[{index}].name};}\;{lower:{server.emojis[{index}].name};}\{set:flag\;false\;\}\;\}\n
+    ;}
+    {!\n\n{list}}
+;}

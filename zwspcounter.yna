@@ -1,0 +1,25 @@
+{oneline:
+    {init}{save:lastDay;{time:0;%j;};}{save:previousHigh;0;}{endinit}
+
+    {set:currentDay;{time:0;%j;};}
+    {set:currentDiff;{math:-;{currentDay};{lastDay};};}
+
+    {when:{arg1};==;reset;
+        The counter has been reset.\n 
+        It had been **`{currentDiff}`** days.\n\n
+
+        {when:{currentDiff};>;{previousHigh};
+            {save:previousHigh;{currentDiff};}
+        ;}
+        {set:currentDiff;0;}
+        {set:lastDay;{currentDay};}
+        {save:lastDay;{currentDay};}
+    ;}
+;}
+​                 __**IT HAS BEEN**__
+                            **`{currentDiff}`**
+                        **DAYS
+              SINCE OUR LAST
+ZERO-WIDTH SPACE INCIDENT**
+
+Previous high: {previousHigh}

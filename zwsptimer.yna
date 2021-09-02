@@ -1,0 +1,14 @@
+{oneline:
+    {init}{save:lastDay;{time:0;%j;};}{endinit}
+    {set:currentDay;{time:0;%j;};}
+    {when:{arg1};==;reset;
+        The timer has been reset.
+        {set:lastDay;{currentDay};}
+        {save:lastDay;{currentDay};};}
+    ;}
+;}
+​                 __**IT HAS BEEN**__
+                            **`{math:-;{currentDay};{lastDay};}`**
+                        **DAYS
+              SINCE OUR LAST
+ZERO-WIDTH SPACE INCIDENT**

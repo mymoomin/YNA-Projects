@@ -1,0 +1,15 @@
+{oneline:
+
+    {when:{arg1};eq;add;
+        {save:{arg2};{arg3};}
+    ;
+        {when:{arg1};is;error;
+            
+            {when:{{arg1}};is;error;
+                Sorry! That's **not a note**.
+            ;
+                    {{arg1}}
+            ;}
+        ;}
+    ;}
+;}

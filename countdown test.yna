@@ -1,0 +1,84 @@
+{oneline:
+    {!{init}{save:end_stored;{time:1;%Y%j%H%M;};}Reset Countdown to {slice:0,19;{time:1;};}{endinit}}
+    
+    {!FORMAT: {!time:0;%Y%j%H%M;}}
+    {!EXAMPL: 20181790537}
+    {!DIGITS: 01234567890}
+    {!FORMAT: yyyydddhhmm}
+    
+    {func:set;
+        {set:end_time;{time:{arg1};%Y%j%H%M;};}
+        {set:end_stored;{time:{arg1};%Y%j%H%M;};}
+        {save:end_stored;{time:{arg1};%Y%j%H%M;};}
+        Countdown set for {arg1} hour(s).\n\n
+    ;}
+    
+    {func:check;
+    {!SET END TIME}
+    {set:end_time;{end_stored};}
+    {set:end_year;{slice:0,4;{end_time};};}
+    {set:end_day;{slice:4,7;{end_time};};}
+    {set:end_hour;{slice:7,9;{end_time};};}
+    {set:end_min;{slice:9,11;{end_time};};}
+    
+    {!SET CURRENT TIME}
+    {set:cnt_time;{time:0;%Y%j%H%M;};}
+    {set:cnt_year;{slice:0,4;{cnt_time};};}
+    {set:cnt_day;{slice:4,7;{cnt_time};};}
+    {set:cnt_hour;{slice:7,9;{cnt_time};};}
+    {set:cnt_min;{slice:9,11;{cnt_time};};}
+    {set:mh_carry;0;}{set:hd_carry;0;}{set:dy_carry;0;}
+    
+    {!maths}
+    {set:calc_min;
+        {math:sub;{end_min};{cnt_min};}
+    ;}
+    {when:{calc_min};le;0;
+        {set:calc_min;{math:add;{calc_min};60;};}
+        {set:mh_carry;1;}
+    ;}
+    {set:calc_hour;{math:sub;{end_hour};{cnt_hour};};}
+    {when:{calc_hour};le;0;
+        {set:calc_hour;{math:add;{calc_hour};24;};}
+        {set:hd_carry;1;}
+    ;}
+    {set:calc_day;{math:sub;{end_day};{cnt_day};};}
+    {when:{calc_day};lt;0;
+        {set:calc_day;{math:add;{calc_day};365;};}
+        {set:dy_carry;1;}
+    ;}
+    {set:calc_year;{math:sub;{end_year};{cnt_year};};}
+    
+    {!carries}
+    {set:calc_hour;{math:sub;{calc_hour};{mh_carry};};}
+    {set:calc_day;{math:sub;{calc_day};{hd_carry};};}
+    {set:calc_year;{math:sub;{calc_year};{dy_carry};};}
+    
+    {set:end_flag;false;}
+    {when:{calc_year};lt;0;{set:end_flag;true;};}
+    {when:{calc_day};lt;0;{set:end_flag;true;};}
+    {when:{calc_hour};lt;0;{set:end_flag;true;};}
+    {when:{end_flag};eq;true;
+        Countdown has ended.
+        {save:end_stored;{time:1;%Y%j%H%M;};}
+        {me.mention}, your timer has run out
+    ;}
+    \n\n__**Time Remaining:**__\n
+    {calc_year} years, 
+    {calc_day} days, 
+    {calc_hour} hours, {calc_min} minutes.
+    ;}
+    
+    __Debugging__\n
+    {set:flag;false;}
+    {when:{len:{args};};eq;0;{check}{set:flag;true;};}
+    {when:{args};is;number;
+        {!when:{args};gt;0;
+            {set}{check}{set:flag;true;};
+            Invalid input. Please input a number greater than zero.{set:flag;true;};
+        }
+        {set}{check}{set:flag;true;}
+    ;}
+    {when:{flag};eq;false;Invalid input. Please input a number.;}
+    
+;}

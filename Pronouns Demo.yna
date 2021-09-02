@@ -1,0 +1,3 @@
+{call:pronouns;}{caller.display_name} imagines death so much it feels more like a memory. Is this where it gets {f_objectPronoun}?
+On {f_possessiveDeterminer} feet... several feet ahead of {f_objectPronoun}? {title:{f_subjectPronoun};} can see it coming.
+Should {f_subjectPronoun} run, or fire {f_possessiveDeterminer} gun, or let it be? There is no beat, no melody.

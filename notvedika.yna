@@ -1,0 +1,76 @@
+{oneline:
+{func:list;
+{wchoose:Nisclo.;7;
+{caller.display_name}.;8;
+even if she looks like it.;3;
+even if they look similar!;3;
+now stop accusing her of it!;3;
+even though they're both purple.;3;};}
+{!!library}
+{func:confusion;
+{choose:right?;
+probably?;
+I'm pretty sure.;};}
+
+{func:insult;
+{choose:_Nisclo._;
+you {choose:nerd;
+nerds;
+dweeb;
+dweebs;}.;
+even though you seem to think so.;
+_{caller.display_name}_;};}
+
+{func:toogood;
+{choose:Vedika's too nice to be Goops!;
+that would be silly.;
+Vedika doesn't have time for that.;
+because Vedika is nice and Goops isn't!;
+Goops is too evil to be!;};}
+
+{choose:<a:HP_mad:543623030572711946> "Goops is **not** Vedika, {choose:{list};{insult};}";
+<:Apple_yeaahh:542474684256485416> "Pretty sure Goops isn't Vedika, even though they look a lot alike.";
+<:Bud_shipper:507433455961899009> "Vedika can't be Goops! That would mess with my shipping plans!";
+<:Bud_think:507433455089614879> "Even though that seems like it might make sense, Vedika and Goops aren't the same person. I'd know.";
+<:Cassidy_chump:507433456431530015> {choose:"Vedika isn't Goops, {choose:{toogood};{confusion};}";"Goops and Vedika can't be the same person. As her best friend, I feel confident saying that.";};
+<:Claire_woooow:555183314642796554> "It'd be so cool if Goops was Vedika, even though it's probably not true. Do you think I could be like her one day?";
+<:Flamesy_gasp:556200473791692800> {choose:"We don't think someone as cute as Vedika could possibly be Goops!";"Vedika isn't Goops, {choose:{toogood};{confusion};{list};};} <:Frosty_gasp:556200473376587798>; 
+<:Frosty_gasp:556200473376587798> Flamesy, where are you? Did you find out Goops' true identity and get kidnapped!?";
+<:Flamesy_gasp:556200473791692800> "I can't find Frosty! Maybe Goops took her!";
+<:getaloadathis:476699049802858526> {choose:"Vedika might be Goops, pass it on.";"Vedika is super mysterious, so she could totally be Goops.";"Get a load of this theory about Goops' true identity!";};
+<:Goops:507433459938099210> {choose:"Fool. You think Vedika could be me?";"Vedika can't be me. She wants to _help_ people.";};
+<:Gwen_nod:528790490859044874> "Hard to say.";
+<a:Harley_sideeye:542921328307601426> {choose:"That sounds like something Bud would come up with to justify a ship.";"Goops is **not** Vedika, {choose:{list};{insult};};};
+<:HP_blerg:507433465357139968> "Vedika and Goops aren't the same person, {insult}";
+<:HP_ohno:507433462710403072> "Goops isn't Vedika, {choose:{confusion};{toogood};};
+<:HP_supportive:507433460881686529> "I'm sure Goops and Vedika are not the same person, {choose:{list};{toogood};};
+<:HP_uhhhhhh:507433461443985418> "Goops and Vedika aren't the same person, {confusion}";
+<:HP_whaaa:502606433536442368> "Goops and Vedika? They aren't the same person, {confusion}";
+<:HP_youcoolOK:507433461066498058> "Vedika is too cool to be Goops, okay?";
+<:Lemon_sour:543566046116970507> "I'm pretty sure Goops _isn't_ Vedika, {choose:{list};{insult};{toogood};}";
+<:Lime_hmmm:543565852574744576> "I'm skeptical of your claim that Goops and Vedika are the same person.";
+<a:Nokoro:543623030665117715> {choose:"Goops being Vedika would be LAME.";"Vedika is too LAME to be Goops.";"Just because Vedika and Goops're both purple doesn't mean anything, {insult}.";};
+<:Rue:507433464535187456> "After thorough analysis, I'm certain that Vedika and Goops are not the same person.";
+<:Sally_firedup:507433461762490379> {choose:"If Vedika was Goops, I'd punch her!";"Vedika is definitely **not** Goops, {choose:{insult};{list};}";"Vedika is a NERD, and in no way like that evil purple goopy girl!";};
+<:Steffi_despair:507433459145244672> "Vedika is Goops? That can't _possibly_ be true!";
+<:Steffi_nonsense:507433463272701962> "Vedika is Goops, for sure! Definitely not making that up at all.";
+<:Steffi_wat:507433460856782868> "Goops is **not** Vedika, {choose:{insult};there's no way.;no way.;}";
+<:Sylvia_business:507433462441967617> "I'm sure Goops isn't Vedika, but that's none of my business.";
+<:Tessa_blerg:507433461590523915> "Stop saying that. Goops is **not** Vedika, {insult}";
+<a:Tessa_blush:543623029712748555> "Goops isn't Vedika, {choose:{toogood};{confusion};{list};}";
+<:Undine_aaaaaa:507433462366470155> "You think Goops is Vedika!? But that's not possible!";
+<:Undine_armsraised:555183315225935904> "Goops isn't Vedika, {choose:{list};{insult};okay!?;{toogood};}";
+<:Undine_ehehehe:507433456658284544> "Goops can't be Vedika, {confusion}";
+<a:Undine_smile:543621061753700384> "I'm sure that Vedika is not Goops, {choose:{list};{toogood};}";
+<:Undine_theworst:507433461729067009> "Vedika just can't be Goops, {choose:{confusion};{toogood};}";
+<:Undine_wha:507433458117771287> "Vedika isn't Goops! She can't be, {toogood}";
+<:Vedika_wink:507433461620015105> "Of course I'm not Goops. My powers aren't _that_ cool.";
+<:Wandine:482177429935489024> "That scrawny nerd being Goops? Impossible!";
+<:Zoe_nervous:507433462492430336> "Vedika seemed really nice. She can't be Goops, {confusion}";
+<:Zoe_bummed:507627679416057868> "I really don't think Vedika is Goops, {toogood}";
+<:Zoe_ghost:555197829833031690> "Vedika isn't Goops! She's not spooky enough!";
+<:Zoe_nonsense:555196446262165505> {choose:"Um, miss Vedika? You're not Goops, right?"\n
+<:Vedika_wink:507433461620015105> "Of course I'm not. There's no reason to think so, other than we're both purple I guess.";
+<:Zoe_nonsense:555196446262165505> "Um, miss Punch? Vedika isn't Goops, right?"\n
+<:HP_supportive:507433460881686529> "I'm sure she's not, {toogood}";};}
+;}

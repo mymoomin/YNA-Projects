@@ -1,0 +1,25 @@
+{oneline:
+    {!!library}
+    {choose:
+        +t rwbytalk https://cdn.discordapp.com/attachments/419801561636667403/459546743575674930/RWBY2.png;
+        +t rwbytalk2 https://cdn.discordapp.com/attachments/445728844729810944/454852024987680778/RWBYtalk2.png;
+        +t rwbytalk3 https://cdn.discordapp.com/attachments/445728844729810944/456287134102454273/server-yells-at-rwby.png;
+        +t rwbytalk4 https://i.imgur.com/DMqJ4ZM.png;
+        +t rwbytalk5 https://i.imgur.com/J54YQ1N.jpg;
+        +t rwbytalk6 (by Sandoiichi) https://i.imgur.com/XdHaz70.jpg;
+        +t adam https://cdn.discordapp.com/attachments/419801561636667403/460318488502992928/unknown.png;
+        +t hazel https://cdn.discordapp.com/attachments/445728844729810944/460647394217033738/unknown.png;
+        +t cursedzwei https://cdn.discordapp.com/attachments/419801561636667403/457785228157648907/unknown.png;
+        +t zwei https://vignette.wikia.nocookie.net/vsbattles/images/3/31/Zwei.png/revision/latest?cb=20171014135003;
+        +t mercury https://cdn.discordapp.com/attachments/419801561636667403/460646363743387678/unknown.png;
+        +t rwbysleep https://cdn.discordapp.com/attachments/419801561636667403/450200669262053388/rwbysleep.png;
+        +t weisssleep https://cdn.discordapp.com/attachments/419801561636667403/453463112167981056/weisssleep.png;
+        +t victim (By HeyItsCorinth) https://i.imgur.com/FdvJgxe.png//nhttps://twitter.com/heyitscorinth/status/1003193205410672642;
+        +t rwby https://cdn.discordapp.com/attachments/419801561636667403/460638940483944458/RWBY.gif;
+        +t merc (50% of the time) https://cdn.discordapp.com/attachments/445728844729810944/460645342493278218/unknown.png;
+        +t blake https://i.imgur.com/u27gtIIh.jpg;
+        +t ruby https://i.imgur.com/mXeO6kVh.jpg;
+        +t pyrrha https://i.imgur.com/waRCzOM.png;
+        +t rrwbytalk \n{call:rrwbytalk}
+    ;}
+;}

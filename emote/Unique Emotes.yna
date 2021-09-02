@@ -231,7 +231,6 @@
 {when:{args_underscored};==;honnyo_angry;https://cdn.discordapp.com/emojis/517509999958818848.png{set:args_underscored;success;};}
 {when:{args_underscored};==;hp_smol;https://cdn.discordapp.com/emojis/520314364104802379.gif{set:args_underscored;success;};}
 {when:{args_underscored};==;sunlight_gasp;https://cdn.discordapp.com/emojis/520318442830561281.gif{set:args_underscored;success;};}
-{when:{args_underscored};==;sally_ugh;https://cdn.discordapp.com/emojis/531495511212032010.gif{set:args_underscored;success;};}
 {when:{args_underscored};==;tessa_notleader;https://cdn.discordapp.com/emojis/531495603398639626.png{set:args_underscored;success;};}
 {when:{args_underscored};==;lemon_victim;https://cdn.discordapp.com/emojis/542604260823662592.png{set:args_underscored;success;};}
 {when:{args_underscored};==;tessa_mood;https://cdn.discordapp.com/emojis/543495879060094977.png{set:args_underscored;success;};}
@@ -243,8 +242,6 @@
 {when:{args_underscored};==;neko_ify;https://cdn.discordapp.com/emojis/562303078846693386.png{set:args_underscored;success;};}
 {when:{args_underscored};==;undine_kawaii_as_hecc;https://cdn.discordapp.com/emojis/562587784154578955.png{set:args_underscored;success;};}
 {when:{args_underscored};==;wandine_ufufu;https://cdn.discordapp.com/emojis/569685554132811776.gif{set:args_underscored;success;};}
-{when:{args_underscored};==;undine_what;https://cdn.discordapp.com/emojis/577861004797411329.gif{set:args_underscored;success;};}
-{when:{args_underscored};==;bass;https://cdn.discordapp.com/emojis/577861685453258752.gif{set:args_underscored;success;};}
 {when:{args_underscored};==;undyne;https://cdn.discordapp.com/emojis/577861687730896906.gif{set:args_underscored;success;};}
 {when:{args_underscored};==;chef_kiss;https://cdn.discordapp.com/emojis/577861687869440000.gif{set:args_underscored;success;};}
 {when:{args_underscored};==;undine_cool;https://cdn.discordapp.com/emojis/577865485325172809.gif{set:args_underscored;success;};}
@@ -267,6 +264,14 @@
 {when:{args_underscored};==;zoe_blush;https://cdn.discordapp.com/emojis/668171107097903104.png{set:args_underscored;success;};}
 {when:{args_underscored};==;melties_smooch_wedding;https://cdn.discordapp.com/emojis/759070856072134686.png{set:args_underscored;success;};}
 {when:{args_underscored};==;sayaka_wow;https://cdn.discordapp.com/emojis/803086089265872936.png{set:args_underscored;success;};}
+{when:{args_underscored};==;apple_wham;https://cdn.discordapp.com/emojis/809779550414176287.png{set:args_underscored;success;};}
+{when:{args_underscored};==;mosscreep_hide_unhide;https://cdn.discordapp.com/emojis/830108686209777724.gif{set:args_underscored;success;};}
+{when:{args_underscored};==;undine_what;https://cdn.discordapp.com/emojis/830111930257244200.png{set:args_underscored;success;};}
+{when:{args_underscored};==;sally_ugh;https://cdn.discordapp.com/emojis/830111984145399859.png{set:args_underscored;success;};}
+{when:{args_underscored};==;mosscreep_unhide;https://cdn.discordapp.com/emojis/830112082552422431.gif{set:args_underscored;success;};}
+{when:{args_underscored};==;mosscreep_hide;https://cdn.discordapp.com/emojis/830112082610618378.gif{set:args_underscored;success;};}
+{when:{args_underscored};==;bass;https://cdn.discordapp.com/emojis/830113711539880036.png{set:args_underscored;success;};}
+{when:{args_underscored};==;mosscreep_walk;https://cdn.discordapp.com/emojis/830113778715983873.gif{set:args_underscored;success;};}
 
 {!SD Emote Graveyard}
 {when:{args_underscored};==;vedika_yes;https://cdn.discordapp.com/emojis/465568358671319045.png{set:args_underscored;success;};}
@@ -518,7 +523,6 @@
 {when:{args_underscored};==;starlight;https://cdn.discordapp.com/emojis/793603216357064755.png{set:args_underscored;success;};}
 {when:{args_underscored};==;nasri;https://cdn.discordapp.com/emojis/793604512820232243.png{set:args_underscored;success;};}
 {when:{args_underscored};==;goops_phone;https://cdn.discordapp.com/emojis/794196092429795339.png{set:args_underscored;success;};}
-{when:{args_underscored};==;apple_wham;https://cdn.discordapp.com/emojis/798594061799784512.png{set:args_underscored;success;};}
 {when:{args_underscored};==;limewaggle;https://cdn.discordapp.com/emojis/810150266057392159.gif{set:args_underscored;success;};}
 
 {!Cat}

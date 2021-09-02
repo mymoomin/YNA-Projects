@@ -1,0 +1,36 @@
+{oneline:
+    {!!library}
+    {set:newrep;true;}
+    {set:args;{lower:{args};};}
+    {when:{arg1};is;error;
+        ꀘꂦꋪꌃꌩ
+    ;
+        {set:args;{rep:a;ꍏ;{args};};}
+        {set:args;{rep:b;ꌃ;{args};};}
+        {set:args;{rep:c;ꉓ;{args};};}
+        {set:args;{rep:d;ꀸ;{args};};}
+        {set:args;{rep:e;ꍟ;{args};};}
+        {set:args;{rep:f;ꎇ;{args};};}
+        {set:args;{rep:g;ꁅ;{args};};}
+        {set:args;{rep:h;ꃅ;{args};};}
+        {set:args;{rep:i;ꀤ;{args};};}
+        {set:args;{rep:j;ꀭ;{args};};}
+        {set:args;{rep:k;ꀘ;{args};};}
+        {set:args;{rep:l;꒒;{args};};}
+        {set:args;{rep:m;ꎭ;{args};};}
+        {set:args;{rep:n;ꈤ;{args};};}
+        {set:args;{rep:o;ꂦ;{args};};}
+        {set:args;{rep:p;ᖘ;{args};};}
+        {set:args;{rep:q;ꆰ;{args};};}
+        {set:args;{rep:r;ꋪ;{args};};}
+        {set:args;{rep:s;ꌗ;{args};};}
+        {set:args;{rep:t;꓄;{args};};}
+        {set:args;{rep:u;ꀎ;{args};};}
+        {set:args;{rep:v;ᐯ;{args};};}
+        {set:args;{rep:w;ꅏ;{args};};}
+        {set:args;{rep:x;ꊼ;{args};};}
+        {set:args;{rep:y;ꌩ;{args};};}
+
+        {args}
+    ;}
+;}

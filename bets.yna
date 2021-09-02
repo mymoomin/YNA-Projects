@@ -1,0 +1,102 @@
+{oneline:{!{init}{!Placeholder options}{save:option1;This is option 1.;}{save:option2;This is option 2.;}{save:option3;This is option 3.;}{endinit}}{!!library}
+	{set:newrep;true;}
+
+	{func:display;
+		{![display Function]\n}
+		Current Pool:\n
+		{loop:1,10;
+			{when:{option{iter}};is;error;
+				{!No Entry, do not display.}
+			;
+				Option {iter} - {option{iter}} = 
+				{when:{bets{iter}};is;error;
+
+					{!No Bets} 0 bets.\n;
+
+					{bets{iter}} bets.\n
+					{!add this later[betters go here]\n}
+				;}
+			;}
+		;}
+	;}
+
+
+
+	{func:count_options;
+		{![count_options Function]\n}
+		{set:option_count;0;}
+		{loop:1,10;
+			{when:{option{iter}};is;error;
+				{!do nothing};
+				{!iterate}{set:option_count;{math:add;{option_count};1;};};
+			}
+		;}
+		Option Count : {option_count}\n
+	;}
+
+	{func:set_option;
+		{!Check if owner}
+		{when:{callerid};eq;{meid};
+			{![set_options Function]\n}
+			{when:{arg2};is;number;
+				{set:option{arg2};{arg3};}
+				{save:option{arg2};{arg3};}
+				Option {arg2} set to {arg3}.\n\n
+				{display};
+				Invalid input. Number pls.
+			;};
+
+			Sorry, you do not own this tag.\n\n
+			Please contact {caller}.\n;
+
+		}
+	;}
+
+	{func:bet_on;
+		{when:{arg2};is;number;
+			{!DEBUG:Value of bets{arg2} = {bets{arg2}}\n}
+			{when:{bets{arg2}};is;error;
+					{!DEBUG:arg2 is error. Setting bets{arg2} to 0\n}
+					{set:bets{arg2};0;}
+			;}
+			{when:{bets{arg2}};is;number;
+					{!DEBUG:arg2 is number. Adding 1 to bets{arg2}\n}
+					{save:bets{arg2};{math:add;{bets{arg2}};1;};}
+					{set:bets{arg2};{math:add;{bets{arg2}};1;};}
+			;}
+			Added {caller}'s bet to to option {arg2}.\n
+			{!display}
+			{when:{option{arg2}};is;error;
+				Error. Option does not exist.;
+				Option {arg2} - {option{arg2}} = 
+				{when:{bets{arg2}};is;error;
+
+					{!No Bets} 0 bets.\n;
+
+					{bets{arg2}} bets.\n
+					{!add this later[betters go here]\n};
+
+				}
+			;};
+
+			Invalid input. Number pls.;
+		}
+	;}
+
+	{func:get_help;
+		Betting pool thingy yo. Limited to 10 options.\n
+		`+t {tag} set <number> "<option details>"` to set option.\n
+		`+t {tag} bet <number>` to bet.\n
+		`+t {tag} display` to list options.\n
+		`+t {tag} count` to count options (debugging).\n
+	;}
+
+	{![main Function]\n}
+	{when:{arg1};eq;set;{set_option};}
+	{when:{arg1};eq;bet;{bet_on};}
+	{when:{arg1};eq;count;{count_options};}
+	{when:{arg1};eq;help;{get_help};}
+	{when:{arg1};eq;display;{display};}
+	{when:{arg1};is;error;{display}\nUse `+t {tag} help` for tag functions.;}
+;}
+

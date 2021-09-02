@@ -1,0 +1,34 @@
+{oneline:
+    {!!library}
+    {set:newrep;true;}
+    {set:output;{args};}
+    {set:output;{rep:/(.)/;£\1£;{output};};}
+    {set:output;{rep:£ £;<:__:521710982368591872>;{output};};}
+    {set:output;{rep:£A£;<:GOOPS_A:548507603710377994>;{upper:{output};};};}
+    {set:output;{rep:£B£;<:GOOPS_B:548507603643138058>;{upper:{output};};};}
+    {set:output;{rep:£C£;<:GOOPS_C:548507603488079904>;{upper:{output};};};}
+    {set:output;{rep:£D£;<:GOOPS_D:548507603727286272>;{upper:{output};};};}
+    {set:output;{rep:£E£;<:GOOPS_E:548507603785744407>;{upper:{output};};};}
+    {set:output;{rep:£F£;<:GOOPS_F:548507603312050198>;{upper:{output};};};}
+    {set:output;{rep:£G£;<:GOOPS_G:548507603475496961>;{upper:{output};};};}
+    {set:output;{rep:£H£;<:GOOPS_H:548507603953778688>;{upper:{output};};};}
+    {set:output;{rep:£I£;<:GOOPS_I:548507603714703360>;{upper:{output};};};}
+    {set:output;{rep:£J£;<:GOOPS_J:548507603735543808>;{upper:{output};};};}
+    {set:output;{rep:£K£;<:GOOPS_K:548507603362119695>;{upper:{output};};};}
+    {set:output;{rep:£L£;<:GOOPS_L:548507603718766641>;{upper:{output};};};}
+    {set:output;{rep:£M£;<:GOOPS_M:548507603722960906>;{upper:{output};};};}
+    {set:output;{rep:£N£;<:GOOPS_N:548507603655852033>;{upper:{output};};};}
+    {set:output;{rep:£O£;<:GOOPS_O:548507603580223499>;{upper:{output};};};}
+    {set:output;{rep:£P£;<:GOOPS_P:548507603731218448>;{upper:{output};};};}
+    {set:output;{rep:£Q£;<:GOOPS_Q:548507603664240650>;{upper:{output};};};}
+    {set:output;{rep:£R£;<:GOOPS_R:548507603718766622>;{upper:{output};};};}
+    {set:output;{rep:£S£;<:GOOPS_S:548507603727286282>;{upper:{output};};};}
+    {set:output;{rep:£T£;<:GOOPS_T:548507603693469696>;{upper:{output};};};}
+    {set:output;{rep:£U£;<:GOOPS_U:548507603701989377>;{upper:{output};};};}
+    {set:output;{rep:£V£;<:GOOPS_V:548507603702120448>;{upper:{output};};};}
+    {set:output;{rep:£W£;<:GOOPS_W:548507603643138078>;{upper:{output};};};}
+    {set:output;{rep:£X£;<:GOOPS_X:548507603714703390>;{upper:{output};};};}
+    {set:output;{rep:£Y£;<:GOOPS_Y:548507603689537561>;{upper:{output};};};}
+    {set:output;{rep:£Z£;<:GOOPS_Z:548507603668566039>;{upper:{output};};};}
+    {rep:£;;{output};}
+;}

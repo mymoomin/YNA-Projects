@@ -19,11 +19,11 @@ To remove your timer use `+t rsleep remove`}
     not.
     
     Virtually all of the code in {f_check} is Krekalie's}
-    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìòùÁÉÍÓÚÄ;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìòùÁÉÍÓÚÄÖÜÀÈÌÒÙαβ;}{save:entry1;{time:24;%Y%j%H%M;}346555330358149120;}**Everything old is new again.**{endinit}
     {set:newrep;true;}
     {set:offset;24;}
     {set:autooffset;25;}
-    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìòùÁÉÍÓÚÄ;}
+    {set:wholelist;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:|.¬~<>?¦áéíóúäöüàèìòùÁÉÍÓÚÄÖÜÀÈÌÒÙαβ;}
 
     {func:f_rando;
         {!If there is more than one element in the choice list it picks one at random, sets {pick} to that value, and removes it from the list.
@@ -77,14 +77,14 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;y;+t comfysleep [y] https://i.imgur.com/XuoeFUc.jpg {set:pick;done;};}
         {when:{pick};eq;z;+t faintsleep (by Krekalie) [z] https://i.imgur.com/sVSQovl.jpg {set:pick;done;};}
         {when:{pick};eq;A;+t sleepdoctrine (by Cnaiur) [A] https://i.imgur.com/ZVQs3xV.png {set:pick;done;};}
-        {when:{pick};eq;B;+t youarealreadyasleep (by Sarah Fletcher) [B] https://i.imgur.com/iVPmTqf.png {set:pick;done;};}
+        {when:{pick};eq;B;+t youarealreadyasleep [B] https://i.imgur.com/iVPmTqf.png {set:pick;done;};}
         {when:{pick};eq;C;+t sleepcloseup (by comixthomas) [C] https://cdn.discordapp.com/attachments/419786572049809409/433057243634860043/kokofacesleep.gif {set:pick;done;};}
         {when:{pick};eq;D;+t sleepworm (by Krekalie) [D] https://i.imgur.com/hk46kGi.png {set:pick;done;};}
         {when:{pick};eq;E;+t trainingsleep (by Krekalie) [E] https://i.imgur.com/Jr1J9Ao.png {set:pick;done;};}
         {when:{pick};eq;F;+t sleeeeep (by Elle) [F] https://i.imgur.com/YrKGwxK.jpg {set:pick;done;};}
         {when:{pick};eq;G;+t sleep.. (by Elle) [G] https://i.imgur.com/N5K9jEJ.jpg {set:pick;done;};}
         {when:{pick};eq;H;+t morganasleep (by P4riah) [H] https://i.imgur.com/qxWYFzM.png {set:pick;done;};}
-        {when:{pick};eq;I;+t scattersleep (by Sarah Fletcher) [I] https://i.imgur.com/1Xp7RR4.jpg {set:pick;done;};}
+        {when:{pick};eq;I;+t scattersleep [I] https://i.imgur.com/1Xp7RR4.jpg {set:pick;done;};}
         {when:{pick};eq;J;+t notesleep (by Krekalie) [J] https://i.imgur.com/9Ggzdpy.png {set:pick;done;};}
         {when:{pick};eq;K;+t supportivesleep (by Krekalie) [K] https://i.imgur.com/SjlfIg2.png {set:pick;done;};}
         {when:{pick};eq;L;+t motivationalsleep (by Krekalie) [L] https://i.imgur.com/AwEkIOz.png {set:pick;done;};}
@@ -128,8 +128,8 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;>;+t lunasleep2 (by NativeJovian) [>] https://i.imgur.com/JPOvGaJ.png {set:pick;done;};}
         {when:{pick};eq;?;+t sleepass (by CeeSea) [?] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
         {when:{pick};eq;¦;+t darkestsleep [¦] https://soundcloud.com/jethrain/amessagefromthenarrator/s-aAXWw {set:pick;done;};}
-        {when:{pick};eq;á;+t alreadyasleep (by comb_jelly) [á] https://i.imgur.com/Q7dQMqt.jpg {set:pick;done;};}
-        {when:{pick};eq;é;+t bookwormsleep (by Sarah) [é]https://i.imgur.com/5dNEFAd.png {set:pick;done;};}
+        {when:{pick};eq;á;+t alreadyasleep (by Rathest) [á] https://i.imgur.com/Q7dQMqt.jpg {set:pick;done;};}
+        {when:{pick};eq;é;+t bookwormsleep [é]https://i.imgur.com/5dNEFAd.png {set:pick;done;};}
         {when:{pick};eq;í;+t sunsleep (by mymoomin) [í] https://i.imgur.com/3qMsMGY.png {set:pick;done;};}
         {when:{pick};eq;ó;+t starsleep (by mymoomin) [ó] https://i.imgur.com/1ijKTJ6.png {set:pick;done;};}
         {when:{pick};eq;ú;+t politicalsleep (by Elle, mymoomin and Jeb) [ú] https://i.imgur.com/DOpnIcE.png {set:pick;done;};}
@@ -147,6 +147,15 @@ To remove your timer use `+t rsleep remove`}
         {when:{pick};eq;Ó;+t ghostgirlsleep (by SodiumEyes) [Ó] https://i.imgur.com/MhB1CYJ.gif {set:pick;done;};}
         {when:{pick};eq;Ú;+t hpbutsnowface (by Krekalie) [Ú] https://i.imgur.com/Li91lZi.png {set:pick;done;};}
         {when:{pick};eq;Ä;+t pixelslep (by Nohorse) [Ä] https://cdn.discordapp.com/attachments/419801561636667403/520142853561909248/slepgif1.gif {set:pick;done;};}
+        {when:{pick};eq;Ö;+t phoenixsleep (by ILeftMyPafInMyOtherPof) [Ö] https://i.imgur.com/1Lmicw1.png {set:pick;done;};}
+        {when:{pick};eq;Ü;+t sleepben (by Nohorse) [Ü] https://i.imgur.com/NwNAucs.jpg {set:pick;done;};}
+        {when:{pick};eq;À;+t germansleep (by RustyTinCan) [À] https://i.imgur.com/64Hm15h.png {set:pick;done;};}
+        {when:{pick};eq;È;+t nightnightsleep (by Telamon and PrincessLapis) [È] https://i.imgur.com/NEA01Ws.jpg {set:pick;done;};}
+        {when:{pick};eq;Ì;+t watermelonsleep (by Elle) [Ì] https://i.imgur.com/7c8G60D.png {set:pick;done;};}
+        {when:{pick};eq;Ò;+t danishsleep (by Cockio) [Ò] https://i.imgur.com/e9gbIjd.png {set:pick;done;};}
+        {when:{pick};eq;Ù;+t punkosleep (by Sandoiichi and GKChris) [Ù] https://i.imgur.com/XM1oj2L.jpg {set:pick;done;};}
+        {when:{pick};eq;α;+t roofnap (by P4riah) [α] https://i.imgur.com/QCuVNaM.png {set:pick;done;};}
+        {when:{pick};eq;β;+t roofsleep (by P4riah) [β] https://i.imgur.com/sfyF6wY.png {set:pick;done;};}
     ;}
     
     {func:f_listlength;
@@ -361,37 +370,43 @@ To remove your timer use `+t rsleep remove`}
                         \n{nameof:{person{iter}};display_name;}: {end_stored{iter}}
                     ;}
                 ;
-                    {when:{arg1};==;remove;
-                        {when:{arg2};is;error;
-                            {f_remove:{caller.id}}
-                        ;
-                            {when:{caller.id};==;346555330358149120;
-                                {f_remove:{arg2}}
-                            ;
-                                \nI will not allow you to remove someone else's timer.
-                                \nIf you wanted to remove your own, just use `+t {tag} remove`!
-                            ;}
+                    {when:{arg1};==;list;
+                        {loop:{len};
+                            \n{nameof:{person{iter}};display_name;}: {end_stored{iter}}
                         ;}
                     ;
-                        {when:{arg1};==;help;
-                            \n
-                            \n__Help for `+t {tag}'s` timer function__
-                            \n
-                            \nThis tag has timers now!
-                            \nYou can add one for yourself with `+t {tag} add`. It'll remind you when 24 hours has passed, then reset automatically
-                            \nIf you collected your coins a while after you set the reminder you can reset it manually with `+t {tag} reset`
-                            \nTo remove your timer use `+t {tag} remove`
-                            \n
-                        ;
-                            {when:{arg1};==;list;
-                                {when:{arg2};is;error;
-                                    \nThe list is currently `{list}`.
+                        {when:{arg1};==;remove;
+                            {when:{arg2};is;error;
+                                {f_remove:{caller.id}}
+                            ;
+                                {when:{caller.id};==;346555330358149120;
+                                    {f_remove:{arg2}}
                                 ;
-                                    {when:{caller.id};==;346555330358149120;
-                                        {save:list;{arg2};}
-                                        \nSet list to `{arg2}`.
+                                    \nI will not allow you to remove someone else's timer.
+                                    \nIf you wanted to remove your own, just use `+t {tag} remove`!
+                                ;}
+                            ;}
+                        ;
+                            {when:{arg1};==;help;
+                                \n
+                                \n__Help for `+t {tag}'s` timer function__
+                                \n
+                                \nThis tag has timers now!
+                                \nYou can add one for yourself with `+t {tag} add`. It'll remind you when 24 hours has passed, then reset automatically
+                                \nIf you collected your coins a while after you set the reminder you can reset it manually with `+t {tag} reset`
+                                \nTo remove your timer use `+t {tag} remove`
+                                \n
+                            ;
+                                {when:{arg1};==;picklist;
+                                    {when:{arg2};is;error;
+                                        \n`{list}`
                                     ;
-                                        I'm sorry {caller.display_name}, I'm afraid I can't do that.
+                                        {when:{caller.id};==;346555330358149120;
+                                            {save:list;{arg2};}
+                                            \nSet list to `{arg2}`.
+                                        ;
+                                            I'm sorry {caller.display_name}, I'm afraid I can't do that.
+                                        ;}
                                     ;}
                                 ;}
                             ;}
@@ -409,6 +424,6 @@ To remove your timer use `+t rsleep remove`}
         {f_main}
     ;
         {!Backend is a version of this tag with anything requiring persistent state removed.}
-        {call:backend;}
+        {call:rsleep_backend;}
     ;}
 ;}

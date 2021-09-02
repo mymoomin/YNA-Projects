@@ -1,0 +1,65 @@
+{oneline:
+    {!!library}
+    {!!description 42's regular dice-rolling but with XdY>Z}
+    {set:newrep;true;}
+
+    {func:f_parse;
+        {! format is {numDice} D {numFaces} {op} {bonus}!}
+        {when:{arg1};is;/\d*[dD]\d+([-+>]\d+)?/;
+            {set:parsePassed;true;}
+            {set:numDice;{rep:/d.*/;;{arg1};};}
+            {when:{numDice};==;;{set:numDice;1;};}
+            {set:numFaces;{rep:/\d*[dD](\d+).*/;\1;{arg1};};}
+            {set:op;{rep:/[^-+>]/;;{arg1};};}
+            {set:bonus;{rep:/\d*[dD]\d+(?:[-+>](\d*))?/;\1;{arg1};};}
+            {when:{op};!=;;
+                {when:{bonus};==;;
+                    {arg1}what, exactly?\n
+                    {set:parsePassed;false;}
+                ;}
+            ;}
+        ;
+            Some of the dice you gave me were deformed. Dice should be formatted as nDf where n is optional number and f is faces.\n
+        ;}
+    ;}
+
+    {when:{arglen};==;0;
+        You asked me to roll some dice, but didn't give me any to roll. Use `+dice 'nDf' [...]`
+    ;
+        {f_parse}
+        {when:{parsePassed};==;true;
+            {set:total;0;}
+            {set:results;[;}
+            {set:succs;0;}
+            {when:{op};!=;>;
+                {loop:{numDice};
+                    {set:roll;{num:1;{numFaces};};}
+                    {set:total;{math:+;{total};{roll};};}
+                    {set:results;{results}{roll}, ;}
+                ;}
+                {when:{op};==;;
+                    I rolled those dice for you and got:\n
+                    **{arg1}**: {results}] totaling **{total}**\n
+                ;
+                    {set:total;{math:{op};{total};{bonus};};}
+                    I rolled those dice for you and got:\n
+                    **{arg1}**: {results}] {op} {bonus} totaling **{total}**\n
+                ;}
+            ;
+                {loop:{numDice};
+                    {set:roll;{num:1;{numFaces};};}
+                    {set:total;{math:+;{total};{roll};};}
+                    {when:{roll};>;{bonus};
+                        {set:succs;{math:+;{succs};1;};}
+                        {set:results;{results}**{roll}**, ;}
+                    ;
+                        {set:results;{results}{roll}, ;}
+                    ;}
+                ;}
+                I rolled those dice for you and got:\n
+                **{arg1}**: {results}] totaling **{total}**\n
+                There were **{succs}** successes\n
+            ;}
+        ;}
+    ;}
+;}

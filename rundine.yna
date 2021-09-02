@@ -1,0 +1,27 @@
+{oneline:
+    {!!library}
+{!!description Chooses a random Undine fanart by someone on this server!}
+    {choose:
+        https://puu.sh/A2avQ.png by teledoor24;
+        https://i.imgur.com/NWfcyxj.png by Nick;
+        https://cdn.discordapp.com/attachments/431559341485588481/432727665481613312/Undine.png by Elle;
+        https://cdn.discordapp.com/attachments/431559341485588481/432022884236394518/halloween.png by crumchy;
+        https://cdn.discordapp.com/attachments/419786572049809409/429196552662155265/image.gif by phoenix_feet;
+        https://pbs.twimg.com/media/DZQcf/_uU0AA6KzE.jpg:large by Nick;
+        https://cdn.discordapp.com/attachments/431559341485588481/476169077207990272/hair.png by Z-Raid;
+        https://cdn.discordapp.com/attachments/431559341485588481/473982321909825537/05-2018_undine_wells_starring_in_disneys_world_of_color.png by dreamspacing;
+        https://media.discordapp.net/attachments/431559341485588481/472465563638300672/undine.png by Z-Raid;
+        https://cdn.discordapp.com/attachments/431559341485588481/472306540871942164/bundine.png by Moth;
+        https://cdn.discordapp.com/attachments/431559341485588481/472274218118283275/bundine1.png by Nick;
+        https://cdn.discordapp.com/attachments/431559341485588481/472260115303759882/bundine.png by heyitscorinth;
+        https://cdn.discordapp.com/attachments/431559341485588481/469529877385707530/20180719_114318.jpg by heyitscorinth;
+        https://cdn.discordapp.com/attachments/431559341485588481/469326345038594051/unknown.png by kevelyn;
+        https://cdn.discordapp.com/attachments/431559341485588481/468966579074236426/Untitled_Artwork.png by kevelyn;
+        https://twitter.com/Ashiok_N_Beaver/status/1019392010673770496 by Ashiok_Nightmare_Beaver;
+        https://media.discordapp.net/attachments/431559341485588481/462797052406005770/SleepOP_Undine.jpg by Sandoichii;
+        https://cdn.discordapp.com/attachments/431559341485588481/459022793279930379/undine_sd.png by Victoria S
+        https://i.imgur.com/OIT3w0x.png by kevelyn;
+        https://i.imgur.com/ZpgsWTV.png by kevelyn;
+        https://i.imgur.com/b2hIT9q.png by kevelyn
+    ;}
+;}

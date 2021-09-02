@@ -1,0 +1,229 @@
+{oneline:
+  {!
+    Standard yna library functions.
+    Created by squaswin with ideas from:
+      - Kiwi Hangout
+  }
+  
+  {!!description Standard yna Library, not intended to be used alone.
+  This tag features several utility functions to easily extend the scope of yna.
+  Call this tag for details. (Version 0.4.0)}
+  {!!descshort Standard yna library}
+  {!!library}
+  
+  {func:f_argd;
+    {!
+      Arg or default command. Usage
+      [f_argd:n,default] returns [argn] if it exists otherwise the default.
+    }
+    {when:{talen};lt;2;
+      <f_argd:no default>
+    ;{!else template length}
+      {when:{ta1};is;number;
+        {when:{arglen};lt;{ta1};
+          {!return the default}
+          {slice:{math:add;{len:{ta1};};1;},;{targs};}
+        ;{!else arglen}
+          {arg{ta1}}
+        ;}
+      ;{!else number validation}
+        <f_argd:invalid arg num>
+      ;}
+    ;}
+  ;}
+  
+  {func:f_mulstr;
+    {!
+      Multiplies a string by an int. Usage
+      [f_mulstr:n,string] returns n copies of string with no spaces
+    }
+    {when:{talen};lt;2;
+      <f_mulstr:no args>
+    ;{!else template length}
+      {when:{ta1};is;number;
+        {func:ynalib_loop;{when:{ta1};gt;0;{ta2}{ynalib_loop:{math:sub;{ta1};1;}};};}
+        {ynalib_loop:{targs}}
+      ;{!else number validation}
+        <f_mulstr:invalid number>
+      ;}
+    ;}
+  ;}
+  
+  {func:f_savearray;
+    {!
+      Saves a single input to an array of state variables
+      [f_savearray:statename,content]
+    }
+    {when:{talen};lt;2;
+      <f_savearray:no args>
+    ;
+      {set:ynalib_filename;{ta1};}
+      {set:ynalib_counter;0;}
+      {set:ynalib_content;{slice:{math:add;{len:{ta1};};1;},;{targs};};}
+      {func:ynalib_loop;
+        {when:{len:{ynalib_content};};gt;0;
+          {save:{ynalib_filename}{ynalib_counter};{slice:,255;{ynalib_content};};}
+          {set:ynalib_counter;{math:add;{ynalib_counter};1;};}
+          {set:ynalib_content;{slice:255,;{ynalib_content};};}
+          {ynalib_loop}
+        ;}
+      ;}
+      {ynalib_loop}
+    ;}
+  ;}
+  
+  {func:f_loadarray;
+    {!
+      Loads a state array into a single variable
+      [f_savearray:statename,identifier]
+    }
+    {when:{talen};ne;2;
+      <f_loadarray:invalid args>
+    ;
+      {set:ynalib_filename;{ta1};}
+      {set:ynalib_counter;0;}
+      {set:ynalib_identifier;{ta2};}
+      {set:{ynalib_identifier};;}
+      {func:ynalib_loop;
+        {set:ynalib_next;{{ynalib_filename}{ynalib_counter}};}
+        {when:{ynalib_next};is;error;;
+          {set:{ynalib_identifier};{{ynalib_identifier}}{ynalib_next};}
+          {set:ynalib_counter;{math:add;{ynalib_counter};1;};}
+          {ynalib_loop}
+        ;}
+      ;}
+      {ynalib_loop}
+    ;}
+  ;}
+  
+  {func:f_delarray;
+    {!
+      Deletes a state array
+      [f_delarray:statename]
+    }
+    {when:{talen};ne;1;
+      <f_delarray:invalid args>
+    ;
+      {set:ynalib_filename;{ta1};}
+      {set:ynalib_counter;0;}
+      {func:ynalib_loop;
+        {set:ynalib_next;{ynalib_filename}{ynalib_counter};}
+        {when:{{ynalib_next}};is;error;;
+          {save:{ynalib_next};;}
+          {set:ynalib_counter;{math:add;{ynalib_counter};1;};}
+          {ynalib_loop}
+        ;}
+      ;}
+      {ynalib_loop}
+    ;}
+  ;}
+  
+  {func:f_roundto;
+    {!
+      Rounds to a specific precision
+      [f_roundto:value,precision]
+    }
+    {when:{talen};ne;2;
+      <f_roundto:invalid args>
+    ;
+      {when:{ta1};is;decimal;
+        {when:{ta2};is;decimal;
+          {set:yna_precision;{math:div;1;{ta2};};}
+          {set:yna_value;{math:mul;{ta1};{yna_precision};};}
+          {set:yna_value;{math:round;{yna_value};};}
+          {math:div;{yna_value};{yna_precision};}
+        ;{!decimal precision}
+          <f_roundto:non float precision>
+        ;}
+      ;{!decimal value}
+        <f_roundto:non float value>
+      ;}
+    ;}
+  ;}
+  
+  {func:f_remove;
+    {!
+      Removes an arg from args.
+      [f_remove:index]
+    }
+    {when:{talen};ne;1;
+      <f_remove:no index>
+    ;
+      {when:{ta1};is;number;
+        {func:yna_loop;
+          {when:{ta1};lt;{arglen};
+            {set:arg{ta1};{arg{math:add;{ta1};1;}};}
+            {yna_loop:{math:add;{ta1};1;}}
+          ;}
+        ;}
+        {set:arg{arglen};}
+        {yna_loop}
+        {!Update arglen}
+        {set:arglen;{math:sub;{arglen};1;};}
+        {!Update args}
+        {set:args;;}
+        {func:yna_loop;
+          {when:{ta1};le;{arglen};
+            {set:args;{args} {arg{ta1}};}
+            {yna_loop:{math:add;{ta1};1;}}
+          ;}
+        ;}
+        {yna_loop:1}
+      ; {!numeric test}
+        <f_remove:invalid index>
+      ;}
+    ;}
+  ;}
+  
+  {func:f_insert;
+    {!
+      Inserts an arg at a given index.
+      [f_insert:index,value]
+    }
+    {when:{talen};ne;2;
+      <f_insert:invalid args>
+    ;
+      {when:{ta1};is;number;
+        {!need to shuffle all the args up a level}
+        {func:yna_loop;
+          {when:{ta1};lt;{arglen};
+            {yna_loop:{math:add;{ta1};1;}}
+          ;}
+          {set:arg{math:add;{ta1};1;};{arg{ta1}};}
+        ;}
+        {yna_loop:{ta1};}
+        {set:arg{ta1};{ta2};}
+        {!Update arglen}
+        {set:arglen;{math:add;{arglen};1;};}
+        {!Update args}
+        {set:args;;}
+        {func:yna_loop;
+          {when:{ta1};le;{arglen};
+            {set:args;{args} {arg{ta1}};}
+            {yna_loop:{math:add;{ta1};1;}}
+          ;}
+        ;}
+        {yna_loop:1}
+      ; {!numeric index}
+        <f_insert:non-int index>
+      ;}
+    ;}
+  ;}
+  
+  {when:{base};eq;true;
+    yna Library tag by squaswin.\n
+    Here is a list of available functions.\n
+    {>f_argd:n,default} Returns {>arg"n"} or the given "default" value.\n
+    {>f_mulstr:n,val} Returns "n" copies of "val".\n
+    {>f_savearray:name,val} Saves "val" to the state using a list of "name" variables.\n
+    {>f_loadarray:name,var} Loads an array "name" to the variable "var"\n
+    {>f_delarray:name} Deletes the array "name"\n
+    {>f_roundto:val,prec} Rounds to the specified precision. prec=0.1 means 1dp.\n
+    {>f_remove:index} Removes a specific {>arg} then updates {>arglen} and {>args}\n
+    {>f_insert:i,value} Inserts value into the {>arg} list at {>argi} then updates {>arglen} and {>args}\n
+    To use these functions, add {>call:{tag};} to the start of your tag.
+    {when:{generic};eq;true;
+      \nYou will need to `+tag claim {tag}` first however.
+    ;}
+  ;}
+  ;}

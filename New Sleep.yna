@@ -3,7 +3,7 @@
 	{!!extend end pre="\n" post="" yna=true public=false}
 	{!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at <https://imgur.com/a/B0E2T>!!}
 	{!!descshort A random image telling you to go to sleep!}
-	{init}{save:list;234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#;}**Everything old is new again.**{endinit}
+	{init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#;}**Everything old is new again.**{endinit}
 	{set:newrep;true;}
 
 	{func:f_rando;

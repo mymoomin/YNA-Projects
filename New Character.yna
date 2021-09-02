@@ -1,0 +1,260 @@
+{oneline:
+    {!!library!}
+    {!!library}
+    {!!descshort Picks a random character!}
+    {!!description When called inside a tag, defines a function, character, that outputs a random character. The first argument (sd, kd, or any) determines what comic the character is from, and the second (adults, kids babbus, or nothing) determines the age range. It can also be called directly
+
+Call the tag with no arguments for examples. 
+
+Characters of no defined age are in every age range, and Anemone is an adult.!}
+    {set:{newrep};true;}
+
+    {func:f_kb_babbus;
+        {!1 character}
+        {choose:
+            Chandra
+        ;}
+    ;}
+    {func:f_kb_kids;
+        {!2 characters}
+        {choose:
+            Steffi;Benzene
+        ;}
+    ;}
+    {func:f_kb_adults;
+        {!24 characters}
+        {choose:
+            Heinrich;Miriam;
+            42;35;Kiwibot;
+            Gear;Ishinomori;
+            Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Draconis;Sus;Canis;
+            Reed;Cho;Chief Bahia;Flores;Barnes;
+            Francis;
+            Barkley;Aris
+        ;}
+    ;}
+    {func:f_kb_ageless;
+        {!2 characters}
+        {choose:
+            Kiwibot;
+            Winston
+        ;}
+    ;}
+    {func:f_kb_all;
+        {!29 characters}
+        {wchoose:
+            {f_kb_babbus};1;
+            {f_kb_kids};2;
+            {f_kb_adults};24;
+            {f_kb_ageless};2
+        ;}
+    ;}
+    {func:f_sd_babbus;
+        {!2 characters}
+        {choose:
+            Alex;Claire
+        ;}
+    ;}
+    {func:f_sd_kids_mahous;
+        {!27 characters}
+        {choose:
+            Undine;
+            Tessa;
+            Gwen;Sylvia;Sally;
+            Kokoro;
+            Zoe;
+            Forte Keys;Forte Bass;Forte Lead;Forte Drums;
+            Techno Blitz;Swing Blitz;Pop Blitz;
+            Melty Flame;Melty Frost;
+            Cassidy{!team flash?};
+            Bud;Harley{!non-thematic};
+            Gabby;Suzy;Vedika;
+            Outrageous Apple;Outrageous Lemon;Outrageous Lime;
+            Rue;
+            Cut-chan
+        ;}
+    ;}
+    {func:f_sd_kids_nonmahous;
+        {!4 characters}
+        {choose:
+            (honorary) Rock Blitz;
+            Will;
+            The Purple One;
+            The Woman in White
+        ;}
+    ;}
+    {func:f_sd_adults;
+        {!5 characters}
+        {choose:
+            Cool Scar Teacher;
+            Miss Cable;
+            Momdine;
+            Mark;
+            Anemone
+        ;}
+    ;}
+    {func:f_sd_ageless;
+        {!2 characters}
+        {choose:
+            The Golden One;
+            Nicodemus
+        ;}
+    ;}
+    {func:f_sd_all;
+        {!40 characters}
+        {wchoose:
+            {f_sd_babbus};2;
+            {f_sd_kids_mahous};27;
+            {f_sd_kids_nonmahous};4;
+            {f_sd_adults};5;
+            {f_sd_ageless};2
+        ;}
+    ;}
+    {func:character;
+        {set:characterdone1;false;}
+        {set:characterdone2;false;}
+        {when:{ta1};eq;<ta1:unknown key>;
+            {wchoose:
+                {f_kb_all};29;
+                {f_sd_all};40
+            ;}
+            {set:characterdone1;true;}
+            {set:characterdone2;true;}
+        ;}
+        {when:{ta1};eq;any;
+            {when:{ta2};eq;<ta2:unknown key>;
+                {wchoose:
+                    {f_kb_all};29;
+                    {f_sd_all};40
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;babbus;
+                {wchoose:
+                    {f_kb_babbus};1;
+                    {f_kb_ageless};2;
+                    {f_sd_babbus};2;
+                    {f_sd_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;kids;
+                {wchoose:
+                    {f_kb_kids};2;
+                    {f_kb_ageless};2;
+                    {f_sd_kids_mahous};27;
+                    {f_sd_kids_nonmahous};4;
+                    {f_sd_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;adults;
+                {wchoose:
+                    {f_kb_adults};24;
+                    {f_kb_ageless};2;
+                    {f_sd_adults};5;
+                    {f_sd_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {set:characterdone1;true;}
+        ;}
+        {when:{ta1};eq;kb;
+            {when:{ta2};eq;<ta2:unknown key>;
+                {wchoose:
+                    {f_kb_all};29
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;babbus;
+                {wchoose:
+                    {f_kb_babbus};1;
+                    {f_kb_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;kids;
+                {wchoose:
+                    {f_kb_kids};2;
+                    {f_kb_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;adults;
+                {wchoose:
+                    {f_kb_adults};24;
+                    {f_kb_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {set:characterdone1;true;}
+        ;}
+        {when:{ta1};eq;sd;
+            {when:{ta2};eq;<ta2:unknown key>;
+                {wchoose:
+                    {f_sd_all};40
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;babbus;
+                {wchoose:
+                    {f_sd_babbus};2;
+                    {f_sd_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;kids;
+                {wchoose:
+                    {f_sd_kids_mahous};27;
+                    {f_sd_kids_nonmahous};4;
+                    {f_sd_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;mahous;
+                {wchoose:
+                    {f_sd_kids_mahous};27
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {when:{ta2};eq;adults;
+                {wchoose:
+                    {f_sd_adults};5;
+                    {f_sd_ageless};2
+                ;}
+                {set:characterdone2;true;}
+            ;}
+            {set:characterdone1;true;}
+        ;}
+        {when:{characterdone1};eq;false;
+            <character:invalid parameters>
+        ;
+            {when:{characterdone2};eq;false;
+                <character:invalid second parameter>
+            ;}
+        ;}
+    ;}
+    {when:{base};eq;true;
+        {when:{arglen};eq;0;
+            +t character defines a function, \{character\}, that outputs a random character. The first argument (sd, kd, or any) determines what comic the character is from, and the second (adults, kids babbus, or nothing) determines the age range.\n
+            Call it in a tag using \{call:character\;\} and you'll be able to use it in that tag.\n\n
+            **__Example Usage__**\n
+            \{character:any,babbus\} returned {character:any,babbus}\n
+            \{character:any,adults\} returned {character:any,adults}\n
+            \{character:any,kids\} returned {character:any,kids}\n
+            \{character:sd\} returned {character:sd}\n
+            \{character:sd,babbus\} returned {character:sd,babbus}\n
+            \{character:sd,adults\} returned {character:sd,adults}\n
+            \{character:sd,kids\} returned {character:sd,kids}\n
+            \{character:sd,mahous\} returned {character:sd,mahous}\n
+            \{character:kb\} returned {character:kb}\n
+            \{character:kb,babbus\} returned {character:kb,babbus}\n
+            \{character:kb,adults\} returned {character:kb,adults}\n
+            \{character:kb,kids\} returned {character:kb,kids}\n
+            \{character\} returned {character}
+            {!!extend end pre="\n" post="" yna=true public=false}
+        ;
+            {character:{arg1}{when:{arg2};is;error;;,{arg2};}}
+        ;}
+    ;}
+;}

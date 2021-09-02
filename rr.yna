@@ -1,0 +1,70 @@
+{oneline:
+    {wchoose:
+        {!mymoomin}
+        {choose:
+            +t rsleep by mymoomin\n\n{call:rsleep;};
+            +t rsylvia by mymoomin\n\n{call:rsylvia;};
+            +t rrwby by mymoomin\n\n{call:rrwby;};
+            +t rrwbytalk by mymoomin\n\n{call:rrwbytalk;};
+            +t kokoro by mymoomin\n\n{call:kokoro;};
+            +t rship by mymoomin\n\n{call:rship;};
+            +t rundine by mymoomin\n\n{call:rundine;};
+            +t rquirk by mymoomin\n\n{call:rquirk;}
+        ;};8;
+
+        {!Elle}
+        {set:meid;143226300130263040;}
+        {choose:
+            +t goodundine by Elle\n\n{call:goodundine;};
+            +t goodzoe by Elle\n\n{call:goodzoe;};
+            +t monstergen by Elle\n\n{call:monstergen;}
+        ;};3;
+
+        {!Lapis}
+        {set:meid;224987539155451904;}
+        {choose:
+            +t mahougen by PrincessLapis\n\n{call:mahougen;};
+            +t colorgen by PrincessLapis\n\n{call:colorgen;};
+            +t teamgen by PrincessLapis\n\n{call:teamgen;};
+            +t loversdrawprompt by PrincessLapis\n\n{call:loversdrawprompt;}
+        ;};4;
+
+        {!phoenix_feet}
+        {set:meid;400951097998704643;}
+        {choose:
+            {call:party!;};
+            +t clubgen by Phoenix Feet\n\n{call:clubgen;}
+        ;};2;
+
+        {!kevelyn}
+        {set:meid;402219082302226448;}
+        +t themegen by kevelyn\n\n{call:themegen;}
+        ;1;
+
+        {!Evil Minionion}
+        {set:meid;300479666089754641;}
+        {choose:
+            +t hairgen by Evil Minionion\n\n{call:hairgen;};
+            +t improbablegen by Evil Minionion\n\n{call:improbablegen;}
+        ;};2;
+
+        {!Drake}
+        +t rcrimes by Drake\n\n{call:rcrimes;}
+        ;1;
+
+        {!Rune}
+        {set:meid;82189268197314560;}
+        +t rcutefreckle by Rune\n\n{call:rcutefreckle;}
+        ;1;
+
+        {!investigatorgray}
+        {set:meid;321019000752439297;}
+        +t rwbybde by investigatorgray\n\n{call:rwbybde;}
+        ;1;
+
+        {!Irie}
+        {set:meid;363510755867230210;}
+        +t topicchange by Irie\n\n{call:topicchange;}
+        ;1
+    ;}
+;}

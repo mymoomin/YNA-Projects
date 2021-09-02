@@ -1,0 +1,187 @@
+{oneline:
+    {!!library}
+    {!!description Implements common programming interview questions}
+    {set:newrep;true;}
+
+    {func:f_up;
+        {when:{{ta1}};is;decimal;
+            {set:{ta1};{math:+;{{ta1}};1;};}
+        ;
+            <f_up:args must be numbers>
+        ;}
+    ;}
+    {func:f_down;
+        {when:{{ta1}};is;decimal;
+            {set:{ta1};{math:-;{{ta1}};1;};}
+        ;
+            <f_down:args must be numbers>
+        ;}
+    ;}
+    {func:f_palcheck;
+        {when:{targs};is;error;
+            <f_palcheck:no args>
+        ;
+            {set:pal;{lower:{rep:/\W/;;{targs};};};}
+            {when:{pal};==;{slice:,,-1;{pal};};
+                You got yourself a palindrome right there, and no mistake!
+            ;
+                That's no palindrome!
+            ;}
+        ;}
+    ;}
+    {func:f_fizzbuzz;
+        {when:{targs};is;decimal;
+            {set:i;1;}
+            {set:max;{ta1};}
+            {f_fizzbuzz_iter}
+        ;
+            <f_fizzbuzz:args must be numbers>
+        ;}
+    ;}
+    {func:f_fizzbuzz_iter;
+        {when:{i};<;{max};
+            {set:var;;}
+            {when:{math:%;{i};5;};==;0;{set:var;Fizz;};}
+            {when:{math:%;{i};3;};==;0;{set:var;{var}Buzz;};}
+            {when:{len:{var};};>;0;
+                {var}\n
+            ;
+                {i}\n
+            ;}
+            {f_up:i}
+            {f_fizzbuzz_iter}
+        ;}
+    ;}
+    {func:f_insertionsort;
+        {when:{talen};>;0;
+            {set:i;1;}
+            {f_insertionsort_assigniter}
+            {set:i;2;}
+            {f_insertionsort_sortouteriter}
+            {set:i;1;}
+            {f_insertionsort_printiter}
+        ;
+            <f_insertionsort:no args>
+        ;}
+    ;}
+    {func:f_insertionsort_assigniter;
+        {when:{i};<=;{talen};
+            {when:{ta{i}};is;decimal;
+                {set:insertionsort{i};{ta{i}};}
+                {f_up:i}
+                {f_insertionsort_assigniter}
+            ;
+                <f_insertionsort:args must be numbers>
+            ;}
+        ;}
+    ;}
+    {func:f_insertionsort_sortouteriter;
+        {when:{i};<=;{talen};
+            {set:j;{i};}
+            {f_insertionsort_sortinneriter}
+            {f_up:i}
+            {f_insertionsort_sortouteriter}
+        ;}
+    ;}
+    {func:f_insertionsort_sortinneriter;
+        {when:{j};>;1;
+            {set:j_1;{math:-;{j};1;};}
+            {when:{insertionsort{j_1}};>;{insertionsort{j}};
+                {set:insertionsorttemp;{insertionsort{j}};}
+                {set:insertionsort{j};{insertionsort{j_1}};}
+                {set:insertionsort{j_1};{insertionsorttemp};}
+                {f_down:j}
+                {f_insertionsort_sortinneriter}
+            ;}
+        ;}
+    ;}
+    {func:f_insertionsort_printiter;
+        {when:{i};<=;{math:-;{talen};1;};
+            {insertionsort{i}}, 
+            {f_up:i}
+            {f_insertionsort_printiter}
+        ;
+            {insertionsort{i}}
+        ;}
+    ;}
+    {func:f_sieve;
+        {when:{talen};==;1;
+            {when:{ta1};is;decimal;
+                {set:max;{ta1};}
+                {set:factormax;{math:**;{max};0.5;};}
+                {set:i;2;}
+                {f_sieve_assigniter}
+                {set:i;2;}
+                {f_sieve_outeriter}
+                {set:return;2;}
+                {set:i;3;}
+                {f_sieve_printiter}
+                {return}
+            ;
+                <f_sieve:arg must be number>
+            ;}
+        ;
+            <f_sieve:needs exactly 1 arg>
+        ;}
+    ;}
+    {func:f_sieve_assigniter;
+        {when:{i};<=;{max};
+            {set:sieve{i};true;}
+            {f_up:i}
+            {f_sieve_assigniter}
+        ;}
+    ;}
+    {func:f_sieve_outeriter;
+        {when:{i};<=;{factormax};
+            {when:{sieve{i}};==;true;
+                {set:j;{math:*;{i};2;};}
+                {f_sieve_inneriter}
+            ;}
+            {f_up:i}
+            {f_sieve_outeriter}
+        ;}
+    ;}
+    {func:f_sieve_inneriter;
+        {when:{j};<=;{max};
+            {set:sieve{j};false;}
+            {set:j;{math:+;{j};{i};};}
+            {f_sieve_inneriter}
+        ;}
+    ;}
+    {func:f_sieve_printiter;
+        {when:{i};<=;{max};
+            {when:{sieve{i}};==;true;
+                {set:return;{return}, {i};}
+            ;}
+            {f_up:i}
+            {f_sieve_printiter}
+        ;}
+    ;}
+    {when:{base};==;true;
+        {set:mainflag;false;}
+        {when:{arg1};==;palindrome;
+            {f_palcheck:{arg2}}
+            {set:mainflag;true;}
+        ;}
+        {when:{lower:{arg1};};==;fizzbuzz;
+            {f_fizzbuzz:{arg2}}
+            {set:mainflag;true;}
+        ;}
+        {when:{arg1};==;sort;
+            {f_insertionsort:{rep: ;;{arg2};}}
+            {set:mainflag;true;}
+        ;}
+        {when:{arg1};==;sieve;
+            {f_sieve:{arg2}}
+            {set:mainflag;true;}
+        ;}
+        {when:{mainflag};==;false;
+            This tag implements functions that answer common interview questions or begginer programming problems.
+            You can try them yourself by using:\n
+            - `+t {tag} palindrome "string"` to check if a string is a palindrome\n
+            - `+t {tag} fizzbuzz "number"` to play a game of FizzBuzz going up to that number\n
+            - `+t {tag} sort "list,of,numbers"` to sort a list of numbers\n
+            - `+t {tag} sieve "number"` to list all primes up to that number
+        ;}
+    ;}
+;}

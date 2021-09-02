@@ -1,0 +1,200 @@
+{oneline:{!{init}{!Placeholder options}{save:package1;Placeholder 1.££,;}{save:package2;Placeholder 2.££,;}Tag reloaded.{endinit}}
+{set:newrep;true;}
+{!!Library}
+
+{func:f_pack;
+	{!Puts all the saved content into one variable per option}
+	{loop:14;
+		{when:{option{iter}};is;error;
+			{set:option{iter};;}
+		;}
+		{when:{bets{iter}};is;error;
+			{set:bets{iter};;}
+		;}
+		{when:{list{iter}};is;error;
+			{set:list{iter};;}
+		;}
+		{save:package{iter};{option{iter}}£{bets{iter}}£{list{iter}};}
+	;}
+;}
+
+{func:f_unpack;
+	{!Extracts the saved content from the variable it was packed in to}
+	{loop:14;
+		{when:{package{iter}};is;error;
+			{!do nothing}
+		;
+			{set:flag;0;}
+			{set:package;{package{iter}};}
+			{loop:0,{len:{package};};
+				{when:{slice:{iter};{package};};==;£;
+					{when:{flag};==;0;
+						{set:option_end;{iter};}
+						{set:bets_start;{math:+;{iter};1;};}
+						{set:flag;1;}
+					;
+						{when:{flag};==;1;
+							{set:bets_end;{iter};}
+							{set:list_start;{math:+;{iter};1;};}
+						;}
+					;}
+				;}
+			;}
+			{set:option{iter};{slice:0,{option_end};{package};};}
+			{when:{option{iter}};eq;;{set:option{iter};};}
+
+			{set:bets{iter};{slice:{bets_start},{bets_end};{package};};}
+			{when:{bets{iter}};eq;;{set:bets{iter};};}
+
+			{set:list{iter};{slice:{list_start},;{package};};}
+			{when:{list{iter}};eq;;{set:list{iter};};}
+
+			{save:package{iter};}
+		;}
+	;}
+;}
+
+
+{func:display;
+	{!display function\n}
+	Current Pool:\n
+	{loop:1,14;
+		{when:{option{iter}};is;error;
+			{!No Entry, do not display.};
+			Option {iter} - {option{iter}} = 
+			{when:{bets{iter}};is;error;
+				{!No Bets} 0 bets.\n
+			;
+				{bets{iter}} bets.\n
+				{!List of folks who bet}
+				{when:{list{iter}};is;error;
+					{!Empty list, do nothing.}
+				;
+					{rep:,;, ;{slice:1,{math:sub;{len:{list{iter}};};1;};{list{iter}};};}\n
+				;}
+			;}
+		;}
+	;}
+;}
+
+{func:reset;
+	{!reset function\n}
+	{when:{input2};is;number;
+		{set:option{input2};;}
+		{set:bets{input2};;}
+		{set:list{input2};;}
+		Option {input2} cleared.\n
+	;
+		{loop:1,14;
+			{when:{option{iter}};is;error;
+				{!No Entry, skip.}
+			;
+				{set:option{iter};;}
+				{set:bets{iter};;}
+				{set:list{iter};;}
+			;}
+		;}
+		{set:option1;Placeholder 1.;}
+		{set:option2;Placeholder 2.;}
+		{set:list1;,;}
+		{set:list2;,;}
+		Reset all options.
+	;}
+;}
+
+{func:count_options;
+	{!count_options function\n}
+	{set:option_count;0;}
+	{loop:1,14;
+		{when:{option{iter}};is;error;
+			{!do nothing};
+			{!iterate}{set:option_count;{math:add;{option_count};1;};};
+		}
+	;}
+	Option Count : {option_count}\n
+;}
+
+{func:set_option;
+	{!set_option function\n}
+	{!check if owner}
+	{when:{callerid};eq;{meid};
+		{![set_options Function]\n}
+		{when:{input2};is;number;
+			{when:{input3};is;error;
+				Invalid input. Please specify Option details.\n
+			;
+				{set:option{input2};{input3};}
+				{set:option{input2};{input3};}
+				Option {input2} set to {input3}.\n\n
+				{display}
+			;}
+		;
+			Invalid input. Number pls.
+		;}
+	;
+	Sorry, you do not own this tag.\n\n
+	Please contact {me}.\n;
+
+	}
+;}
+
+{func:bet_on;
+	{!bet_on function\n}
+	{when:{input2};is;number;
+		{!DEBUG:Value of bets{input2} = {bets{input2}}\n}
+		{when:{bets{input2}};is;error;
+				{!DEBUG:arg2 is error. Setting bets{input2} to 0\n}
+				{set:bets{input2};0;}
+		;}
+		{when:{list{input2}};is;error;
+				{!DEBUG:arg2 is error. Setting list{input2} to ','\n}
+				{set:list{input2};,;}
+		;}
+		{when:{option{input2}};is;error;
+			Error. Option does not exist.
+		;
+			{set:list{input2};{list{input2}}{caller.display_name},;}
+			{when:{bets{input2}};is;number;
+		        {!DEBUG:arg2 is number. Adding 1 to bets{input2}\n}
+				{set:bets{input2};{math:add;{bets{input2}};1;};}
+			;}
+			Added {caller.display_name}'s bet to to option {input2}.\n\n
+			Option {input2} - {option{input2}} = 
+			{when:{bets{input2}};is;error;
+				{!No Bets!} 0 bets.\n
+			;
+				{bets{input2}} bets.\n
+				{rep:,;, ;{slice:1,{math:sub;{len:{list{input2}};};1;};{list{input2}};};}\n
+			;}
+		;}
+	;
+		Invalid input. Number pls.
+	;}
+;}
+
+{func:get_help;
+	{!help function\n}
+	{me}'s betting pool (Limited to 10 options)\n
+	`+t {tag} set <number> "<option details>"` to set option.\n
+	`+t {tag} bet <number>` to bet.\n
+	`+t {tag} display` to list options.\n
+	`+t {tag} reset <number>` to reset option\n
+	`+t {tag} reset` to reset all options\n
+	`+t {tag} count` to count options (debugging).\n
+	`+t create <tagname> \{call:pool\;\}` to make your own betting pool!\n
+;}
+
+{!main function}
+{f_unpack}
+{set:input2;{arg2};}{set:input3;{arg3};}{set:done;0;}
+{when:{arg1};eq;set;{set_option}{set:done;1;};}
+{when:{arg1};eq;bet;{bet_on}{set:done;1;};}
+{when:{arg1};is;number;{set:input2;{arg1};}{bet_on}{set:done;1;};}
+{when:{arg1};eq;count;{count_options}{set:done;1;};}
+{when:{arg1};eq;help;{get_help}{set:done;1;};}
+{when:{arg1};eq;display;{display}{set:done;1;};}
+{when:{arg1};eq;list;{display}{set:done;1;};}
+{when:{arg1};eq;reset;{reset}{set:done;1;};}
+{when:{done};eq;0;{display}\nUse `+t {tag} help` for tag functions.;}
+{f_pack}
+;}

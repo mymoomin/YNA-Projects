@@ -1,0 +1,200 @@
+{oneline:
+    {!!library}
+    {!!description **__Use:__**
+`+t notes` to get everyone's notes,
+`+t notes <content>` to make your own note,
+`+t notes delete [<n>]` to delete note number `n` (as long as it's yours), or all your notes if you don't give a number
+`+t notes from [<person>]` to get a list of a specific person's notes, or your own if you don't specify anyone, and
+`+t notes help` to get help!}
+    {init}**The slate has been wiped clear**{endinit}
+    {set:newrep;true;}
+    {set:exception;true;}
+
+    {func:f_increment;
+        {!increases the given variable by 1
+        input must be variable name without enclosing {}!}
+        {set:{ta1};
+            {math:+;{{ta1}};1;}
+        ;}
+    ;}
+    {func:f_iter;
+        {!sets {i} to the index of the last note + 1}
+        {when:{entry{i}};is;error;
+            {!end loop}
+        ;
+            {f_increment:i}
+            {f_iter}
+        ;}
+    ;}
+
+    {func:f_save;
+        {set:i;0;}
+        {set:exception;false;}
+        {f_iter}
+        {save:entry{i};{caller.display_name}: {args};}
+        Your note has been saved, {caller.display_name}.\n\n
+        {f_load}
+        \n**{caller.display_name}: {args}**
+    ;}
+
+    {func:f_load;
+        {set:i;0;}
+        __Current theories are:__ 
+        {f_loaditer}
+        {when:{exception};eq;true;
+            \n***NOTHING???***
+        ;}
+    ;}
+    {func:f_loaditer;
+        {when:{entry{i}};is;error;
+            {!end loop}
+        ;
+            \n{entry{i}}
+            {set:exception;false;}
+            {f_increment:i}
+            {f_loaditer}
+        ;}
+    ;}
+
+    {func:f_person;
+        {when:{arg2};is;error;
+            {member:mem;{caller};}
+        ;
+            {when:{member:mem;{arg2};};is;error;
+                Couldn't find that user.\n
+                Defaulting to caller.\n\n
+                {member:mem;{caller};}
+            ;
+                {member:mem;{arg2};}
+            ;}
+        ;}
+        __Notes from **{mem.display_name}**:__
+        {set:i;0;}
+        {f_personiter}
+        {when:{exception};eq;true;
+            \nLooks like this user hasn't made any notes... <:Zoe_bummed:462598731531812884>
+        ;}
+    ;}
+    {func:f_personiter;
+        {when:{entry{i}};is;error;
+            {!end loop}
+        ;
+            {when:{mem.display_name};in;{rep::;,;{entry{i}};};
+                \n{entry{i}}
+                {set:exception;false;}
+            ;}
+            {f_increment:i}
+            {f_personiter}
+        ;}
+    ;}
+    {func:f_delete;
+        {f_count}
+        {set:delete_counter;0;}
+        {set:deletes;;}
+        {set:cur_delete;;}
+        {set:delete_indexes;;}
+        {when:{arg2};is;number;
+            {when:{arg2};le;{count};
+                {set:index;{math:-;{arg2};1;};}
+                {when:{caller.display_name};in;{rep::;,;{entry{index}};};
+                    {save:entry{index};;}
+                    Entry {arg2} ({entry{index}}) has been deleted.
+                    {set:delete_counter;1;}
+                    {set:cur_delete;{index};}
+                    {set:delete_indexes;{index};}
+                ;
+                    I apologise, but I will not allow to delete an entry that is not your own.
+                ;}
+            ;
+                <:42_ohisee:533713736620572684> There is no note {arg2}.
+            ;}
+        ;
+            {set:i;0;}
+            {f_deleteiter}
+            {set:deletes;{rep:/^, , /;;{deletes};};}
+            {when:{delete_counter};eq;0;
+                <:42_ohisee:533713736620572684> You don't seem to have any notes to delete in the first place...
+            ;}
+            {when:{delete_counter};eq;1;
+                Note {cur_delete} has been removed forever, lost to the sands of time.
+            ;}
+            {when:{delete_counter};gt;1;
+                Notes {deletes}, and {cur_delete} have been removed forever, lost to the sands of time.
+            ;}
+        ;}
+        {f_reorg}
+    ;}
+    {func:f_deleteiter;
+        {when:{entry{i}};is;error;
+            {!end loop}
+        ;
+            {when:{caller.display_name};in;{rep::;,;{entry{i}};};
+                {save:entry{i};;}
+                {f_increment:delete_counter}
+                {set:delete_indexes;{delete_indexes},{i};}
+                {set:deletes;{deletes}, {cur_delete};}
+                {set:cur_delete;{math:+;{i};1;};}
+
+            ;}
+            {f_increment:i}
+            {f_deleteiter}
+        ;}
+    ;}
+
+    {func:f_count;
+        {set:i;0;}
+        {f_iter}
+        {set:count;{i};}
+    ;}
+
+    {func:f_reorg;
+        {set:i;0;}
+        {set:decrement;0;}
+        {f_reorgiter}
+    ;}
+    {func:f_reorgiter;
+        {when:{entry{i}};is;error;
+            {!end loop}
+        ;
+            {when:{i};in;{delete_indexes};
+                {f_increment:decrement}
+            ;
+                {set:new_index;{math:-;{i};{decrement};};}
+                {when:{new_index};ne;{i};
+                    {save:entry{new_index};{entry{i}};}
+                    {save:entry{i};;}
+                ;}
+            ;}
+            {f_increment:i}
+            {f_reorgiter}
+        ;}
+    ;}
+    
+
+    {when:{arg1};is;error;
+        {f_load}
+    ;
+        {when:{arg1};eq;list;
+            {f_person}
+        ;
+            {when:{arg1};eq;from;
+                {f_person}
+            ;
+                {when:{arg1};eq;delete;
+                    {f_delete}
+                ;
+                    {when:{arg1};eq;help;
+                        **__Use:__**\n
+                        `+t {tag}` to get everyone's notes,\n
+                        `+t {tag} <content>` to make your own note,\n
+                        `+t {tag} delete [<n>]` to delete note number `n` (as long as it's yours), or all your notes if you don't give a number\n
+                        `+t {tag} from [<person>]` to get a list of a specific person's notes, or your own if you don't specify anyone, and\n
+                        `+t {tag} help` to get here!
+                    ;
+                        {f_save}
+                    ;}
+                ;}
+            ;}
+        ;}
+    ;}
+;}

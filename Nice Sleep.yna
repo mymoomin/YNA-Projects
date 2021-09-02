@@ -1,0 +1,73 @@
+{oneline:
+	{!!library}
+	{!!extend end pre="\n" post="" yna=true public=false}
+	{!!description +t rsleep, but only with images that won't make you go "Why!"!}
+	{!!descshort A random image telling you to go to sleep!}
+	{init}{save:list;1234567890abcdefghijklmnopqrst;}**Everything old is new again.**{endinit}
+	{set:newrep;true;}
+
+	{func:f_rando;
+		{when:{len:{list};};gt;1;
+			{set:pick;{slice:{num:{math:sub;{len:{list};};1;};};{list};};}
+			{set:list;{rep:{pick};;{list};};}
+		;
+			{set:pick;{list};}{!Only one element in {list}}
+			{set:list;1234567890abcdefghijklmnopqrst;}
+		;}
+		{save:list;{list};}
+	;}
+	{func:f_sleep;
+		{when:{pick};eq;1;+t sleep (by CubeWatermelon) [1] https://i.imgur.com/AsgFFD9.jpg {set:pick;done;};}
+		{when:{pick};eq;2;+t sweep (by Elle) [2] https://i.imgur.com/ctVbeJU.jpg {set:pick;done;};}
+		{when:{pick};eq;3;+t pleasesleep! (by Nick) [3] https://i.imgur.com/6nLAOpi.png {set:pick;done;};}
+		{when:{pick};eq;4;+t sleepdumpster (by SodiumEyes) [4] https://i.imgur.com/8smZYxP.png {set:pick;done;};}
+		{when:{pick};eq;5;+t smolsleep (by Nisclo) [5] https://i.imgur.com/vORQiP8.png {set:pick;done;};}
+		{when:{pick};eq;6;+t pixelsleep (by Gemstils) [6] https://i.imgur.com/ZK4fC3q.png {set:pick;done;};}
+		{when:{pick};eq;7;+t goodnight (by sandoiichi) [7] https://cdn.discordapp.com/attachments/419786572049809409/426632653459161088/hp_paunchwalk.gif {set:pick;done;};}
+		{when:{pick};eq;8;+t gsleep (by Sandoiichi) [8] https://i.imgur.com/6Cssi0y.jpg {set:pick;done;};}
+		{when:{pick};eq;9;+t zoesleep (by Elle) [9] https://i.imgur.com/FfsgcDj.jpg {set:pick;done;};}
+		{when:{pick};eq;0;+t dumpstercube (by TFK) [0] https://i.imgur.com/ABmsT2c.png {set:pick;done;};}
+		{when:{pick};eq;a;+t sailorsleep (by phoenix_feet) [a] https://cdn.discordapp.com/attachments/400952239918678029/427426475940249609/Sailor_Sleep.gif {set:pick;done;};}
+		{when:{pick};eq;b;+t nyasleep [b] https://i.imgur.com/ytXYAdF.png {set:pick;done;};}
+		{when:{pick};eq;c;+t dumpstersleep (by Krekalie) [c] https://i.imgur.com/VMxTQn5.png {set:pick;done;};}
+		{when:{pick};eq;d;+t tinysleep (by PrincessLapis) [d] https://i.imgur.com/XqkTQ6s.jpg {set:pick;done;};}
+		{when:{pick};eq;e;+t sleepdoctrine (by Cnaiur) [e] https://i.imgur.com/ZVQs3xV.png {set:pick;done;};}
+		{when:{pick};eq;f;+t trainingsleep (by Krekalie) [f] https://i.imgur.com/Jr1J9Ao.png {set:pick;done;};}
+		{when:{pick};eq;g;+t morganasleep (by P4riah) [g] https://i.imgur.com/qxWYFzM.png {set:pick;done;};}
+		{when:{pick};eq;h;+t notesleep (by Krekalie) [h] https://i.imgur.com/9Ggzdpy.png {set:pick;done;};}
+		{when:{pick};eq;i;+t supportivesleep (by Krekalie) [i] https://i.imgur.com/SjlfIg2.png {set:pick;done;};}
+		{when:{pick};eq;j;+t sleepass (by CeeSea) [j] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
+		{when:{pick};eq;k;+t emojisleep (by PrincessLapis) [k] <:sleep:432528816674570252> {set:pick;done;};}
+		{when:{pick};eq;l;+t gotosleep (by Redead) [l] https://i.imgur.com/Gsvf2AQ.png {set:pick;done;};}
+		{when:{pick};eq;m;+t starsleep [m] https://i.imgur.com/1ijKTJ6.png {set:pick;done;};}
+		{when:{pick};eq;n;+t yangsleep (by P4riah) [n] https://i.imgur.com/rBhZGMr.png {set:pick;done;};}
+		{when:{pick};eq;o;+t sunsleep [o] https://i.imgur.com/3qMsMGY.png {set:pick;done;};}
+		{when:{pick};eq;p;+t pennysleep (by P4riah) [p] https://i.imgur.com/S9o9l7v.png {set:pick;done;};}
+		{when:{pick};eq;q;+t kicks-sleep (by Raz) [q] https://i.imgur.com/jicYGxj.jpg {set:pick;done;};}
+		{when:{pick};eq;r;+t budsleep (by Elle) [r] https://i.imgur.com/yLg9Asg.jpg {set:pick;done;};}
+		{when:{pick};eq;s;+t brainsleep (by heyitscorinth) [s] https://i.imgur.com/ndjNCgz.png {set:pick;done;};}
+		{when:{pick};eq;t;+t swimsleep (by Zyrii) [t] https://i.imgur.com/RN609UH.png {set:pick;done;};}
+	;}
+
+	{func:f_main;
+		{when:{arg1};is;error;
+			{f_rando}
+		;
+			{set:pick;{arg1};}
+		;}
+		{f_sleep}
+		{when:{pick};eq;done;
+			{!All fine!}
+		;
+			{!{arg1} wasn't a valid option, defaulting to random!}
+			{f_rando}
+			{f_sleep}
+		;}
+	;}
+	
+	{when:{base};eq;true;
+		{f_main}
+	;
+		{call:backend;}
+	;}
+;}

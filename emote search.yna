@@ -1,0 +1,81 @@
+{oneline:
+    {!!library}
+    {call:emote_goop_backend;}
+    {func:f_emote;
+        {set:newrep;true;}
+        {set:flag;true;}
+        
+        {set:args_underscored;{lower:{rep:/[^A-Za-z_]/;;{rep: ;_;{args};};};};}
+
+        {when:{args_underscored};in;bud_think;bud_think{set:flag;false;} ;}
+        {when:{args_underscored};in;bud_shipper;bud_shipper{set:flag;false;} ;}
+        {when:{args_underscored};in;apple_yeaahh;apple_yeaahh{set:flag;false;} ;}
+        {when:{args_underscored};in;claire_woooow;claire_woooow{set:flag;false;} ;}
+        {when:{args_underscored};in;cassidy_chump;cassidy_chump{set:flag;false;} ;}
+        {when:{args_underscored};in;froyo_froyo;froyo_froyo{set:flag;false;} ;}
+        {when:{args_underscored};in;undine_ehehehe;undine_ehehehe{set:flag;false;} ;}
+        {when:{args_underscored};in;undine_wha;undine_wha{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_despair;steffi_despair{set:flag;false;} ;}
+        {when:{args_underscored};in;goops;goops{set:flag;false;} ;}
+        {when:{args_underscored};in;goops_mccube;goops_mccube{set:flag;false;} ;}
+        {when:{args_underscored};in;flamesy_gasp;flamesy_gasp{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_wat;steffi_wat{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_supportive;hp_supportive{set:flag;false;} ;}
+        {when:{args_underscored};in;frosty_gasp;frosty_gasp{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_youcoolok;hp_youcoolok{set:flag;false;} ;}
+        {when:{args_underscored};in;gay;gay{set:flag;false;} ;}
+        {when:{args_underscored};in;lemon_sour;lemon_sour{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_uhhhhhh;hp_uhhhhhh{set:flag;false;} ;}
+        {when:{args_underscored};in;tessa_blerg;tessa_blerg{set:flag;false;} ;}
+        {when:{args_underscored};in;vedika_wink;vedika_wink{set:flag;false;} ;}
+        {when:{args_underscored};in;undine_theworst;undine_theworst{set:flag;false;} ;}
+        {when:{args_underscored};in;zoe_smile;zoe_smile{set:flag;false;} ;}
+        {when:{args_underscored};in;sally_firedup;sally_firedup{set:flag;false;} ;}
+        {when:{args_underscored};in;lime_hmmm;lime_hmmm{set:flag;false;} ;}
+        {when:{args_underscored};in;undine_aaaaaa;undine_aaaaaa{set:flag;false;} ;}
+        {when:{args_underscored};in;sylvia_business;sylvia_business{set:flag;false;} ;}
+        {when:{args_underscored};in;zoe_nervous;zoe_nervous{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_ohno;hp_ohno{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_bloop;hp_bloop{set:flag;false;} ;}
+        {when:{args_underscored};in;undine_smile;undine_smile{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_nonsense;steffi_nonsense{set:flag;false;} ;}
+        {when:{args_underscored};in;bass_cool;bass_cool{set:flag;false;} ;}
+        {when:{args_underscored};in;zoe_ghost;zoe_ghost{set:flag;false;} ;}
+        {when:{args_underscored};in;rue;rue{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_blerg;hp_blerg{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_training;hp_training{set:flag;false;} ;}
+        {when:{args_underscored};in;ben_tired;ben_tired{set:flag;false;} ;}
+        {when:{args_underscored};in;tessa_mad;tessa_mad{set:flag;false;} ;}
+        {when:{args_underscored};in;sleepheart;sleepheart{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_flapflap;steffi_flapflap{set:flag;false;} ;}
+        {when:{args_underscored};in;roni_idontcare;roni_idontcare{set:flag;false;} ;}
+        {when:{args_underscored};in;gasp;gasp{set:flag;false;} ;}
+        {when:{args_underscored};in;apple_doom;apple_doom{set:flag;false;} ;}
+        {when:{args_underscored};in;zoe_spooky;zoe_spooky{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_slideeye;steffi_slideeye{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_wave;hp_wave{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_hype;steffi_hype{set:flag;false;} ;}
+        {when:{args_underscored};in;hp_hype;hp_hype{set:flag;false;} ;}
+        {when:{args_underscored};in;zoe_bummed;zoe_bummed{set:flag;false;} ;}
+        {when:{args_underscored};in;vedika_bashful;vedika_bashful{set:flag;false;} ;}
+        {when:{args_underscored};in;cube_dance;cube_dance{set:flag;false;} ;}
+        {when:{args_underscored};in;undine_supportive;undine_supportive{set:flag;false;} ;}
+        {when:{args_underscored};in;screams;screams{set:flag;false;} ;}
+        {when:{args_underscored};in;42_ohisee;42_ohisee{set:flag;false;} ;}
+        {when:{args_underscored};in;harley_busted;harley_busted{set:flag;false;} ;}
+        {when:{args_underscored};in;zoe_pafpof;zoe_pafpof{set:flag;false;} ;}
+        {when:{args_underscored};in;claire_smile;claire_smile{set:flag;false;} ;}
+        {when:{args_underscored};in;kicks_peek;kicks_peek{set:flag;false;} ;}
+        {when:{args_underscored};in;gwen_nod;gwen_nod{set:flag;false;} ;}
+        {when:{args_underscored};in;sally_cashmoney;sally_cashmoney{set:flag;false;} ;}
+        {when:{args_underscored};in;steffi_wow;steffi_wow{set:flag;false;} ;}
+        
+
+        {when:{flag};==;true;Sorry, either you misspelled the emote or it isn't in the tag.;}
+    ;}
+    {when:{arglen};==;0;
+        It's like +t emote but with search
+    ;
+        {f_emote}
+    ;}
+;}

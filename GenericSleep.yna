@@ -1,56 +1,51 @@
 ﻿{oneline:
-{!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at https://imgur.com/a/B0E2T!}
-{!!descshort A random image telling you to go to sleep!}
-{func:Sleep;
-        {choose:
-		{!+t sleep} (by CubeWatermelon) https://i.imgur.com/AsgFFD9.jpg;
-		{!+t cutesleep} (by Krekian) https://i.imgur.com/cGoqfWB.jpg;
-		{!+t sleeeep} (by Elle) https://i.imgur.com/WeiEo7F.jpg;
-		{!+t sleep!} (by Elle) https://i.imgur.com/UJO5iPQ.jpg;
-		{!+t sleeep!} (by Elle) https://i.imgur.com/ElbdmwZ.jpg;
-		{!+t slep} (by Elle) https://i.imgur.com/OgyzM61.jpg;
-		{!+t pleasesleep} (by Elle) https://i.imgur.com/tQqOBWe.jpg;
-		{!+t sweep} (by Elle) https://i.imgur.com/ctVbeJU.jpg;
-		{!+t pawnched} https://i.imgur.com/09SfkvM.jpg;
-		{!+t rooftracksleep} https://i.imgur.com/ZLBxEcu.jpg;
-		{!+t shittysleep} (by comixthomas) https://i.imgur.com/OtsL2qM.jpg;
-		{!+t gosleep} (by mymoomin) https://i.imgur.com/38l6ofQ.png;
-		{!+t sleep.} (by CubeWatermelon) https://i.imgur.com/aBbXm4z.jpg;
-		{!+t sleepdumpster} (by SodiumEyes) https://i.imgur.com/8smZYxP.png;
-		{!+t 5nightsofsleep} (by phoenix_feet) https://i.imgur.com/XtwnVbT.mp4;
-		{!+t ctrl+alt+sleep} https://i.imgur.com/7maGoHy.png;
-		{!+t smolsleep} (by Nisclo) https://i.imgur.com/vORQiP8.png;
-		{!+t shitsleep} (by Nisclo) https://i.imgur.com/EEAKJuc.png;
-		{!+t pixelsleep} (by Gemstils) https://i.imgur.com/ZK4fC3q.png;
-		{!+t islep} (by Jeb?!?!) https://i.imgur.com/oKHSeD7.png;
-		{!+t goodnight} (by sandoiichi) https://i.imgur.com/6l4xwKl.gif;
-		{!+t gsleep} (by Sandoiichi) https://i.imgur.com/6Cssi0y.jpg;
+	{!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at https://imgur.com/a/B0E2T!}
+	{!!descshort A random image telling you to go to sleep!}
+    {choose:
+		{!+t sleep!} (by CubeWatermelon) https://i.imgur.com/AsgFFD9.jpg;
+		{!+t cutesleep!} (by Krekian) https://i.imgur.com/cGoqfWB.jpg;
+		{!+t sleeeep!} (by Elle) https://i.imgur.com/WeiEo7F.jpg;
+		{!+t sleep!!} (by Elle) https://i.imgur.com/UJO5iPQ.jpg;
+		{!+t sleeep!!} (by Elle) https://i.imgur.com/ElbdmwZ.jpg;
+		{!+t slep!} (by Elle) https://i.imgur.com/OgyzM61.jpg;
+		{!+t pleasesleep!} (by Elle) https://i.imgur.com/tQqOBWe.jpg;
+		{!+t sweep!} (by Elle) https://i.imgur.com/ctVbeJU.jpg;
+		{!+t pawnched!} https://i.imgur.com/09SfkvM.jpg;
+		{!+t rooftracksleep!} https://i.imgur.com/ZLBxEcu.jpg;
+		{!+t shittysleep!} (by comixthomas) https://i.imgur.com/OtsL2qM.jpg;
+		{!+t gosleep!} (by mymoomin) https://i.imgur.com/38l6ofQ.png;
+		{!+t sleep.!} (by CubeWatermelon) https://i.imgur.com/aBbXm4z.jpg;
+		{!+t sleepdumpster!} (by SodiumEyes) https://i.imgur.com/8smZYxP.png;
+		{!+t 5nightsofsleep!} (by phoenix_feet) https://i.imgur.com/XtwnVbT.mp4;
+		{!+t ctrl+alt+sleep!} https://i.imgur.com/7maGoHy.png;
+		{!+t smolsleep!} (by Nisclo) https://i.imgur.com/vORQiP8.png;
+		{!+t shitsleep!} (by Nisclo) https://i.imgur.com/EEAKJuc.png;
+		{!+t pixelsleep!} (by Gemstils) https://i.imgur.com/ZK4fC3q.png;
+		{!+t islep!} (by Jeb?!?!) https://i.imgur.com/oKHSeD7.png;
+		{!+t goodnight!} (by sandoiichi) https://i.imgur.com/6l4xwKl.gif;
+		{!+t gsleep!} (by Sandoiichi) https://i.imgur.com/6Cssi0y.jpg;
 		{!+t pleasesleep!} (by Nick) https://i.imgur.com/6nLAOpi.png;
-		{!+t dumpstercube} (by TFK) https://i.imgur.com/ABmsT2c.png;
-		{!+t sailorsleep} (by phoenix_feet) https://i.imgur.com/N1eaHko.gif;
-		{!+t horriblesleep} https://i.imgur.com/9hUm7Aq.png;
-		{!+t nyasleep} https://i.imgur.com/ytXYAdF.png;
-		{!+t dumpstersleep} ​(by Krekalie) https://i.imgur.com/VMxTQn5.png;
-		{!+t mst3ksleep} ​https://i.imgur.com/eUJB7ZQ.jpg;
-		{!+t kokorosleeps} (by Krekalie) https://i.imgur.com/bIZI9bO.png;
-		{!+t wiwsleep} (by Elle) https://imgur.com/GGCfPkG;
-		{!+t wiwsleepcode} (by Elle) https://i.imgur.com/t8yKaCh.jpg;
-		{!+t tinysleep} (by PrincessLapis) https://i.imgur.com/XqkTQ6s.jpg;
-		{!+t comfysleep} https://i.imgur.com/XuoeFUc.jpg;
-		{!+t comfysleeeep} (by Krekalie) https://i.imgur.com/sVSQovl.jpg;
-		{!+t sleepdoctrine} (by Cnaiur) https://i.imgur.com/ZVQs3xV.png;
-		{!+t youarealreadyasleep} (by Sarah Fletcher) https://i.imgur.com/iVPmTqf.png;
-		{!+t sleepcloseup} (by comixthomas) https://i.imgur.com/fItLOpW.gif;
-		{!+t sleepworm} (by Krekalie) https://i.imgur.com/hk46kGi.png;
-		{!+t chibisleep} https://i.imgur.com/WR9OnVm.jpg;
-		{!+t trainingsleep} (by Krekalie) https://i.imgur.com/Jr1J9Ao.png;
-		{!+t sleeeeep} (by Elle) https://i.imgur.com/YrKGwxK.jpg;
-		{!+t sleep..} (by Elle) https://i.imgur.com/N5K9jEJ.jpg;
-		{!+t zoesleep} (by Elle) https://i.imgur.com/hokBUwB.jpg;
-		{!+t morganasleep} (by P4riah) https://i.imgur.com/qxWYFzM.png;
-		{!+t scattersleep} (by Sarah Fletcher) https://i.imgur.com/1Xp7RR4.jpg;
-        }
-;}
-
-    {Sleep}
-;}
+		{!+t dumpstercube!} (by TFK) https://i.imgur.com/ABmsT2c.png;
+		{!+t sailorsleep!} (by phoenix_feet) https://i.imgur.com/N1eaHko.gif;
+		{!+t horriblesleep!} https://i.imgur.com/9hUm7Aq.png;
+		{!+t nyasleep!} https://i.imgur.com/ytXYAdF.png;
+		{!+t dumpstersleep!} (by Krekalie) https://i.imgur.com/VMxTQn5.png;
+		{!+t mst3ksleep!} https://i.imgur.com/eUJB7ZQ.jpg;
+		{!+t kokorosleeps!} (by Krekalie) https://i.imgur.com/bIZI9bO.png;
+		{!+t wiwsleep!} (by Elle) https://imgur.com/GGCfPkG;
+		{!+t wiwsleepcode!} (by Elle) https://i.imgur.com/t8yKaCh.jpg;
+		{!+t tinysleep!} (by PrincessLapis) https://i.imgur.com/XqkTQ6s.jpg;
+		{!+t comfysleep!} https://i.imgur.com/XuoeFUc.jpg;
+		{!+t comfysleeeep!} (by Krekalie) https://i.imgur.com/sVSQovl.jpg;
+		{!+t sleepdoctrine!} (by Cnaiur) https://i.imgur.com/ZVQs3xV.png;
+		{!+t youarealreadyasleep!} (by Sarah Fletcher) https://i.imgur.com/iVPmTqf.png;
+		{!+t sleepcloseup!} (by comixthomas) https://i.imgur.com/fItLOpW.gif;
+		{!+t sleepworm!} (by Krekalie) https://i.imgur.com/hk46kGi.png;
+		{!+t chibisleep!} https://i.imgur.com/WR9OnVm.jpg;
+		{!+t trainingsleep!} (by Krekalie) https://i.imgur.com/Jr1J9Ao.png;
+		{!+t sleeeeep!} (by Elle) https://i.imgur.com/YrKGwxK.jpg;
+		{!+t sleep..!} (by Elle) https://i.imgur.com/N5K9jEJ.jpg;
+		{!+t zoesleep!} (by Elle) https://i.imgur.com/hokBUwB.jpg;
+		{!+t morganasleep!} (by P4riah) https://i.imgur.com/qxWYFzM.png;
+		{!+t scattersleep!} (by Sarah Fletcher) https://i.imgur.com/1Xp7RR4.jpg
+	;}

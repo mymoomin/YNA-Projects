@@ -1,0 +1,68 @@
+{oneline:
+    {!!library}
+    {!!description **__Use:__**
+`+t notes` to get everyone's notes,
+`+t notes <content>` to make your own note,
+`+t notes delete [<n>]` to delete note number `n` (as long as it's yours), or all your notes if you don't give a number
+`+t notes from [<person>]` to get a list of a specific person's notes, or your own if you don't specify anyone, and
+`+t notes help` to get help!}
+    {init}{save:savelist0;;}**The slate has been wiped clear**{endinit}
+    {call:ynalib;}
+    {set:newrep;true;}
+    {set:exception;true;}
+
+    {func:f_save;
+        {set:list;{list}, {caller.display_name}: {args};}
+        {f_savearray:savelist,{list}}
+        {f_load}
+    ;}
+    {func:f_load;
+        {list}
+    ;}
+    {func:f_delete;
+        {set:list;{rep:/{caller.display_name}.*?,/;;{list};};}
+        {f_savearray:savelist,{list}}
+    ;}
+    {f_loadarray:savelist,list}
+    {when:{caller.display_name};eq;{deleter};
+        {when:{arg1};eq;yes;
+            {f_delete}
+        ;
+            Deletion cancelled.
+        ;}
+        {save:deleter;;}
+    ;
+        {when;{arg1};is;error;
+            {f_load}
+        ;
+            {when:{arg1};eq;list;
+                {f_person}
+            ;
+                {when:{arg1};eq;from;
+                    {f_person}
+                ;
+                    {when:{arg1};eq;delete;
+                        {when:{arg2};is;number;
+                            {f_delete}
+                        ;
+                            {save:deleter;{caller.display_name};}
+                            {caller.display_name}, are you sure you want to delete all of your notes?\n
+                            Enter `+t notes yes` to do so, or `+t notes no` to abort.
+                        ;}
+                    ;
+                        {when:{arg1};eq;help;
+                            **__Use:__**\n
+                            `+t notes` to get everyone's notes,\n
+                            `+t notes <content>` to make your own note,\n
+                            `+t notes delete [<n>]` to delete note number `n` (as long as it's yours), or all your notes if you don't give a number\n
+                            `+t notes from [<person>]` to get a list of a specific person's notes, or your own if you don't specify anyone, and\n
+                            `+t notes help` to get here!
+                        ;
+                            {f_save}
+                        ;}
+                    ;}
+                ;}
+            ;}
+        ;}
+    ;}
+;}

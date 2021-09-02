@@ -3,7 +3,19 @@
     {!!extend end pre="\n" post="" yna=true public=false}
     {!!description Chooses a random image edit based off Heartful Punch from Sleepless Domain telling you to go to sleep. See them all at <https://imgur.com/a/B0E2T>!!}
     {!!descshort A random image telling you to go to sleep!}
-    {init}{save:list;234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#;}{save:end_stored;{time:25;%Y%j%H%M;};}**Everything old is new again.**{endinit}
+    {!This tag returns a random image telling you to go to sleep.
+
+    It used to just use a big choose statement, but a lot of the time images were posted multiple times in a row, or not
+    at all.
+
+    So I moved to this model, where each image is associated with an element on a list, and each time the tag is called
+    an element is picked at random, the associated image is posted, and the element is removed from the list.
+
+    I also added a 24 hour timer to remind me when to get coins, because 42's timer isn't super reliable, and hey, why
+    not.
+
+    Virtually all of the code in {f_check} is Krekalie's}
+    {init}{save:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./<>?~;}{save:end_stored;{time:25;%Y%j%H%M;};}**Everything old is new again.**{endinit}
     {set:newrep;true;}
 
     {!FORMAT: {!time:0;%Y%j%H%M;}}
@@ -80,7 +92,7 @@
             {set:list;{rep:{pick};;{list};};}
         ;
             {set:pick;{list};}{!Only one element in {list}}
-            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#;}
+            {set:list;1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()-_+=[]@#:,./<>?~;}
         ;}
         {save:list;{list};}
     ;}
@@ -173,6 +185,7 @@
         {when:{pick};eq;/;+t swimsleep (by Zyrii) [/] https://i.imgur.com/RN609UH.png {set:pick;done;};}
         {when:{pick};eq;<;+t lunasleep (by RustyTinCan) [<] https://i.imgur.com/MxXzui5.png {set:pick;done;};}
         {when:{pick};eq;>;+t lunasleep2 (by NativeJovian) [>] https://i.imgur.com/JPOvGaJ.png {set:pick;done;};}
+        {when:{pick};eq;?;+t sleepass (by CeeSea) [?] https://i.imgur.com/CIocDYS.png {set:pick;done;};}
     ;}
 
     {func:f_main;

@@ -1,0 +1,239 @@
+{oneline:
+    {!!library}
+    {set:newrep;true;}
+    {init}{save:entry1;{me.id};}**Everything old is new again.**{endinit}
+    {func:f_listlength;
+        {!Returns length of a ""list"" of elements (by ""list"" I mean a sequence of elements {entry1}, {entry2}, etc.)
+        Assumes list starts at 1 because it plays nicer with loops.}
+        {set:temp;{ta1};}
+        {set:exists_flag;1;}
+        {set:counter;0;}
+        {loop:200;
+            {when:{exists_flag};==;1;
+                {when:{{temp}{iter}};is;error;
+                    {set:exists_flag;0;}
+                ;
+                    {set:counter;{iter};}
+                ;}
+            ;}
+        ;}
+        {counter}
+    ;}
+
+    {func:f_unpack;
+        {!Creates a ""list"", {person{i}} (a list of the IDs of everyone who has set a reminder), and
+        {people}, an actual, comma-separated list of the id of everyone who has set a reminder.
+        Note that set or save with only one semi-colon at the end de-assigns the variable.}
+        {set:unpacktemp;;}
+        {set:people;;}
+        {set:len;{f_listlength:entry};}
+        {loop:{len};
+            {set:unpacktemp;{unpacktemp}{entry{iter}};}
+            {save:entry{iter};}
+        ;}
+        {loop:{math://;{len:{unpacktemp};};18;};
+            {when:{slice:0;{unpacktemp};};!=;0;
+                {set:person{iter};{slice:,18;{unpacktemp};};}
+            ;
+                {!Removes padding from 17-digit IDs.}
+                {set:person{iter};{slice:1,18;{unpacktemp};};}
+            ;}
+            {set:unpacktemp;{slice:18,;{unpacktemp};};}
+            {set:people;{people},{person{iter}};}
+        ;}
+        {set:unpacktemp;}
+    ;}
+
+    {func:f_pack;
+        {!Packs the IDs and times together to save space, and adds padding for 17-digit IDs so they're
+        all the same length.}
+        {set:packtemp;;}
+        {loop:{len};
+            {set:packtemp;{packtemp}{when:{len:{person{iter}};};==;17;0;}{person{iter}};}
+        ;}
+        {loop:{math:ceil;{math:/;{len:{packtemp};};255;};};
+            {save:entry{iter};{slice:,255;{packtemp};};}
+            {set:packtemp;{slice:255,;{packtemp};};}
+        ;}
+    ;}
+
+    {func:f_doIfPermittedOrSelf;
+        {when:{ta2};is;error;
+            {{ta1}:{caller.id}}
+        ;
+            {void:{member:e;{arg2};};}
+            {when:{e};==;{caller};
+                {{ta1}:{caller.id}}
+            ;
+                {when:{caller.id};==;{me.id};
+                    {{ta1}:{ta2}}
+                ;
+                    You're not allowed to do that!
+                ;}
+            ;}
+        ;}
+    ;}
+    {func:f_doIfPermitted;
+        {when:{caller.id};==;{me.id};
+            {{ta1}}
+        ;
+            <:waterpistol:531875413811527700><:42_OhISee:531605042936021012> I'm sorry {caller.display_name}, I'm afraid I can't do that.
+        ;}
+    ;}
+
+    {func:f_add;
+        {when:{ta1};is;number;
+            {when:{nameof:{ta1};};is;error;
+                {set:throw;true;}
+            ;}
+        ;
+            {when:{member:e;{ta1};};is;error;
+                {set:throw;true;}
+            ;
+                {set:ta1;{e.id};}
+            ;}
+        ;}
+        {when:{throw};==;true;
+            That's not a person!\n
+        ;
+            {when:{ta1};in;{people};
+                You're already on the list!\n
+            ;
+                
+                {set:len;{math:+;{len};1;};}
+                {set:person{len};{ta1};}
+                Added {nameof:{ta1};display_name;} to the list.\n
+                To take yourself off the list, use `+t {tag} remove`.\n
+            ;}
+        ;}
+    ;}
+
+    {func:f_remove;
+        {when:{ta1};is;number;
+            {when:{nameof:{ta1};};is;error;
+                {set:throw;true;}
+            ;}
+        ;
+            {when:{member:e;{ta1};};is;error;
+                {set:throw;true;}
+            ;
+                {set:ta1;{e.id};}
+            ;}
+        ;}
+        {when:{throw};==;true;
+            That's not a person!\n
+        ;
+            {when:{ta1};in;{people};
+                {loop:{len};
+                    {when:{ta1};==;{person{iter}};
+                        {set:deleted;{iter};}
+                    ;}
+                ;}
+                {loop:{math:+;{deleted};1;},{len};
+                    {set:newindex;{math:-;{iter};1;};}
+                    {set:person{newindex};{person{iter}};}
+                ;}
+                {set:person{len};}
+                {set:people;{rep:,{ta1};;{people};};}
+                {set:len;{math:-;{len};1;};}
+                Removed {nameof:{ta1};display_name;} from the list.\n
+            ;
+                <:42_OhISee:533713736620572684> You don't seem to be on the list in the first place...\n
+            ;}
+        ;}
+    ;}
+
+    {func:f_display;
+        The people on this list are {rep:,;, ;{rep:/,([^,]*),$/; and \1;
+            {loop:{len};
+                {nameof:{person{iter}};display_name;},
+            ;}
+        ;};}.
+    ;}
+
+    {func:f_ping;
+        {loop:{len};
+            {nameof:{person{iter}};mention;} {!There's a space here}
+        ;}
+        {when:{ping_message};is;error;
+            {!Do nothing}
+        ;
+            {ping_message}
+        ;}
+    ;}
+
+    {func:f_setPingMessage;
+        {when:{arg2};is;error;
+            {save:ping_message;}
+        ;
+            {save:ping_message;{arg2};}
+            The ping message is now {arg2}
+        ;}
+    ;}
+
+    {func:f_setDisplayMessage;
+        {when:{arg2};is;error;
+            {save:display_message;}
+        ;
+            {save:display_message;{arg2};}
+            The display message is now {arg2}
+        ;}
+    ;}
+
+    {func:f_displayMessage;
+        {when:{display_message};is;error;
+            {!Do nothing}
+        ;
+            {display_message}\n
+        ;}
+    ;}
+    
+    {func:f_help;
+        **How to use this tag**\n
+        This tag lets you add yourself to a list, so that the owner can ping everyone on the list at once to announce things!\n
+        • You can add or remove yourself from the list using `+t {tag} add` and `+t {tag} remove`.\n
+        • The owner can ping everyone on the list using `+t {tag} ping` or `+t {tag} mention`.\n
+        • They also set a message to be used when pinging people using `+t {tag} pingmessage "message in quotes"`, 
+        or one to be used when displaying the list with `+t {tag} displaymessage "message in quotes"`\n
+        • You can create your own with `+t create tagname {>call:pinglist;}`!
+    ;}
+
+    {func:f_main;
+        {f_unpack}
+        {set:len;{f_listlength:person};}
+        {when:{arg1};==;add;
+            {f_doIfPermittedOrSelf:f_add,{arg2}}\n
+            {f_display}
+        ;
+            {when:{arg1};==;remove;
+                {f_doIfPermittedOrSelf:f_remove,{arg2}}\n
+                {f_display}
+            ;
+                {when:{arg1};==;ping;
+                    {f_doIfPermitted:f_ping}
+                ;
+                    {when:{arg1};==;mention;
+                        {f_doIfPermitted:f_ping}
+                    ;
+                        {when:{arg1};==;help;
+                            {f_help}
+                        ;
+                            {when:{arg1};==;pingmessage;
+                                {f_doIfPermitted:f_setPingMessage}
+                            ;
+                                {when:{arg1};==;displaymessage;
+                                    {f_doIfPermitted:f_setDisplayMessage}
+                                ;
+                                    {f_displayMessage}
+                                    {f_display}
+                                ;}
+                            ;}
+                        ;}
+                    ;}
+                ;}
+            ;}
+        ;}
+        {f_pack}
+    ;}
+    {f_main}
+;}

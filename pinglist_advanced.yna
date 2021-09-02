@@ -1,0 +1,222 @@
+{oneline:
+    {!!library}
+    {set:newrep;true;}
+    {init}{save:entry1;{me.id};}{save:permitted;,{me.id};}{save:pingmessage; ;}**Everything old is new again.**{endinit}
+    {func:f_listlength;
+        {!Returns length of a ""list"" of elements (by ""list"" I mean a sequence of elements {entry1}, {entry2}, etc.)
+        Assumes list starts at 1 because it plays nicer with loops.}
+        {set:i;1;}
+        {set:temp;{ta1};}
+        {f_listlength_iter}
+    ;}
+    {func:f_listlength_iter;
+        {when:{{temp}{i}};is;error;
+            {!No entry {i}, so list is {i}-1 long}
+            {math:-;{i};1;}
+        ;
+            {set:i;{math:+;{i};1;};}
+            {f_listlength_iter}
+        ;}
+    ;}
+
+    {func:f_unpack;
+        {!Creates a ""list"", {person{i}} (a list of the IDs of everyone who has set a reminder), and
+        {people}, an actual, comma-separated list of the id of everyone who has set a reminder.
+        Note that set or save with only one semi-colon at the end de-assigns the variable.}
+        {set:unpacktemp;;}
+        {set:people;;}
+        {set:len;{f_listlength:entry};}
+        {loop:{len};
+            {set:unpacktemp;{unpacktemp}{entry{iter}};}
+            {save:entry{iter};}
+        ;}
+        {loop:{math://;{len:{unpacktemp};};18;};
+            {when:{slice:0;{unpacktemp};};!=;0;
+                {set:person{iter};{slice:,18;{unpacktemp};};}
+            ;
+                {!Removes padding from 17-digit IDs.}
+                {set:person{iter};{slice:1,18;{unpacktemp};};}
+            ;}
+            {set:unpacktemp;{slice:18,;{unpacktemp};};}
+            {set:people;{people},{person{iter}};}
+        ;}
+        {set:unpacktemp;}
+    ;}
+
+    {func:f_pack;
+        {!Packs the IDs and times together to save space, and adds padding for 17-digit IDs so they're
+        all the same length.}
+        {set:packtemp;;}
+        {loop:{len};
+            {set:packtemp;{packtemp}{when:{len:{person{iter}};};==;17;0;}{person{iter}};}
+        ;}
+        {loop:{math:ceil;{math:/;{len:{packtemp};};255;};};
+            {save:entry{iter};{slice:,255;{packtemp};};}
+            {set:packtemp;{slice:255,;{packtemp};};}
+        ;}
+    ;}
+
+    {func:f_doIfPermittedOrSelf;
+        {when:{ta2};is;error;
+            {{ta1}:{caller.id}}
+        ;
+            {when:{caller.id};==;{me.id};
+                {{ta1}:{ta2}}
+            ;
+                <!--Not permitted message-->
+            ;}
+        ;}
+    ;}
+    {func:f_doIfPermitted;
+        {when:{caller.id};==;{me.id};
+            {{ta1}}
+        ;
+            <!--Not permitted message-->
+        ;}
+    ;}
+
+    {func:f_add;
+        {when:{ta1};in;{people};
+            You're already on the list!
+        ;
+            
+            {set:len;{math:+;{len};1;};}
+            {set:person{len};{ta1};}
+            \nAdded {nameof:{ta1};display_name;} to the list.
+            \nTo take yourself off the list, use `+t {tag} remove`.
+        ;}
+    ;}
+
+    {func:f_remove;
+        {when:{ta1};in;{people};
+            {loop:{len};
+                {when:{ta1};==;{person{iter}};
+                    {set:deleted;{iter};}
+                ;}
+            ;}
+            {loop:{math:+;{deleted};1;},{len};
+                {set:newindex;{math:-;{iter};1;};}
+                {set:person{newindex};{person{iter}};}
+            ;}
+            {set:person{len};}
+            {set:people;{rep:,{ta1};;{people};};}
+            {set:len;{math:-;{len};1;};}
+            Removed {nameof:{ta1};display_name;} from the list.
+        ;
+            <:42_OhISee:533713736620572684> You don't seem to be on the list in the first place...
+        ;}
+    ;}
+
+    {func:f_display;
+        The people on this list are {rep:,;, ;{rep:/,([^,]*),$/; and \1;
+            {loop:{len};
+                {nameof:{person{iter}};display_name;},{!There's a space here}
+            ;}
+        ;};}.
+    ;}
+
+    {func:f_ping;
+        {loop:{len};
+            {nameof:{person{iter}};mention;} {!There's a space here}
+        ;}
+        {pingmessage}
+    ;}
+
+    {func:f_permit;
+        {when:{nameof:{ta1};};is;error;
+            <!--Invalid arg2-->
+        ;
+            {when:{ta1};in;{permitted};
+                Hey! {nameof:{ta1};}'s already permitted!\n
+            ;
+                {set:permitted;{permitted},{ta1};}
+                {nameof:{ta1};} is now permitted.\n
+            ;}
+        ;}
+    ;}
+
+    {func:f_unpermit;
+        {when:{nameof:{ta1};};is;error;
+            <!--Invalid arg2-->
+        ;
+            {when:{ta1};in;{permitted};
+                {set:permitted;{rep:,{ta1};;{permitted};};}
+                {nameof:{ta1};} is no longer permitted.\n
+            ;
+                <:42_OhISee:533713736620572684> How can I take permissions from someone who doesn't have any?\n
+            ;}
+        ;}
+    ;}
+    
+    {func:f_displayPermitted;
+        {rep:,; ,;{rep:/^,;;{rep:/,([^,])*,$/; and \1;
+            {loop:{math://;{len:{permitted};};18;};
+                {when:{slice:0;{permitted};};!=;0;
+                    {nameof:{slice:,18;{permitted};};}
+                ;
+                    {!Removes padding from 17-digit IDs.}
+                    {nameof:{slice:1,18;{permitted};};}
+                ;},
+                {set:permitted;{slice:18,;{permitted};};}
+            ;}
+        ;};};} have full permissions.
+    ;}
+
+    {func:f_setMessage;
+        {when:{arg2};is;error;
+            {save:pingmessage; ;}
+        ;
+            {save:pingmessage;{arg2};}
+        ;}
+    ;}
+    
+
+    {func:f_main;
+        {f_unpack}
+        {set:len;{f_listlength:person};}
+        {when:{arg1};==;add;
+            {f_doIfPermittedOrSelf:f_add,{arg2}}
+            {f_display}
+        ;
+            {when:{arg1};==;remove;
+                {f_doIfPermittedOrSelf:f_remove,{arg2}}
+                {f_display}
+            ;
+                {when:{arg1};==;ping;
+                    {f_doIfPermitted:f_ping}
+                ;
+                    {when:{arg1};==;help;
+                        {f_help}
+                    ;
+                        {when:{arg1};==;permit;
+                            {f_doIfPermitted:f_permit}
+                            {f_displayPermitted}
+                        ;
+                            {when:{arg1};==;unpermit;
+                                {f_doIfPermitted:f_unpermit}
+                                {f_displayPermitted}
+                            ;
+                                {when:{arg1};==;permits;
+                                    {f_displayPermitted}
+                                ;
+                                    {when:{arg1};==;message;
+                                        {f_doIfPermitted:f_setMessage}
+                                    ;
+                                        {when:{arg1};==;ownerhelp;
+                                            {f_ownerHelp}
+                                        ;
+                                            {f_display}
+                                        ;}
+                                    ;}
+                                ;}
+                            ;}
+                        ;}
+                    ;}
+                ;}
+            ;}
+        ;}
+        {f_pack}
+    ;}
+
+    {f_main}
+;}

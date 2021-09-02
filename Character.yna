@@ -1,61 +1,29 @@
 {oneline:
 
-{!!library}
-{!!descshort Picks a random character!}
-{!!description When called inside a tag, defines a function, character, that outputs a random character. The first argument (sd, kd, or any) determines what comic the character is from, and the second (adults, kids babbus, or nothing) determines the age range. It can also be called directly
+    {!library}
+    {!!Library!}
+    {!!library!}
+    {!!library}
+    {!!descshort Picks a random character!}
+    {!!description When called inside a tag, defines a function, character, that outputs a random character. The first argument (sd, kd, or any) determines what comic the character is from, and the second (adults, kids babbus, or nothing) determines the age range. It can also be called directly
 
-Call the tag with no arguments for examples. 
+    Call the tag with no arguments for examples. 
 
-Characters of no defined age are in every age range, and Anemone is an adult.!}
+    Characters of no defined age are in every age range, and Anemone is an adult.!}
 
-{func:character;
-    {when:{ta1};eq;<ta1:unknown key>;
-        {choose:
-            {!Kiwi Blitz}
-            Steffi;Benzene;Heinrich;Chandra;
-            Miriam;
-            42;35;Kiwibot;
-            Gear;Ishinomori;
-            Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Lupus;Draconis;Sus;Canis;
-            Reed;Cho;Chief Bahia;Flores;Barnes;
-            Francis;
-            Barkley;Aris;
-            
-            {!Mahous}
-            Undine;
-            Tessa;
-            Gwen;Sylvia;Sally;
-            Kokoro;
-            Zoe;
-            Forte Keys;Forte Bass;Forte Lead;Forte Drums;
-            Techno Blitz;Swing Blitz;Pop Blitz;
-            Melty Flame;Melty Frost;
-            Cassidy{!team flash?};
-            Bud;Harley{!non-thematic};
-            Gabby;Suzy;Vedika;
-            Outrageous Apple;Outrageous Lemon;Outrageous Lime;
-            Rue;
-            Mysterious Scissor Mahou;
-
-            {!Sleepless Domain}
-            The Purple One;
-            The Golden One;
-            Miss Cable;
-            Momdine;
-            (honorary) Rock Blitz;
-            Nicodemus;Mark;
-            Anemone;The Woman in White;
-            Alex;Claire;
-            Will
-        ;}
-    ;}
-    {when:{ta1};eq;any;
-        {when:{ta2};eq;kids;
+    {func:character;
+        {when:{ta1};eq;<ta1:unknown key>;
             {choose:
                 {!Kiwi Blitz}
-                Steffi;Benzene;Chandra;
-                Kiwibot;
-
+                Steffi;Benzene;Heinrich;Chandra;
+                Miriam;
+                42;35;Kiwibot;
+                Gear;Ishinomori;
+                Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Lupus;Draconis;Sus;Canis;
+                Reed;Cho;Chief Bahia;Flores;Barnes;
+                Francis;
+                Barkley;Aris;
+                
                 {!Mahous}
                 Undine;
                 Tessa;
@@ -75,234 +43,268 @@ Characters of no defined age are in every age range, and Anemone is an adult.!}
                 {!Sleepless Domain}
                 The Purple One;
                 The Golden One;
+                Miss Cable;
+                Momdine;
                 (honorary) Rock Blitz;
-                Nicodemus;The Woman in White;
+                Nicodemus;Mark;
+                Anemone;The Woman in White;
+                Alex;Claire;
                 Will
-
-                {!38 characters!}
             ;}
-        ;
-            {when:{ta2};eq;adults;
+        ;}
+        {when:{ta1};eq;any;
+            {when:{ta2};eq;kids;
                 {choose:
                     {!Kiwi Blitz}
-                    Heinrich;Miriam;
-                    42;35;Kiwibot;
-                    Gear;Ishinomori;
-                    Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Draconis;Sus;Canis;
-                    Reed;Cho;Chief Bahia;Flores;Barnes;
-                    Francis;
-                    Barkley;Aris;
+                    Steffi;Benzene;Chandra;
+                    Kiwibot;
+
+                    {!Mahous}
+                    Undine;
+                    Tessa;
+                    Gwen;Sylvia;Sally;
+                    Kokoro;
+                    Zoe;
+                    Forte Keys;Forte Bass;Forte Lead;Forte Drums;
+                    Techno Blitz;Swing Blitz;Pop Blitz;
+                    Melty Flame;Melty Frost;
+                    Cassidy{!team flash?};
+                    Bud;Harley{!non-thematic};
+                    Gabby;Suzy;Vedika;
+                    Outrageous Apple;Outrageous Lemon;Outrageous Lime;
+                    Rue;
+                    Mysterious Scissor Mahou;
 
                     {!Sleepless Domain}
                     The Purple One;
                     The Golden One;
-                    Miss Cable;
-                    Momdine;
-                    Nicodemus;Mark;
-                    Anemone;The Woman in White
+                    (honorary) Rock Blitz;
+                    Nicodemus;The Woman in White;
+                    Will
 
-                    {!28 characters!}
+                    {!38 characters!}
                 ;}
             ;
-                {when:{ta2};eq;babbus;
+                {when:{ta2};eq;adults;
                     {choose:
                         {!Kiwi Blitz}
-                        Chandra;
-                        Kiwibot;
-
-                        {!Sleepless Domain}
-                        The Golden One;
-                        Nicodemus;
-                        Alex;Claire
-
-                        {!9 characters!}
-                    ;}
-                ;
-                    {choose:
-                        {!Kiwi Blitz}
-                        Steffi;Benzene;Heinrich;Chandra;
-                        Miriam;
+                        Heinrich;Miriam;
                         42;35;Kiwibot;
                         Gear;Ishinomori;
-                        Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Lupus;Draconis;Sus;Canis;
+                        Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Draconis;Sus;Canis;
                         Reed;Cho;Chief Bahia;Flores;Barnes;
                         Francis;
                         Barkley;Aris;
-                        
-                        {!Mahous}
-                        Undine;
-                        Tessa;
-                        Gwen;Sylvia;Sally;
-                        Kokoro;
-                        Zoe;
-                        Forte Keys;Forte Bass;Forte Lead;Forte Drums;
-                        Techno Blitz;Swing Blitz;Pop Blitz;
-                        Melty Flame;Melty Frost;
-                        Cassidy{!team flash?};
-                        Bud;Harley{!non-thematic};
-                        Gabby;Suzy;Vedika;
-                        Outrageous Apple;Outrageous Lemon;Outrageous Lime;
-                        Rue;
-                        Mysterious Scissor Mahou;
-            
+
                         {!Sleepless Domain}
                         The Purple One;
                         The Golden One;
                         Miss Cable;
                         Momdine;
-                        (honorary) Rock Blitz;
                         Nicodemus;Mark;
-                        Anemone;The Woman in White;
-                        Alex;Claire;
-                        Will
+                        Anemone;The Woman in White
+
+                        {!28 characters!}
+                    ;}
+                ;
+                    {when:{ta2};eq;babbus;
+                        {choose:
+                            {!Kiwi Blitz}
+                            Chandra;
+                            Kiwibot;
+
+                            {!Sleepless Domain}
+                            The Golden One;
+                            Nicodemus;
+                            Alex;Claire
+
+                            {!9 characters!}
+                        ;}
+                    ;
+                        {choose:
+                            {!Kiwi Blitz}
+                            Steffi;Benzene;Heinrich;Chandra;
+                            Miriam;
+                            42;35;Kiwibot;
+                            Gear;Ishinomori;
+                            Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Lupus;Draconis;Sus;Canis;
+                            Reed;Cho;Chief Bahia;Flores;Barnes;
+                            Francis;
+                            Barkley;Aris;
+                            
+                            {!Mahous}
+                            Undine;
+                            Tessa;
+                            Gwen;Sylvia;Sally;
+                            Kokoro;
+                            Zoe;
+                            Forte Keys;Forte Bass;Forte Lead;Forte Drums;
+                            Techno Blitz;Swing Blitz;Pop Blitz;
+                            Melty Flame;Melty Frost;
+                            Cassidy{!team flash?};
+                            Bud;Harley{!non-thematic};
+                            Gabby;Suzy;Vedika;
+                            Outrageous Apple;Outrageous Lemon;Outrageous Lime;
+                            Rue;
+                            Mysterious Scissor Mahou;
+                
+                            {!Sleepless Domain}
+                            The Purple One;
+                            The Golden One;
+                            Miss Cable;
+                            Momdine;
+                            (honorary) Rock Blitz;
+                            Nicodemus;Mark;
+                            Anemone;The Woman in White;
+                            Alex;Claire;
+                            Will
+                        ;}
                     ;}
                 ;}
             ;}
         ;}
-    ;}
-    {when:{ta1};eq;kb;
-        {when:{ta2};eq;kids;
-            {choose:
-                {!Kiwi Blitz}
-                Steffi;Benzene;Chandra;
-                Kiwibot;
-                
-            ;}
-        ;
-            {when:{ta2};eq;adults;
+        {when:{ta1};eq;kb;
+            {when:{ta2};eq;kids;
                 {choose:
                     {!Kiwi Blitz}
-                    Heinrich;Miriam
-                    42;35;Kiwibot;
-                    Gear;Ishinomori;
-                    Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus);Draconis;Sus;Canis;
-                    Reed;Cho;Chief Bahia;Flores;Barnes;
-                    Francis;
-                    Barkley;Aris
+                    Steffi;Benzene;Chandra;
+                    Kiwibot;
+                    
                 ;}
             ;
-                {when:{ta2};eq;babbus;
+                {when:{ta2};eq;adults;
                     {choose:
                         {!Kiwi Blitz}
-                        Chandra;
-                        Kiwibot;
-                        
-                    ;}
-                ;
-                    {choose:
-                        {!Kiwi Blitz}
-                        Steffi;Benzene;Heinrich;Chandra;
-                        Miriam;
+                        Heinrich;Miriam
                         42;35;Kiwibot;
                         Gear;Ishinomori;
-                        Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Lupus;Draconis;Sus;Canis;
+                        Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus);Draconis;Sus;Canis;
                         Reed;Cho;Chief Bahia;Flores;Barnes;
                         Francis;
                         Barkley;Aris
                     ;}
+                ;
+                    {when:{ta2};eq;babbus;
+                        {choose:
+                            {!Kiwi Blitz}
+                            Chandra;
+                            Kiwibot;
+                            
+                        ;}
+                    ;
+                        {choose:
+                            {!Kiwi Blitz}
+                            Steffi;Benzene;Heinrich;Chandra;
+                            Miriam;
+                            42;35;Kiwibot;
+                            Gear;Ishinomori;
+                            Taurus;Tigris;Jones;Hircus;Natrix;Down;Sylvilagus;Lupus;Draconis;Sus;Canis;
+                            Reed;Cho;Chief Bahia;Flores;Barnes;
+                            Francis;
+                            Barkley;Aris
+                        ;}
+                    ;}
                 ;}
             ;}
         ;}
-    ;}
-    {when:{ta1};eq;sd;
-        {when:{ta2};eq;kids;
-            {choose:
-                {!Mahous}
-                Undine;
-                Tessa;
-                Gwen;Sylvia;Sally;
-                Kokoro;
-                Zoe;
-                Forte Keys;Forte Bass;Forte Lead;Forte Drums;
-                Techno Blitz;Swing Blitz;Pop Blitz;
-                Melty Flame;Melty Frost;
-                Cassidy{!team flash?};
-                Bud;Harley{!non-thematic};
-                Gabby;Suzy;Vedika;
-                Outrageous Apple;Outrageous Lemon;Outrageous Lime;
-                Rue;
-                Mysterious Scissor Mahou;
-
-                {!Sleepless Domain}
-                The Purple One;
-                The Golden One;
-                (honorary) Rock Blitz;
-                Nicodemus;The Woman in White;
-                Will
-            ;}
-        ;
-            {when:{ta2};eq;adults;
+        {when:{ta1};eq;sd;
+            {when:{ta2};eq;kids;
                 {choose:
+                    {!Mahous}
+                    Undine;
+                    Tessa;
+                    Gwen;Sylvia;Sally;
+                    Kokoro;
+                    Zoe;
+                    Forte Keys;Forte Bass;Forte Lead;Forte Drums;
+                    Techno Blitz;Swing Blitz;Pop Blitz;
+                    Melty Flame;Melty Frost;
+                    Cassidy{!team flash?};
+                    Bud;Harley{!non-thematic};
+                    Gabby;Suzy;Vedika;
+                    Outrageous Apple;Outrageous Lemon;Outrageous Lime;
+                    Rue;
+                    Mysterious Scissor Mahou;
+
+                    {!Sleepless Domain}
                     The Purple One;
                     The Golden One;
-                    Miss Cable;
-                    Momdine;
-                    Nicodemus;Mark;
-                    Anemone;The Woman in White
+                    (honorary) Rock Blitz;
+                    Nicodemus;The Woman in White;
+                    Will
                 ;}
             ;
-                {when:{ta2};eq;babbus;
+                {when:{ta2};eq;adults;
                     {choose:
-                        The Golden One;
-                        Nicodemus;
-                        Alex;Claire
-                    ;}
-                ;
-                    {choose:
-                        {!Mahous}
-                        Undine;
-                        Tessa;
-                        Gwen;Sylvia;Sally;
-                        Kokoro;
-                        Zoe;
-                        Forte Keys;Forte Bass;Forte Lead;Forte Drums;
-                        Techno Blitz;Swing Blitz;Pop Blitz;
-                        Melty Flame;Melty Frost;
-                        Cassidy{!team flash?};
-                        Bud;Harley{!non-thematic};
-                        Gabby;Suzy;Vedika;
-                        Outrageous Apple;Outrageous Lemon;Outrageous Lime;
-                        Rue;
-                        Mysterious Scissor Mahou;
-
-                        {!Sleepless Domain}
                         The Purple One;
                         The Golden One;
                         Miss Cable;
                         Momdine;
-                        (honorary) Rock Blitz;
                         Nicodemus;Mark;
-                        Anemone;The Woman in White;
-                        Alex;Claire;
-                        Will
+                        Anemone;The Woman in White
+                    ;}
+                ;
+                    {when:{ta2};eq;babbus;
+                        {choose:
+                            The Golden One;
+                            Nicodemus;
+                            Alex;Claire
+                        ;}
+                    ;
+                        {choose:
+                            {!Mahous}
+                            Undine;
+                            Tessa;
+                            Gwen;Sylvia;Sally;
+                            Kokoro;
+                            Zoe;
+                            Forte Keys;Forte Bass;Forte Lead;Forte Drums;
+                            Techno Blitz;Swing Blitz;Pop Blitz;
+                            Melty Flame;Melty Frost;
+                            Cassidy{!team flash?};
+                            Bud;Harley{!non-thematic};
+                            Gabby;Suzy;Vedika;
+                            Outrageous Apple;Outrageous Lemon;Outrageous Lime;
+                            Rue;
+                            Mysterious Scissor Mahou;
+
+                            {!Sleepless Domain}
+                            The Purple One;
+                            The Golden One;
+                            Miss Cable;
+                            Momdine;
+                            (honorary) Rock Blitz;
+                            Nicodemus;Mark;
+                            Anemone;The Woman in White;
+                            Alex;Claire;
+                            Will
+                        ;}
                     ;}
                 ;}
             ;}
         ;}
     ;}
-;}
 
-{when:{base};eq;true;
-    {when:{arglen};eq;0;
-        +t Character defines a function, \{character\}, that outputs a random character. The first argument (sd, kd, or any) determines what comic the character is from, and the second (adults, kids babbus, or nothing) determines the age range.\n
-        Call it in a tag using \{call:character\;\} and you'll be able to use it in that tag.\n\n
-        **__Example Usage__**
-        \{character:sd\} returned {character:sd}\n
-        \{character:sd,babbus\} returned {character:sd,babbus}\n
-        \{character:sd,adults\} returned {character:sd,adults}\n
-        \{character:sd,kids\} returned {character:sd,kids}\n
-        \{character:kb\} returned {character:kb}\n
-        \{character:kb,babbus\} returned {character:kb,babbus}\n
-        \{character:kb,adults\} returned {character:kb,adults}\n
-        \{character:kb,kids\} returned {character:kb,kids}\n
-        \{character\} returned {character}\n
-        \{character:any,babbus\} returned {character:any,babbus}\n
-        \{character:any,adults\} returned {character:any,adults}\n
-        \{character:any,kids\} returned {character:any,kids}\n
-        {!!extend end pre="\n" post="" yna=true public=false}
-    ;
-        {character:{arg1},{arg2}}
+    {when:{base};eq;true;
+        {when:{arglen};eq;0;
+            +t character defines a function, \{character\}, that outputs a random character. The first argument (sd, kd, or any) determines what comic the character is from, and the second (adults, kids babbus, or nothing) determines the age range.\n
+            Call it in a tag using \{call:character\;\} and you'll be able to use it in that tag.\n\n
+            **__Example Usage__**\n
+            \{character:sd\} returned {character:sd}\n
+            \{character:sd,babbus\} returned {character:sd,babbus}\n
+            \{character:sd,adults\} returned {character:sd,adults}\n
+            \{character:sd,kids\} returned {character:sd,kids}\n
+            \{character:kb\} returned {character:kb}\n
+            \{character:kb,babbus\} returned {character:kb,babbus}\n
+            \{character:kb,adults\} returned {character:kb,adults}\n
+            \{character:kb,kids\} returned {character:kb,kids}\n
+            \{character\} returned {character}\n
+            \{character:any,babbus\} returned {character:any,babbus}\n
+            \{character:any,adults\} returned {character:any,adults}\n
+            \{character:any,kids\} returned {character:any,kids}\n
+            {!!extend end pre="\n" post="" yna=true public=false}
+        ;
+            {character:{arg1},{arg2}}
+        ;}
     ;}
-;}
-
 ;}

@@ -1,0 +1,186 @@
+{oneline:
+    {set:loop_flag;true;}
+    {call:ynalib;}
+
+    {func:f_add;
+        {math:+;{arg1};{arg3};}
+    ;}
+    {func:f_multiply;
+        {math:*;{arg1};{arg3};}
+    ;}
+    {func:f_subtract;
+        {math:-;{arg1};{arg3};}
+    ;}
+    {func:f_divide;
+        {when:{arg3};!=;0;
+            {math:/;{arg1};{arg3};}
+        ;
+            <:42_ohisee:533713736620572684> **`ERROR. ERROR.`**\n\n
+            <:Shijuni_AI_Alt:486882909135962122> Did you really think I would fall for that?
+        ;}
+    ;}
+    {func:f_power;
+        {math:**;{arg1};{arg3};}
+    ;}
+    {func:f_idiv;
+        {when:{arg3};!=;0;
+            {math://;{arg1};{arg3};}
+        ;
+            <:42_ohisee:533713736620572684> **`ERROR. ERROR.`**\n\n
+            <:Shijuni_AI_Alt:486882909135962122> Did you really think I would fall for that?
+        ;}
+    ;}
+    {func:f_mod;
+        {math:%;{arg1};{arg3};}
+    ;}
+    
+    {func:f_help;
+        Use this tag to do maths!\n
+        It currently supports:\n
+        • addition (plus or +)\n
+        • subtraction (minus or -)\n
+        • multiplication (times or *)\n
+        • division (divide or /)\n
+        • powers (power, ^ or *)\n
+        • integer division (idiv or //)\n
+        • modulo (mod or %).\n
+        Try `+t {tag} 1 / 0`!
+    ;}
+
+    {func:f_maths;
+        {set:flag;true;}
+        {when:{arg2};==;add;
+            {f_add}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;plus;
+            {f_add}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;+;
+            {f_add}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;minus;
+            {f_subtract}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;subtract;
+            {f_subtract}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;-;
+            {f_subtract}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;multiply;
+            {f_multiply}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;times;
+            {f_multiply}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;*;
+            {f_multiply}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;divide;
+            {f_divide}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;div;
+            {f_divide}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;/;
+            {f_divide}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;idiv;
+            {f_idiv}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;integerdivision;
+            {f_idiv}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;//;
+            {f_idiv}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;modulo;
+            {f_mod}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;mod;
+            {f_mod}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;%;
+            {f_mod}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;power;
+            {f_power}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;^;
+            {f_power}
+            {set:flag;false;}
+        ;}
+        {when:{arg2};==;**;
+            {f_power}
+            {set:flag;false;}
+        ;}
+        {when:{flag};==;true;
+            {set:error;true;}
+        ;}
+    ;}
+
+    {func:f_mathsloop;
+        {set:temp_result;{f_maths};}
+        {when:{error};!=;true;
+            {when:{arglen};>;3;
+                {when:{arglen};>=;5;
+                    {f_remove:3}
+                    {f_remove:2}
+                    {set:arg1;{temp_result};}
+                    {f_mathsloop}
+                ;
+                    Sorry, looks like you gave the wrong amount of arguments.\n
+                    Remember, the correct format is `+t {tag} first_number operation second number [operation third_number .....]`\n
+                    So for instance `+t {tag} 1 + 3` or `+t {tag} 1 + 3 * 8`, but not `+t {tag} 1 + 3*8` or `+t {tag} 2 + 4 +`.
+                ;}
+            ;
+                {temp_result}
+            ;}
+        ;
+            Sorry, `{arg2}` isn't a supported operation.\n
+            Use `+t {tag} help` for a list!
+        ;}
+    ;}
+    
+    {when:{arg1};==;help;
+        {f_help}
+    ;
+        {when:{arg1};is;error;
+            {f_help}
+        ;
+            {when:{arglen};<;3;
+                To use the tag do `+t {tag} first_number operation second_number`, so for instance `+t {tag} 1 / 0`. Don't forget the spaces inbetween!
+            ;
+                {when:{arg1};is;decimal;
+                    {when:{arg3};is;decimal;
+                        {f_mathsloop}
+                    ;
+                        <:42_ohisee:533713736620572684> Make sure *both* arguments are numbers
+                    ;}
+                ;
+                    <:HP_supportive:507433460881686529> Make sure both arguments are numbers!
+                ;}
+            ;}
+        ;}
+    ;}
+
+;}

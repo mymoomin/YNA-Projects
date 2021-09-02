@@ -1,0 +1,117 @@
+{oneline:
+    {!!descshort ａｅｓｔｈｅｔｉｃ!}
+    {!!description Replaces input text with fullwidth characters. Use [ and ] to get ｢ and ｣.!}
+    {!!library!}
+    {set:newrep;true;}
+    {when:{arg1};is;error;
+        {choose:
+            ＭＡＣＩＮＴＯＳＨ　ＰＬＵＳ　－　リサフランク４２０　/　現代のコンピュー;
+            ２８１４ - 新しい日の誕生;
+            ＭＡＣ　ＴＯＮＩＧＨＴ
+        ;}
+    ;
+                
+        {when:{args};is;/[　ａ-ｚＡ-Ｚ]/;
+            {set:args;{rep:/(?<=　) /;;{args};};}
+            {set:args;{rep:/ (?=　)/;;{args};};}
+            {set:args;{rep:/([^　])/;\1　;{args};};}
+        ;}
+        {set:args;{rep:a;ａ;{args};};}
+        {set:args;{rep:b;ｂ;{args};};}
+        {set:args;{rep:c;ｃ;{args};};}
+        {set:args;{rep:d;ｄ;{args};};}
+        {set:args;{rep:e;ｅ;{args};};}
+        {set:args;{rep:f;ｆ;{args};};}
+        {set:args;{rep:g;ｇ;{args};};}
+        {set:args;{rep:h;ｈ;{args};};}
+        {set:args;{rep:i;ｉ;{args};};}
+        {set:args;{rep:j;ｊ;{args};};}
+        {set:args;{rep:k;ｋ;{args};};}
+        {set:args;{rep:l;ｌ;{args};};}
+        {set:args;{rep:m;ｍ;{args};};}
+        {set:args;{rep:n;ｎ;{args};};}
+        {set:args;{rep:o;ｏ;{args};};}
+        {set:args;{rep:p;ｐ;{args};};}
+        {set:args;{rep:q;ｑ;{args};};}
+        {set:args;{rep:r;ｒ;{args};};}
+        {set:args;{rep:s;ｓ;{args};};}
+        {set:args;{rep:t;ｔ;{args};};}
+        {set:args;{rep:u;ｕ;{args};};}
+        {set:args;{rep:v;ｖ;{args};};}
+        {set:args;{rep:w;ｗ;{args};};}
+        {set:args;{rep:x;ｘ;{args};};}
+        {set:args;{rep:y;ｙ;{args};};}
+        {set:args;{rep:z;ｚ;{args};};}
+        {set:args;{rep:A;Ａ;{args};};}
+        {set:args;{rep:B;Ｂ;{args};};}
+        {set:args;{rep:C;Ｃ;{args};};}
+        {set:args;{rep:D;Ｄ;{args};};}
+        {set:args;{rep:E;Ｅ;{args};};}
+        {set:args;{rep:F;Ｆ;{args};};}
+        {set:args;{rep:G;Ｇ;{args};};}
+        {set:args;{rep:H;Ｈ;{args};};}
+        {set:args;{rep:I;Ｉ;{args};};}
+        {set:args;{rep:J;Ｊ;{args};};}
+        {set:args;{rep:K;Ｋ;{args};};}
+        {set:args;{rep:L;Ｌ;{args};};}
+        {set:args;{rep:M;Ｍ;{args};};}
+        {set:args;{rep:N;Ｎ;{args};};}
+        {set:args;{rep:O;Ｏ;{args};};}
+        {set:args;{rep:P;Ｐ;{args};};}
+        {set:args;{rep:Q;Ｑ;{args};};}
+        {set:args;{rep:R;Ｒ;{args};};}
+        {set:args;{rep:S;Ｓ;{args};};}
+        {set:args;{rep:T;Ｔ;{args};};}
+        {set:args;{rep:U;Ｕ;{args};};}
+        {set:args;{rep:V;Ｖ;{args};};}
+        {set:args;{rep:W;Ｗ;{args};};}
+        {set:args;{rep:X;Ｘ;{args};};}
+        {set:args;{rep:Y;Ｙ;{args};};}
+        {set:args;{rep:Z;Ｚ;{args};};}
+        {set:args;{rep:1;１;{args};};}
+        {set:args;{rep:2;２;{args};};}
+        {set:args;{rep:3;３;{args};};}
+        {set:args;{rep:4;４;{args};};}
+        {set:args;{rep:5;５;{args};};}
+        {set:args;{rep:6;６;{args};};}
+        {set:args;{rep:7;７;{args};};}
+        {set:args;{rep:8;８;{args};};}
+        {set:args;{rep:9;９;{args};};}
+        {set:args;{rep:0;０;{args};};}
+        {set:args;{rep:.;｡;{args};};}
+        {set:args;{rep:,;，;{args};};}
+        {set:args;{rep:?;？;{args};};}
+        {set:args;{rep:\;;；;{args};};}
+        {set:args;{rep:!;！;{args};};}
+        {set:args;{rep:$;＄;{args};};}
+        {set:args;{rep:%;％;{args};};}
+        {set:args;{rep:&;＆;{args};};}
+        {set:args;{rep:*;＊;{args};};}
+        {set:args;{rep:((;｟;{args};};}
+        {set:args;{rep:));｠;{args};};}
+        {set:args;{rep:(;（;{args};};}
+        {set:args;{rep:);）;{args};};}
+        {set:args;{rep:@;＠;{args};};}
+        {set:args;{rep:#;＃;{args};};}
+        {set:args;{rep:+;＋;{args};};}
+        {set:args;{rep:";＂;{args};};}
+        {set:args;{rep:';＇;{args};};}
+        {set:args;{rep:-;－;{args};};}
+        {set:args;{rep:\/;／;{args};};}
+        {set:args;{rep:\:;：;{args};};}
+        {set:args;{rep:<;＜;{args};};}
+        {set:args;{rep:=;＝;{args};};}
+        {set:args;{rep:>;＞;{args};};}
+        {set:args;{rep:~;～;{args};};}
+        {set:args;{rep:\{;｛;{args};};}
+        {set:args;{rep:|;｜;{args};};}
+        {set:args;{rep:\};｝;{args};};}
+        {set:args;{rep:[[;【;{args};};}
+        {set:args;{rep:]];】;{args};};}
+        {set:args;{rep:[;｢;{args};};}
+        {set:args;{rep:];｣;{args};};}
+        {set:args;{rep: ;　;{args};};}
+
+        {args}
+    ;}
+;}

@@ -1,0 +1,34 @@
+{oneline:
+    {!!library}
+    {set:newrep;true;}
+    {set:output;{args};}
+    {set:output;{rep:/(.)/;£\1£;{output};};}
+    {set:output;{rep:£ £;<:__:521710982368591872>;{output};};}
+    {set:output;{rep:£A£;<:GoopsA:586252392325054465>;{upper:{output};};};}
+    {set:output;{rep:£B£;<:GoopsB:586252370242043907>;{upper:{output};};};}
+    {set:output;{rep:£C£;<:GoopsC:586252357302616075>;{upper:{output};};};}
+    {set:output;{rep:£D£;<:GoopsD:586252338239373324>;{upper:{output};};};}
+    {set:output;{rep:£E£;<:GoopsE:586252222657069151>;{upper:{output};};};}
+    {set:output;{rep:£F£;<:GoopsF:586252208060760078>;{upper:{output};};};}
+    {set:output;{rep:£G£;<:GoopsG:586252134593593344>;{upper:{output};};};}
+    {set:output;{rep:£H£;<:GoopsH:586252114997674005>;{upper:{output};};};}
+    {set:output;{rep:£I£;<:GoopsI:586252098266726401>;{upper:{output};};};}
+    {set:output;{rep:£J£;<:GoopsJ:586252084291043391>;{upper:{output};};};}
+    {set:output;{rep:£K£;<:GoopsK:586252071456604200>;{upper:{output};};};}
+    {set:output;{rep:£L£;<:GoopsL:586251915407392798>;{upper:{output};};};}
+    {set:output;{rep:£M£;<:GoopsM:586251900270411776>;{upper:{output};};};}
+    {set:output;{rep:£N£;<:GoopsN:586251873846034436>;{upper:{output};};};}
+    {set:output;{rep:£O£;<:GoopsO:586251822860337183>;{upper:{output};};};}
+    {set:output;{rep:£P£;<:GoopsP:586251773380132885>;{upper:{output};};};}
+    {set:output;{rep:£Q£;<:GoopsQ:586251666496421951>;{upper:{output};};};}
+    {set:output;{rep:£R£;<:GoopsR:586251642639220738>;{upper:{output};};};}
+    {set:output;{rep:£S£;<:GoopsS:586251618983608340>;{upper:{output};};};}
+    {set:output;{rep:£T£;<:GoopsT:586251595172544512>;{upper:{output};};};}
+    {set:output;{rep:£U£;<:GoopsU:586251578504380416>;{upper:{output};};};}
+    {set:output;{rep:£V£;<:GoopsV:586251552961069067>;{upper:{output};};};}
+    {set:output;{rep:£W£;<:GoopsW:586251452846964754>;{upper:{output};};};}
+    {set:output;{rep:£X£;<:GoopsX:586251312887365671>;{upper:{output};};};}
+    {set:output;{rep:£Y£;<:GoopsY:586251287960748045>;{upper:{output};};};}
+    {set:output;{rep:£Z£;<:GoopsZ:586251257904365618>;{upper:{output};};};}
+    {rep:£;;{output};}
+;}

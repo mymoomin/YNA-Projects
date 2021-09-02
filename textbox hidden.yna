@@ -1,0 +1,29 @@
+{oneline:
+    {set:newrep;true;}
+    {func:f_remove_arg1;
+        {set:args;
+            {loop:2,{arglen};
+                {arg{iter}} 
+            ;}
+        ;}
+    ;}
+    {when:{arglen};<;2;
+        Welcome to the textbox tag!\n
+        This tag is just like +textbox, but it works with emotes from this server, and our emote servers.\n
+        To use it, type `+t {tag} emote message`
+    ;
+        {set:args_stored;{args};}
+        {set:args;{arg1};}
+        {set:emote;{call:emote;};}
+
+        {when:{lower:{emote};};is;/^sorry/;
+            {embed:thumbnail;{caller.avatar_url};}
+            {set:args;{args_stored};}
+        ;
+            {embed:thumbnail;{emote};}
+            {f_remove_arg1}
+        ;}
+        {embed:description;```{args}```;}
+        {embed:colour;{rep:#;0x;{caller.roles[{len:{rep:/[^,]/;;{caller.roles};};}].colour};};}
+    ;}
+;}

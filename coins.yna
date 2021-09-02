@@ -1,0 +1,11 @@
+{oneline:
+    {when:{arg1};==;add;
+        https://i.imgur.com/xbgKToN.jpg
+    ;
+        Coins can be used for the gacha, puyo puyo, blackjack, slots and poker. Check https://42.rockett.space/fun.html#coins for more.\n
+        `+coins add` gives you 300 coins once per day (or 1500 if you're a patron ~~(#P2W)~~),\n
+        `+coins` shows how many coins you have,\n
+        `+coins get [user]` shows how many coins someone else has, and\n
+        `+coins give [user] [amount]` gives coins to someone else!
+    ;}
+;}
